@@ -1,0 +1,86 @@
+/* Identidad Hito: tipografía local, superficies claras y acentos azules. */
+:root {
+  --md-text-font: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --md-code-font: ui-monospace, Consolas, monospace;
+}
+
+:root,
+body[data-md-color-scheme="default"] {
+  --md-primary-fg-color: #174ea6;
+  --md-accent-fg-color: #174ea6;
+  --md-default-fg-color: #202b3c;
+  --md-default-fg-color--light: #48566a;
+  --md-typeset-a-color: #174ea6;
+}
+
+.md-header {
+  box-shadow: 0 1px 4px #132d5026;
+}
+
+.md-header__topic {
+  font-weight: 650;
+}
+
+.md-search__form {
+  border-radius: 6px;
+}
+
+.md-typeset h1,
+.md-typeset h2,
+.md-typeset h3 {
+  color: #202b3c;
+  font-weight: 650;
+}
+
+.md-typeset a:hover {
+  text-decoration: underline;
+}
+
+.md-nav__link--active {
+  font-weight: 650;
+}
+
+.md-typeset .draft-notice {
+  padding: 1rem;
+  border: 1px solid #b9cee9;
+  border-left: 4px solid #174ea6;
+  border-radius: 6px;
+  background: #f0f5fc;
+}
+
+.md-typeset .draft-notice p {
+  margin: 0;
+}
+
+.md-typeset .topic-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr));
+  gap: 1rem;
+  margin: 1rem 0 2rem;
+}
+
+.md-typeset .topic-card {
+  min-width: 0;
+  padding: 1rem;
+  border: 1px solid #c6cfdb;
+  border-radius: 8px;
+  background: #fff;
+}
+
+.md-typeset .topic-card h3 {
+  margin: 0 0 .6rem;
+  font-size: 1rem;
+}
+
+.md-typeset .topic-card p {
+  margin: 0;
+}
+
+:focus-visible {
+  outline: 3px solid #a34600 !important;
+  outline-offset: 3px;
+}
+
+.md-header :focus-visible {
+  outline-color: #fff !important;
+}
