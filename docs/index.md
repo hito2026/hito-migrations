@@ -1,19 +1,53 @@
 # Planifique una migración de Odoo de forma segura
 
-Este sitio es una base documental, no un manual de migración listo para ejecutar.
+Documentación de Hito para organizar el alcance, las decisiones y las evidencias de una migración.
+Elija un tema para comenzar; use la búsqueda para localizar conceptos o plantillas.
+
+<div class="draft-notice" role="note" markdown>
+**Borrador no verificado.** Este sitio es una base documental, no un manual listo para ejecutar.
 Toda la orientación inicial está **sin verificar**. No se afirma ningún resultado de migración.
+</div>
 
-## Elija el siguiente paso
+## Explore la documentación
 
-| Necesidad | Punto de partida |
-| --- | --- |
-| Planificar fases y responsabilidades | [Manual de migración](migration-manual.md) |
-| Definir versiones de origen y destino | [Orientación por versiones](versions.md) |
-| Proponer un procedimiento técnico acotado | [Índice de recetas](recipes.md) |
-| Definir criterios de aceptación y reversión | [Lista de validación](validation.md) |
-| Registrar un fallo reproducible | [Errores conocidos](known-errors.md) |
-| Trabajar con un asistente de IA | [Guía de trabajo con IA](ai-guide.md) |
-| Resumir un ensayo sin datos sensibles | [Plantilla de caso](case-template.md) |
+<div class="topic-cards" markdown>
+
+<div class="topic-card" markdown>
+### [Manual de migración](migration-manual.md)
+Organice las fases, las responsabilidades y las condiciones de un ensayo autorizado.
+</div>
+
+<div class="topic-card" markdown>
+### [Orientación por versiones](versions.md)
+Declare el origen, el destino y las dependencias antes de evaluar la compatibilidad.
+</div>
+
+<div class="topic-card" markdown>
+### [Recetas técnicas](recipes.md)
+Estructure propuestas técnicas acotadas y haga visibles los supuestos pendientes.
+</div>
+
+<div class="topic-card" markdown>
+### [Lista de validación](validation.md)
+Defina criterios de aceptación, parada y recuperación con evidencias observables.
+</div>
+
+<div class="topic-card" markdown>
+### [Errores conocidos](known-errors.md)
+Registre fallos reproducibles, su contexto y las limitaciones de las soluciones propuestas.
+</div>
+
+<div class="topic-card" markdown>
+### [Guía de trabajo con IA](ai-guide.md)
+Acuerde tareas y límites de privacidad sin delegar la autorización de una migración.
+</div>
+
+<div class="topic-card" markdown>
+### [Plantilla de caso anonimizado](case-template.md)
+Resuma un ensayo autorizado sin publicar datos sensibles ni atribuir éxitos sin pruebas.
+</div>
+
+</div>
 
 ## Etiquetas de evidencia
 

@@ -23,18 +23,24 @@ sin instalar dependencias globalmente.
 
 ```sh
 python3 -m mkdocs build --strict
+SITE_DIR=site python3 -m unittest discover -s tests -v
 ```
 
-El directorio generado `site/` está excluido de Git. Revise la navegación, los enlaces
-y la redacción: compilar la documentación no verifica un procedimiento de migración.
-Consulte la [lista de validación](docs/validation.md) para definir las pruebas de aceptación.
+El directorio generado `site/` está excluido de Git. Para una compilación externa,
+use `--site-dir /ruta/temporal/site` y el mismo valor en `SITE_DIR`.
+Las pruebas comprueban las ocho rutas, el idioma, las URL canónicas, la estructura
+de navegación, las tarjetas y los recursos locales. Revise también en navegador
+la búsqueda, el foco de teclado y la navegación de escritorio y móvil.
+Compilar el sitio no verifica una migración; consulte la [lista de validación](docs/validation.md).
 
-### Interfaz en español
+### Tema y diseño
 
-`requirements.txt` incluye el extra oficial `mkdocs[i18n]`, que instala Babel para
-activar las traducciones incluidas en MkDocs. El tema usa `locale: es` y la búsqueda
-`lang: es`, sin plantillas personalizadas. Al actualizar MkDocs, revise las ocho
-páginas, los modales y la página 404 para detectar mensajes sin traducir.
+MkDocs Material (`>=9.6,<10`) aporta búsqueda superior, navegación lateral y tabla
+de contenidos de las guías. La interfaz usa `language: es`, búsqueda `lang: es`
+y conserva `mkdocs[i18n]` para las traducciones. `font: false` evita cargar fuentes
+externas; `docs/stylesheets/extra.css` define los acentos de Hito y las tarjetas
+con tipografía del sistema. No hay plantillas ni JavaScript personalizados.
+Tras actualizar dependencias, revise también la página 404 y los textos de búsqueda.
 
 ## Contribución segura
 
@@ -48,7 +54,9 @@ páginas, los modales y la página 404 para detectar mensajes sin traducir.
 La documentación está publicada en el [sitio web](https://hito2026.github.io/hito-migrations/).
 Las fuentes están en el [repositorio público de Hito](https://github.com/hito2026/hito-migrations).
 La portada respondió HTTP 200 durante la comprobación de publicación del 13 de octubre de 2026.
-Los procedimientos siguen siendo borradores no verificados: publicar el sitio no valida una migración.
+Esa comprobación no acredita la publicación del nuevo diseño; sus cambios requieren
+una publicación y una verificación posteriores. Los procedimientos siguen siendo
+borradores no verificados: publicar el sitio no valida una migración.
 
 La publicación utiliza la rama `gh-pages` y GitHub Pages, sin un flujo
 automático de despliegue. Antes de publicar, revise las fuentes y excluya las notas
