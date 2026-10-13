@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="es" data-bs-theme="light">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        <link rel="canonical" href="https://hito2026.github.io/hito-migrations/ai-guide/">
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>Guía de trabajo con IA - Hito migrations</title>
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../css/fontawesome.min.css" rel="stylesheet">
+        <link href="../css/brands.min.css" rel="stylesheet">
+        <link href="../css/solid.min.css" rel="stylesheet">
+        <link href="../css/v4-font-face.min.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" >
+        <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" disabled>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="..">Hito migrations</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="nav-item">
+                                <a href=".." class="nav-link">Inicio</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../migration-manual/" class="nav-link">Manual de migración</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../versions/" class="nav-link">Orientación por versiones</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../recipes/" class="nav-link">Recetas técnicas</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../validation/" class="nav-link">Lista de validación</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../known-errors/" class="nav-link">Errores conocidos</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="./" class="nav-link active" aria-current="page">Guía de trabajo con IA</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../case-template/" class="nav-link">Plantilla de caso anonimizado</a>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ms-md-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Buscar
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" href="../known-errors/" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Anterior
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="../case-template/" class="nav-link">
+                                    Siguiente <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#toc-collapse" title="Tabla de contenidos">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-bs-level="1"><a href="#guia-de-trabajo-con-ia" class="nav-link">Guía de trabajo con IA</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#antes-de-trabajar" class="nav-link">Antes de trabajar</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#privacidad-y-autoridad" class="nav-link">Privacidad y autoridad</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#resultados-basados-en-evidencias" class="nav-link">Resultados basados en evidencias</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#entrega-del-trabajo" class="nav-link">Entrega del trabajo</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="guia-de-trabajo-con-ia">Guía de trabajo con IA</h1>
+<p>Use la IA para estructurar evidencias y proponer trabajo acotado, no para autorizar migraciones.
+Consulte el <a href="../">índice</a> para las etiquetas de evidencia y el <a href="../migration-manual/">manual</a>
+para los criterios de planificación. Estos esquemas no demuestran ningún procedimiento de migración.</p>
+<h2 id="antes-de-trabajar">Antes de trabajar</h2>
+<ol>
+<li>Confirme la tarea aprobada por una persona, los archivos permitidos y el público destinatario.</li>
+<li>Registre las versiones exactas de origen y destino y el alcance de código y base de datos.</li>
+<li>Identifique las fuentes públicas autorizadas y los supuestos pendientes de resolver.</li>
+<li>Acuerde las evidencias de aceptación, las condiciones de parada y las responsabilidades de recuperación.</li>
+</ol>
+<h2 id="privacidad-y-autoridad">Privacidad y autoridad</h2>
+<ul>
+<li>No acceda a material de clientes en directorios vecinos ni a otras fuentes no aprobadas.</li>
+<li>Nunca copie secretos, datos personales, código propietario ni identificadores de infraestructura.</li>
+<li>Anonimizar un material no otorga permiso para publicarlo.</li>
+<li>No ejecute operaciones sobre bases de datos, migraciones ni comandos destructivos sin aprobación.</li>
+<li>No cree commits ni configure repositorios remotos, no suba cambios, no despliegue ni publique sin aprobación explícita.</li>
+<li>Deje las decisiones de licencia y titularidad en manos del propietario.</li>
+</ul>
+<h2 id="resultados-basados-en-evidencias">Resultados basados en evidencias</h2>
+<p>Marque las propuestas como no verificadas. Separe las afirmaciones de fuentes públicas,
+las observaciones y las hipótesis. Registre resultados reales de comandos; no invente pruebas,
+registros ni éxitos. Compilar la documentación solo valida el sitio, no una migración de código
+o base de datos. Deténgase y consulte a la persona responsable si hay dudas sobre el alcance,
+la autoridad, la privacidad o la recuperación.</p>
+<h2 id="entrega-del-trabajo">Entrega del trabajo</h2>
+<p>Informe los archivos modificados, las comprobaciones realizadas, los riesgos pendientes
+y la siguiente decisión humana. Use la <a href="../validation/">lista de validación</a> para la aceptación
+y la <a href="../case-template/">plantilla de caso</a> para un resumen autorizado y sin datos sensibles.</p></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentación construida con <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="../js/bootstrap.bundle.min.js"></script>
+        <script>
+            var base_url = "..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../js/base.js"></script>
+        <script src="../search/main.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Buscar</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+            </div>
+            <div class="modal-body">
+                <p>Desde aquí puede buscar estos documentos. Ingrese sus términos de búsqueda a continuación.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Buscando..." id="mkdocs-search-query" title="Escriba el término de búsqueda aquí">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No se encontraron resultados"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Atajos de teclado</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Teclas</th>
+                    <th>Acción</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Abrir esta ayuda</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Página siguiente</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Página anterior</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Buscar</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

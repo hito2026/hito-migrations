@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="es" data-bs-theme="light">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        <link rel="canonical" href="https://hito2026.github.io/hito-migrations/migration-manual/">
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>Manual de migración - Hito migrations</title>
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../css/fontawesome.min.css" rel="stylesheet">
+        <link href="../css/brands.min.css" rel="stylesheet">
+        <link href="../css/solid.min.css" rel="stylesheet">
+        <link href="../css/v4-font-face.min.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" >
+        <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" disabled>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="..">Hito migrations</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="nav-item">
+                                <a href=".." class="nav-link">Inicio</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="./" class="nav-link active" aria-current="page">Manual de migración</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../versions/" class="nav-link">Orientación por versiones</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../recipes/" class="nav-link">Recetas técnicas</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../validation/" class="nav-link">Lista de validación</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../known-errors/" class="nav-link">Errores conocidos</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../ai-guide/" class="nav-link">Guía de trabajo con IA</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../case-template/" class="nav-link">Plantilla de caso anonimizado</a>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ms-md-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Buscar
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" href=".." class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Anterior
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="../versions/" class="nav-link">
+                                    Siguiente <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#toc-collapse" title="Tabla de contenidos">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-bs-level="1"><a href="#esquema-del-manual-de-migracion" class="nav-link">Esquema del manual de migración</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#1-establecer-el-acuerdo-de-trabajo" class="nav-link">1. Establecer el acuerdo de trabajo</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#2-separar-las-lineas-de-trabajo" class="nav-link">2. Separar las líneas de trabajo</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#3-disenar-un-ensayo-autorizado" class="nav-link">3. Diseñar un ensayo autorizado</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#4-validar-y-decidir" class="nav-link">4. Validar y decidir</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="esquema-del-manual-de-migracion">Esquema del manual de migración</h1>
+<p><strong>Estado: esquema no verificado.</strong> Complete los criterios siguientes antes de proponer la ejecución.
+Esta página no contiene comandos de migración probados.</p>
+<h2 id="1-establecer-el-acuerdo-de-trabajo">1. Establecer el acuerdo de trabajo</h2>
+<p>Registre las versiones de Odoo de origen y destino, la edición, el entorno de ejecución,
+la versión de base de datos, el inventario de módulos y las versiones de dependencias.
+Identifique los roles autorizados sin publicar datos personales. Acuerde el tiempo de
+indisponibilidad, los umbrales de aceptación y el alcance excluido.
+Use la <a href="../versions/">plantilla de orientación por versiones</a>.</p>
+<h2 id="2-separar-las-lineas-de-trabajo">2. Separar las líneas de trabajo</h2>
+<table>
+<thead>
+<tr>
+<th>Línea</th>
+<th>Preguntas por resolver</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Código</td>
+<td>¿Qué API, vistas, recursos y dependencias necesitan cambios de compatibilidad?</td>
+</tr>
+<tr>
+<td>Base de datos</td>
+<td>¿Qué esquemas, registros y metadatos necesitan una transformación aprobada?</td>
+</tr>
+<tr>
+<td>Integración</td>
+<td>¿Qué interfaces deben aislarse y comprobarse durante el ensayo?</td>
+</tr>
+</tbody>
+</table>
+<p>La compatibilidad del código no demuestra por sí sola la corrección de la base de datos ni la aceptación funcional.</p>
+<h2 id="3-disenar-un-ensayo-autorizado">3. Diseñar un ensayo autorizado</h2>
+<ul>
+<li>Use un entorno aislado aprobado y un registro documental apto para publicación.</li>
+<li>Defina la cobertura de las copias de seguridad, la verificación de restauración y el plazo para decidir la reversión.</li>
+<li>Mantenga los detalles sensibles de ejecución en un sistema privado aprobado, no en este sitio.</li>
+<li>Redacte <a href="../recipes/">recetas</a> acotadas; identifique las incógnitas y las condiciones de parada.</li>
+</ul>
+<h2 id="4-validar-y-decidir">4. Validar y decidir</h2>
+<p>Aplique la <a href="../validation/">lista de aceptación</a> a ambas líneas de trabajo.
+Registre los fallos con la <a href="../known-errors/">plantilla de errores</a>; no oculte excepciones.
+Una persona debe aprobar cualquier paso a producción tras revisar las evidencias del ensayo
+y de recuperación. Registre el resultado sin datos sensibles con la <a href="../case-template/">plantilla de caso</a>.</p></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentación construida con <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="../js/bootstrap.bundle.min.js"></script>
+        <script>
+            var base_url = "..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../js/base.js"></script>
+        <script src="../search/main.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Buscar</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+            </div>
+            <div class="modal-body">
+                <p>Desde aquí puede buscar estos documentos. Ingrese sus términos de búsqueda a continuación.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Buscando..." id="mkdocs-search-query" title="Escriba el término de búsqueda aquí">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No se encontraron resultados"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Atajos de teclado</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Teclas</th>
+                    <th>Acción</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Abrir esta ayuda</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Página siguiente</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Página anterior</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Buscar</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

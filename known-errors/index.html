@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="es" data-bs-theme="light">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        <link rel="canonical" href="https://hito2026.github.io/hito-migrations/known-errors/">
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>Errores conocidos - Hito migrations</title>
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../css/fontawesome.min.css" rel="stylesheet">
+        <link href="../css/brands.min.css" rel="stylesheet">
+        <link href="../css/solid.min.css" rel="stylesheet">
+        <link href="../css/v4-font-face.min.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" >
+        <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" disabled>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="..">Hito migrations</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="nav-item">
+                                <a href=".." class="nav-link">Inicio</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../migration-manual/" class="nav-link">Manual de migración</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../versions/" class="nav-link">Orientación por versiones</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../recipes/" class="nav-link">Recetas técnicas</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../validation/" class="nav-link">Lista de validación</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="./" class="nav-link active" aria-current="page">Errores conocidos</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../ai-guide/" class="nav-link">Guía de trabajo con IA</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../case-template/" class="nav-link">Plantilla de caso anonimizado</a>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ms-md-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Buscar
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" href="../validation/" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Anterior
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="../ai-guide/" class="nav-link">
+                                    Siguiente <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#toc-collapse" title="Tabla de contenidos">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-bs-level="1"><a href="#plantilla-de-errores-conocidos" class="nav-link">Plantilla de errores conocidos</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#entrada-de-error" class="nav-link">Entrada de error</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#comprobacion-antes-de-publicar" class="nav-link">Comprobación antes de publicar</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="plantilla-de-errores-conocidos">Plantilla de errores conocidos</h1>
+<p><strong>Estado: plantilla no verificada.</strong> Aún no se han catalogado errores de migración confirmados.
+No presente un diagnóstico plausible como una solución demostrada.</p>
+<h2 id="entrada-de-error">Entrada de error</h2>
+<table>
+<thead>
+<tr>
+<th>Campo</th>
+<th>Información requerida</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Etiqueta</td>
+<td>Título descriptivo genérico, no un identificador de cliente</td>
+</tr>
+<tr>
+<td>Contexto</td>
+<td>Versiones exactas, edición, dependencias y línea de código o base de datos</td>
+</tr>
+<tr>
+<td>Síntoma</td>
+<td>Mensaje mínimo sin datos sensibles y efecto observado</td>
+</tr>
+<tr>
+<td>Reproducción</td>
+<td>Pasos aislados autorizados; resultado esperado frente al real</td>
+</tr>
+<tr>
+<td>Hipótesis</td>
+<td>Causa posible, separada explícitamente de la evidencia confirmada</td>
+</tr>
+<tr>
+<td>Resolución</td>
+<td>Corrección propuesta o verificada, con etiqueta de evidencia y límites</td>
+</tr>
+<tr>
+<td>Recuperación</td>
+<td>Condición de parada, dependencia de copia de seguridad y restauración y decisión humana</td>
+</tr>
+<tr>
+<td>Evidencias</td>
+<td>Resultados sin datos sensibles, fecha y rol de quien revisa</td>
+</tr>
+</tbody>
+</table>
+<h2 id="comprobacion-antes-de-publicar">Comprobación antes de publicar</h2>
+<ul>
+<li>Elimine credenciales, nombres de servidores, datos personales y fragmentos propietarios.</li>
+<li>Resuma los registros; no pegue volcados ni trazas de error con rutas privadas.</li>
+<li>Omita cualquier material cuyo permiso de publicación no esté claro.</li>
+<li>Indique los riesgos pendientes y las comprobaciones omitidas aunque una solución provisional parezca funcionar.</li>
+</ul>
+<p>Una corrección verificada necesita un fallo reproducible y una nueva prueba exitosa en el
+contexto declarado. En caso contrario, mantenga la etiqueta no verificada y solicite evaluación humana.</p>
+<p>Vuelva a las <a href="../recipes/">recetas</a> o a la <a href="../validation/">lista de validación</a>.</p></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentación construida con <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="../js/bootstrap.bundle.min.js"></script>
+        <script>
+            var base_url = "..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../js/base.js"></script>
+        <script src="../search/main.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Buscar</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+            </div>
+            <div class="modal-body">
+                <p>Desde aquí puede buscar estos documentos. Ingrese sus términos de búsqueda a continuación.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Buscando..." id="mkdocs-search-query" title="Escriba el término de búsqueda aquí">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No se encontraron resultados"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Atajos de teclado</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Teclas</th>
+                    <th>Acción</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Abrir esta ayuda</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Página siguiente</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Página anterior</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Buscar</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    <url>
+         <loc>https://hito2026.github.io/hito-migrations/</loc>
+         <lastmod>2026-10-13</lastmod>
+    </url>
+    <url>
+         <loc>https://hito2026.github.io/hito-migrations/ai-guide/</loc>
+         <lastmod>2026-10-13</lastmod>
+    </url>
+    <url>
+         <loc>https://hito2026.github.io/hito-migrations/case-template/</loc>
+         <lastmod>2026-10-13</lastmod>
+    </url>
+    <url>
+         <loc>https://hito2026.github.io/hito-migrations/known-errors/</loc>
+         <lastmod>2026-10-13</lastmod>
+    </url>
+    <url>
+         <loc>https://hito2026.github.io/hito-migrations/migration-manual/</loc>
+         <lastmod>2026-10-13</lastmod>
+    </url>
+    <url>
+         <loc>https://hito2026.github.io/hito-migrations/recipes/</loc>
+         <lastmod>2026-10-13</lastmod>
+    </url>
+    <url>
+         <loc>https://hito2026.github.io/hito-migrations/validation/</loc>
+         <lastmod>2026-10-13</lastmod>
+    </url>
+    <url>
+         <loc>https://hito2026.github.io/hito-migrations/versions/</loc>
+         <lastmod>2026-10-13</lastmod>
+    </url>
+</urlset>
