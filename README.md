@@ -45,12 +45,12 @@ páginas, los modales y la página 404 para detectar mensajes sin traducir.
 
 ## Publicación y licencia
 
-El propietario autorizó la publicación en GitHub bajo `hito2026` y en GitHub Pages.
-Los destinos previstos son el [repositorio](https://github.com/hito2026/hito-migrations)
-y el [sitio de documentación](https://hito2026.github.io/hito-migrations/).
-Esta preparación local no confirma que esos destinos estén publicados o accesibles.
+La documentación está publicada en el [sitio web](https://hito2026.github.io/hito-migrations/).
+Las fuentes están en el [repositorio público de Hito](https://github.com/hito2026/hito-migrations).
+La portada respondió HTTP 200 durante la comprobación de publicación del 13 de octubre de 2026.
+Los procedimientos siguen siendo borradores no verificados: publicar el sitio no valida una migración.
 
-La publicación prevista utiliza la rama `gh-pages` y GitHub Pages, sin un flujo
+La publicación utiliza la rama `gh-pages` y GitHub Pages, sin un flujo
 automático de despliegue. Antes de publicar, revise las fuentes y excluya las notas
 operativas privadas, los metadatos locales y los artefactos de entorno y compilación.
 La elección de licencia sigue pendiente del propietario; aquí no se concede ninguna licencia.
