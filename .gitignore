@@ -1,0 +1,11 @@
+.venv/
+site/
+__pycache__/
+*.py[cod]
+.env
+.env.*
+.DS_Store
+odd/
+.atl/
+.local-work/
+.odd-staging/

@@ -1,0 +1,19 @@
+site_name: Hito migrations
+site_description: >-
+  Esquemas y plantillas de migración de Odoo aptos para publicación pública
+site_url: https://hito2026.github.io/hito-migrations/
+theme:
+  name: mkdocs
+  locale: es
+plugins:
+  - search:
+      lang: es
+nav:
+  - Inicio: index.md
+  - Manual de migración: migration-manual.md
+  - Orientación por versiones: versions.md
+  - Recetas técnicas: recipes.md
+  - Lista de validación: validation.md
+  - Errores conocidos: known-errors.md
+  - Guía de trabajo con IA: ai-guide.md
+  - Plantilla de caso anonimizado: case-template.md
