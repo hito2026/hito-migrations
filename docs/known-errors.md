@@ -26,4 +26,39 @@ No presente un diagnóstico plausible como una solución demostrada.
 Una corrección verificada necesita un fallo reproducible y una nueva prueba exitosa en el
 contexto declarado. En caso contrario, mantenga la etiqueta no verificada y solicite evaluación humana.
 
+## Lecciones cautelares genéricas: no verificadas
+
+Estas hipótesis no son incidentes confirmados ni recetas probadas; requieren evidencias
+por versión y autorización antes de proponer cualquier actuación.
+
+### Dependencias y auto-instalación
+
+El grafo transitivo, incluidas reglas de auto-instalación, puede exceder el inventario
+aprobado. Calcule y revise el grafo completo antes de proponer una inicialización.
+Si introduce módulos fuera de alcance, deténgase y solicite ampliación humana;
+no interprete una dependencia implícita como autorización.
+
+### Fallo de obtención de objetos históricos en un clon parcial
+
+Un fallo al obtener objetos históricos de un clon parcial es un incidente de herramientas,
+no prueba de corrupción del repositorio ni de los datos. Una posible vía de investigación,
+no verificada, es inspeccionar una fuente prístina en un espacio aislado autorizado y
+contrastar referencias y disponibilidad de objetos. No repare destructivamente el espacio
+original ni atribuya una causa sin evidencia; esta página no aporta comandos de reparación.
+
+### Posible sustitución de módulos de pago ADHOC
+
+La relación `account_payment_group` → `account_payment_pro` es **solo una hipótesis**,
+no un reemplazo verificado. Requiere confirmar proveedor, versiones, cobertura funcional,
+historia y conciliación de numeración. La presencia de un addon con nombre parecido
+no demuestra equivalencia. No se proponen transformaciones de datos ni una ruta de migración.
+
+### Reglas fiscales y controles de seguridad
+
+Un fallback fiscal fijo puede ocultar una configuración incompleta; una validación solo
+mediante `onchange` puede no cubrir otras vías de escritura. Son riesgos genéricos por
+investigar con pruebas autorizadas de comportamiento y controles del servidor, no
+vulnerabilidades confirmadas ni correcciones verificadas. No publique valores reales.
+
+Registre las decisiones en las [tarjetas de módulo](migration-templates.md).
 Vuelva a las [recetas](recipes.md) o a la [lista de validación](validation.md).

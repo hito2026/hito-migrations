@@ -2,7 +2,9 @@
 
 Base documental para migraciones de Odoo, preparada para publicación pública.
 Los esquemas son **borradores no verificados**, no procedimientos probados ni
-pruebas de migraciones exitosas. Comience por el [índice de documentación](docs/index.md).
+pruebas de migraciones exitosas. Comience por el [índice de documentación](docs/index.md),
+la [estrategia en espiral](docs/spiral-strategy.md) y las
+[plantillas de entrada y módulos](docs/migration-templates.md).
 
 ## Preparación local
 
@@ -28,7 +30,7 @@ SITE_DIR=site python3 -m unittest discover -s tests -v
 
 El directorio generado `site/` está excluido de Git. Para una compilación externa,
 use `--site-dir /ruta/temporal/site` y el mismo valor en `SITE_DIR`.
-Las pruebas comprueban las ocho rutas, el idioma, las URL canónicas, la estructura
+Las pruebas comprueban las diez rutas, el idioma, las URL canónicas, la estructura
 de navegación, las tarjetas y los recursos locales. Revise también en navegador
 la búsqueda, el foco de teclado y la navegación de escritorio y móvil.
 Compilar el sitio no verifica una migración; consulte la [lista de validación](docs/validation.md).

@@ -18,6 +18,16 @@ Organice las fases, las responsabilidades y las condiciones de un ensayo autoriz
 </div>
 
 <div class="topic-card" markdown>
+### [Estrategia en espiral](spiral-strategy.md)
+Separe portado, runtime y aceptación histórica con decisiones y evidencias por módulo.
+</div>
+
+<div class="topic-card" markdown>
+### [Plantillas de migración](migration-templates.md)
+Prepare una entrada anonimizada, tarjetas de módulos y oleadas con límites explícitos.
+</div>
+
+<div class="topic-card" markdown>
 ### [Orientación por versiones](versions.md)
 Declare el origen, el destino y las dependencias antes de evaluar la compatibilidad.
 </div>

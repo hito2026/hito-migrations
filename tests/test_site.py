@@ -7,8 +7,8 @@ from pathlib import Path
 from urllib.parse import unquote, urlsplit
 
 SITE = Path(os.environ.get("SITE_DIR", "site")).resolve()
-ROUTES = ("", "migration-manual", "versions", "recipes", "validation",
-          "known-errors", "ai-guide", "case-template")
+ROUTES = ("", "migration-manual", "spiral-strategy", "migration-templates",
+          "versions", "recipes", "validation", "known-errors", "ai-guide", "case-template")
 BASE = "https://hito2026.github.io/hito-migrations/"
 
 
@@ -57,7 +57,7 @@ class SiteContract(unittest.TestCase):
         self.assertTrue(any("topic-cards" in a.get("class", "").split() for _, a in page.tags))
         for route in ROUTES[1:]:
             self.assertTrue(page.has("a", "href", route + "/"))
-        self.assertEqual(page.text.count('class="topic-card"'), 7)
+        self.assertEqual(page.text.count('class="topic-card"'), 9)
         self.assertIn("Borrador no verificado", page.text)
         for label in ("No verificado", "Verificado en un contexto declarado", "Requiere revalidación"):
             self.assertIn(label, page.text)

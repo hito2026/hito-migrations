@@ -28,6 +28,23 @@ registros ni éxitos. Compilar la documentación solo valida el sitio, no una mi
 o base de datos. Deténgase y consulte a la persona responsable si hay dudas sobre el alcance,
 la autoridad, la privacidad o la recuperación.
 
+## Coordinación de trabajadores: propuesta no verificada
+
+Use la [estrategia en espiral](spiral-strategy.md) y las
+[fichas reutilizables](migration-templates.md) como contrato de tarea, no como permiso operativo.
+
+- El coordinador mantiene tablero, dependencias, oleadas y decisiones abiertas; es responsable
+  de la integración y de Git solo dentro de los permisos humanos explícitos.
+- Solo proponga trabajadores paralelos con worktrees y ramas aislados, propiedad exclusiva
+  de archivos estrechamente acotados y contratos de dependencia acordados. No basta con
+  asignar módulos distintos si comparten archivos; detenga solapamientos antes de escribir.
+- Ordene oleadas por el grafo completo; entregue dependencias antes que consumidores y
+  eleve ciclos o ampliaciones de alcance a una persona. No amplíe permisos por inferencia.
+- Cada trabajador recibe alcance, exclusiones, fuentes autorizadas, criterios y comprobaciones;
+  devuelve cambios, resultados observados, bloqueos y próxima decisión, sin publicar por su cuenta.
+- Registre los estados del tablero con evidencias separadas de código, runtime y datos.
+  `ported` o una publicación no equivalen a `accepted`; los fallos y controles omitidos siguen visibles.
+
 ## Entrega del trabajo
 
 Informe los archivos modificados, las comprobaciones realizadas, los riesgos pendientes

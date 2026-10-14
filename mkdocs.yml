@@ -27,6 +27,8 @@ plugins:
 nav:
   - Inicio: index.md
   - Manual de migración: migration-manual.md
+  - Estrategia en espiral: spiral-strategy.md
+  - Plantillas de migración: migration-templates.md
   - Orientación por versiones: versions.md
   - Recetas técnicas: recipes.md
   - Lista de validación: validation.md
