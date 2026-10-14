@@ -16,7 +16,7 @@
         <link rel="prev" href="..">
       
       
-        <link rel="next" href="../versions/">
+        <link rel="next" href="../spiral-strategy/">
       
       
         
@@ -312,6 +312,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="2. Separar las líneas de trabajo">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#planificar-por-espirales-y-modulos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Planificar por espirales y módulos
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -340,6 +357,60 @@
   
 </nav>
       
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../spiral-strategy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Estrategia en espiral
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../migration-templates/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Plantillas de migración
+  
+
+    
+  </span>
+  
+  
+
+      </a>
     </li>
   
 
@@ -552,6 +623,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="2. Separar las líneas de trabajo">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#planificar-por-espirales-y-modulos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Planificar por espirales y módulos
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -601,7 +689,8 @@ Esta página no contiene comandos de migración probados.</p>
 la versión de base de datos, el inventario de módulos y las versiones de dependencias.
 Identifique los roles autorizados sin publicar datos personales. Acuerde el tiempo de
 indisponibilidad, los umbrales de aceptación y el alcance excluido.
-Use la <a href="../versions/">plantilla de orientación por versiones</a>.</p>
+Use la <a href="../versions/">plantilla de orientación por versiones</a> y la
+<a href="../migration-templates/">ficha de entrada anonimizada</a>.</p>
 <h2 id="2-separar-las-lineas-de-trabajo">2. Separar las líneas de trabajo</h2>
 <table>
 <thead>
@@ -625,7 +714,17 @@ Use la <a href="../versions/">plantilla de orientación por versiones</a>.</p>
 </tr>
 </tbody>
 </table>
-<p>La compatibilidad del código no demuestra por sí sola la corrección de la base de datos ni la aceptación funcional.</p>
+<p>La compatibilidad o publicación del código no demuestra por sí sola la corrección de la
+base de datos ni la aceptación funcional o contable.</p>
+<h3 id="planificar-por-espirales-y-modulos">Planificar por espirales y módulos</h3>
+<p>La <a href="../spiral-strategy/">estrategia en espiral</a> propone S1 entrada, S2 clasificación,
+S3 portado, S4 runtime aislado en Odoo.sh Development, S5 aceptación histórica sobre
+una copia migrada en Staging y S6 planificación y ensayo de corte/recuperación.
+Es una propuesta <strong>no verificada</strong>, no instrucciones de ejecución en producción.
+S3/S4 iteran por módulo; S6 se planifica desde el inicio. S5 requiere una base de datos
+actualizada y una restauración aprobada por una persona; no se deriva de un S4 exitoso.
+Use las <a href="../migration-templates/">tarjetas de módulo</a> para separar estado, disposición
+y evidencias de código, runtime y datos.</p>
 <h2 id="3-disenar-un-ensayo-autorizado">3. Diseñar un ensayo autorizado</h2>
 <ul>
 <li>Use un entorno aislado aprobado y un registro documental apto para publicación.</li>

@@ -260,6 +260,60 @@
   
   
     <li class="md-nav__item">
+      <a href="../spiral-strategy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Estrategia en espiral
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../migration-templates/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Plantillas de migración
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../versions/" class="md-nav__link">
         
   
@@ -461,6 +515,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#coordinacion-de-trabajadores-propuesta-no-verificada" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Coordinación de trabajadores: propuesta no verificada
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#entrega-del-trabajo" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -566,6 +631,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#coordinacion-de-trabajadores-propuesta-no-verificada" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Coordinación de trabajadores: propuesta no verificada
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#entrega-del-trabajo" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -619,6 +695,22 @@ las observaciones y las hipótesis. Registre resultados reales de comandos; no i
 registros ni éxitos. Compilar la documentación solo valida el sitio, no una migración de código
 o base de datos. Deténgase y consulte a la persona responsable si hay dudas sobre el alcance,
 la autoridad, la privacidad o la recuperación.</p>
+<h2 id="coordinacion-de-trabajadores-propuesta-no-verificada">Coordinación de trabajadores: propuesta no verificada</h2>
+<p>Use la <a href="../spiral-strategy/">estrategia en espiral</a> y las
+<a href="../migration-templates/">fichas reutilizables</a> como contrato de tarea, no como permiso operativo.</p>
+<ul>
+<li>El coordinador mantiene tablero, dependencias, oleadas y decisiones abiertas; es responsable
+  de la integración y de Git solo dentro de los permisos humanos explícitos.</li>
+<li>Solo proponga trabajadores paralelos con worktrees y ramas aislados, propiedad exclusiva
+  de archivos estrechamente acotados y contratos de dependencia acordados. No basta con
+  asignar módulos distintos si comparten archivos; detenga solapamientos antes de escribir.</li>
+<li>Ordene oleadas por el grafo completo; entregue dependencias antes que consumidores y
+  eleve ciclos o ampliaciones de alcance a una persona. No amplíe permisos por inferencia.</li>
+<li>Cada trabajador recibe alcance, exclusiones, fuentes autorizadas, criterios y comprobaciones;
+  devuelve cambios, resultados observados, bloqueos y próxima decisión, sin publicar por su cuenta.</li>
+<li>Registre los estados del tablero con evidencias separadas de código, runtime y datos.
+  <code>ported</code> o una publicación no equivalen a <code>accepted</code>; los fallos y controles omitidos siguen visibles.</li>
+</ul>
 <h2 id="entrega-del-trabajo">Entrega del trabajo</h2>
 <p>Informe los archivos modificados, las comprobaciones realizadas, los riesgos pendientes
 y la siguiente decisión humana. Use la <a href="../validation/">lista de validación</a> para la aceptación

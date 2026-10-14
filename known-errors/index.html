@@ -260,6 +260,60 @@
   
   
     <li class="md-nav__item">
+      <a href="../spiral-strategy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Estrategia en espiral
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../migration-templates/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Plantillas de migración
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../versions/" class="md-nav__link">
         
   
@@ -422,6 +476,67 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#lecciones-cautelares-genericas-no-verificadas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lecciones cautelares genéricas: no verificadas
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Lecciones cautelares genéricas: no verificadas">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dependencias-y-auto-instalacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dependencias y auto-instalación
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fallo-de-obtencion-de-objetos-historicos-en-un-clon-parcial" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fallo de obtención de objetos históricos en un clon parcial
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#posible-sustitucion-de-modulos-de-pago-adhoc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Posible sustitución de módulos de pago ADHOC
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reglas-fiscales-y-controles-de-seguridad" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reglas fiscales y controles de seguridad
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -532,6 +647,67 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#lecciones-cautelares-genericas-no-verificadas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lecciones cautelares genéricas: no verificadas
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Lecciones cautelares genéricas: no verificadas">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dependencias-y-auto-instalacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dependencias y auto-instalación
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fallo-de-obtencion-de-objetos-historicos-en-un-clon-parcial" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fallo de obtención de objetos históricos en un clon parcial
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#posible-sustitucion-de-modulos-de-pago-adhoc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Posible sustitución de módulos de pago ADHOC
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reglas-fiscales-y-controles-de-seguridad" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reglas fiscales y controles de seguridad
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -604,7 +780,32 @@ No presente un diagnóstico plausible como una solución demostrada.</p>
 </ul>
 <p>Una corrección verificada necesita un fallo reproducible y una nueva prueba exitosa en el
 contexto declarado. En caso contrario, mantenga la etiqueta no verificada y solicite evaluación humana.</p>
-<p>Vuelva a las <a href="../recipes/">recetas</a> o a la <a href="../validation/">lista de validación</a>.</p>
+<h2 id="lecciones-cautelares-genericas-no-verificadas">Lecciones cautelares genéricas: no verificadas</h2>
+<p>Estas hipótesis no son incidentes confirmados ni recetas probadas; requieren evidencias
+por versión y autorización antes de proponer cualquier actuación.</p>
+<h3 id="dependencias-y-auto-instalacion">Dependencias y auto-instalación</h3>
+<p>El grafo transitivo, incluidas reglas de auto-instalación, puede exceder el inventario
+aprobado. Calcule y revise el grafo completo antes de proponer una inicialización.
+Si introduce módulos fuera de alcance, deténgase y solicite ampliación humana;
+no interprete una dependencia implícita como autorización.</p>
+<h3 id="fallo-de-obtencion-de-objetos-historicos-en-un-clon-parcial">Fallo de obtención de objetos históricos en un clon parcial</h3>
+<p>Un fallo al obtener objetos históricos de un clon parcial es un incidente de herramientas,
+no prueba de corrupción del repositorio ni de los datos. Una posible vía de investigación,
+no verificada, es inspeccionar una fuente prístina en un espacio aislado autorizado y
+contrastar referencias y disponibilidad de objetos. No repare destructivamente el espacio
+original ni atribuya una causa sin evidencia; esta página no aporta comandos de reparación.</p>
+<h3 id="posible-sustitucion-de-modulos-de-pago-adhoc">Posible sustitución de módulos de pago ADHOC</h3>
+<p>La relación <code>account_payment_group</code> → <code>account_payment_pro</code> es <strong>solo una hipótesis</strong>,
+no un reemplazo verificado. Requiere confirmar proveedor, versiones, cobertura funcional,
+historia y conciliación de numeración. La presencia de un addon con nombre parecido
+no demuestra equivalencia. No se proponen transformaciones de datos ni una ruta de migración.</p>
+<h3 id="reglas-fiscales-y-controles-de-seguridad">Reglas fiscales y controles de seguridad</h3>
+<p>Un fallback fiscal fijo puede ocultar una configuración incompleta; una validación solo
+mediante <code>onchange</code> puede no cubrir otras vías de escritura. Son riesgos genéricos por
+investigar con pruebas autorizadas de comportamiento y controles del servidor, no
+vulnerabilidades confirmadas ni correcciones verificadas. No publique valores reales.</p>
+<p>Registre las decisiones en las <a href="../migration-templates/">tarjetas de módulo</a>.
+Vuelva a las <a href="../recipes/">recetas</a> o a la <a href="../validation/">lista de validación</a>.</p>
 
 
 

@@ -1,0 +1,894 @@
+
+<!doctype html>
+<html lang="es" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Esquemas y plantillas de migración de Odoo aptos para publicación pública">
+      
+      
+      
+        <link rel="canonical" href="https://hito2026.github.io/hito-migrations/migration-templates/">
+      
+      
+        <link rel="prev" href="../spiral-strategy/">
+      
+      
+        <link rel="next" href="../versions/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Plantillas de migración - Hito migrations</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="blue">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#plantillas-de-entrada-y-seguimiento-de-modulos" class="md-skip">
+          Saltar a contenido
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabecera">
+    <a href=".." title="Hito migrations" class="md-header__button md-logo" aria-label="Hito migrations" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Hito migrations
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Plantillas de migración
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Búsqueda" placeholder="Búsqueda" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Buscar">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpiar" aria-label="Limpiar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando búsqueda
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navegación" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Hito migrations" class="md-nav__button md-logo" aria-label="Hito migrations" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Hito migrations
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Inicio
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../migration-manual/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Manual de migración
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../spiral-strategy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Estrategia en espiral
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Plantillas de migración
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Plantillas de migración
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#ficha-de-entrada-anonimizada" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ficha de entrada anonimizada
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tarjeta-reutilizable-de-modulo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tarjeta reutilizable de módulo
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#orden-de-oleadas-opcional" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Orden de oleadas opcional
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#revision-de-la-ficha" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Revisión de la ficha
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../versions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Orientación por versiones
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../recipes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Recetas técnicas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../validation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lista de validación
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../known-errors/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Errores conocidos
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ai-guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Guía de trabajo con IA
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../case-template/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Plantilla de caso anonimizado
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#ficha-de-entrada-anonimizada" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ficha de entrada anonimizada
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tarjeta-reutilizable-de-modulo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tarjeta reutilizable de módulo
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#orden-de-oleadas-opcional" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Orden de oleadas opcional
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#revision-de-la-ficha" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Revisión de la ficha
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="plantillas-de-entrada-y-seguimiento-de-modulos">Plantillas de entrada y seguimiento de módulos</h1>
+<p><strong>Estado: plantillas no verificadas.</strong> Copie la estructura, no supuestos de éxito.
+Use marcadores genéricos y material autorizado para publicación. No incluya identificadores
+reales, direcciones, IP, hashes, datos personales, código de clientes ni registros privados.
+El anonimato no otorga permiso de publicación; conserve referencias sensibles en el sistema
+privado aprobado, nunca en esta página.</p>
+<h2 id="ficha-de-entrada-anonimizada">Ficha de entrada anonimizada</h2>
+<p>Complete esta ficha antes de asignar módulos. Un campo pendiente debe producir una
+pregunta concreta, no una autorización implícita.</p>
+<table>
+<thead>
+<tr>
+<th>Campo</th>
+<th>Marcador que completar</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Contexto</td>
+<td><code>&lt;etiqueta genérica sin identidad del cliente&gt;</code></td>
+</tr>
+<tr>
+<td>Versiones</td>
+<td><code>&lt;versiones y compilaciones exactas de origen y destino; dependencias&gt;</code></td>
+</tr>
+<tr>
+<td>Edición</td>
+<td><code>&lt;edición de origen y destino; restricciones aplicables&gt;</code></td>
+</tr>
+<tr>
+<td>Runtime</td>
+<td><code>&lt;entornos previstos; aislamiento e integraciones por evaluar&gt;</code></td>
+</tr>
+<tr>
+<td>Alcance</td>
+<td><code>&lt;código&gt;</code> / <code>&lt;base de datos&gt;</code> / <code>&lt;integraciones autorizadas&gt;</code></td>
+</tr>
+<tr>
+<td>Permisos</td>
+<td><code>&lt;acciones y archivos autorizados; rol que aprueba; límites y vigencia&gt;</code></td>
+</tr>
+<tr>
+<td>No objetivos</td>
+<td><code>&lt;operaciones, módulos y datos expresamente excluidos&gt;</code></td>
+</tr>
+<tr>
+<td>Inventario</td>
+<td><code>&lt;módulos, familias de repositorios y fuentes autorizadas; grafo pendiente o revisado&gt;</code></td>
+</tr>
+<tr>
+<td>Aceptación</td>
+<td><code>&lt;criterios separados de código, runtime, datos y negocio; rol que acepta&gt;</code></td>
+</tr>
+<tr>
+<td>Responsabilidad de datos</td>
+<td><code>&lt;rol responsable del acceso, copias, restauración, conciliación y aprobación&gt;</code></td>
+</tr>
+<tr>
+<td>Recuperación</td>
+<td><code>&lt;criterios de parada; responsabilidades y evidencias de ensayo pendientes&gt;</code></td>
+</tr>
+<tr>
+<td>Decisiones abiertas</td>
+<td><code>&lt;pregunta; opciones; rol decisor; condición para continuar&gt;</code></td>
+</tr>
+</tbody>
+</table>
+<p>No complete los permisos con comandos ni ubicaciones privadas. Esta ficha planifica;
+no autoriza operaciones sobre bases de datos ni ejecución en producción.</p>
+<h2 id="tarjeta-reutilizable-de-modulo">Tarjeta reutilizable de módulo</h2>
+<p>Mantenga una tarjeta por unidad de trabajo; separe disposición, estado y evidencia.
+Las referencias siguientes son marcadores, no ramas, repositorios ni revisiones reales.</p>
+<table>
+<thead>
+<tr>
+<th>Campo</th>
+<th>Marcador que completar</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Módulo</td>
+<td><code>&lt;nombre genérico autorizado&gt;</code></td>
+</tr>
+<tr>
+<td>Referencia origen</td>
+<td><code>&lt;referencia_origen_autorizada&gt;</code></td>
+</tr>
+<tr>
+<td>Referencia destino</td>
+<td><code>&lt;referencia_destino_propuesta&gt;</code></td>
+</tr>
+<tr>
+<td>Familia de repositorio destino</td>
+<td><code>&lt;upstream / comunitario / extensiones propias autorizadas / por decidir&gt;</code></td>
+</tr>
+<tr>
+<td>Dependencias</td>
+<td><code>&lt;directas, transitivas, auto-instalables; consumidores y ciclos&gt;</code></td>
+</tr>
+<tr>
+<td>Disposición</td>
+<td><code>&lt;clasificación de S2 y justificación; decisión pendiente si falta evidencia&gt;</code></td>
+</tr>
+<tr>
+<td>Estado</td>
+<td><code>&lt;estado respaldado del tablero; contexto y fecha&gt;</code></td>
+</tr>
+<tr>
+<td>Responsable</td>
+<td><code>&lt;rol con propiedad exclusiva de archivos acotados&gt;</code></td>
+</tr>
+<tr>
+<td>Superficie de edición</td>
+<td><code>&lt;archivos autorizados; exclusiones y contratos compartidos&gt;</code></td>
+</tr>
+<tr>
+<td>Evidencia de código</td>
+<td><code>&lt;prueba; esperado; observado; contexto; limitaciones o pendiente&gt;</code></td>
+</tr>
+<tr>
+<td>Evidencia de runtime</td>
+<td><code>&lt;prueba aislada; esperado; observado; contexto; limitaciones o pendiente&gt;</code></td>
+</tr>
+<tr>
+<td>Evidencia de datos</td>
+<td><code>&lt;copia migrada autorizada; invariantes y conciliación; resultados o pendiente&gt;</code></td>
+</tr>
+<tr>
+<td>Aceptación</td>
+<td><code>&lt;decisión humana funcional/contable; riesgos aceptados o pendiente&gt;</code></td>
+</tr>
+<tr>
+<td>Bloqueos</td>
+<td><code>&lt;impedimento; rol decisor; condición de desbloqueo&gt;</code></td>
+</tr>
+<tr>
+<td>Riesgos</td>
+<td><code>&lt;historia, numeración, seguridad, equivalencia u otras incógnitas&gt;</code></td>
+</tr>
+<tr>
+<td>Próxima acción</td>
+<td><code>&lt;acción acotada; permiso requerido; evidencia esperada&gt;</code></td>
+</tr>
+</tbody>
+</table>
+<p>Use el <a href="../spiral-strategy/">catálogo de disposiciones y estados</a> sin saltar controles.
+Una referencia destino existente o código publicado no prueba equivalencia ni aceptación.
+Si cambia el contexto, indique qué evidencias requieren revalidación.</p>
+<h2 id="orden-de-oleadas-opcional">Orden de oleadas opcional</h2>
+<table>
+<thead>
+<tr>
+<th>Oleada propuesta</th>
+<th>Dependencias previas</th>
+<th>Propiedad exclusiva</th>
+<th>Condición de integración</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>&lt;base&gt;</code></td>
+<td><code>&lt;grafo revisado dentro del alcance&gt;</code></td>
+<td><code>&lt;rol y archivos autorizados&gt;</code></td>
+<td><code>&lt;pruebas y contratos acordados&gt;</code></td>
+</tr>
+<tr>
+<td><code>&lt;consumidores&gt;</code></td>
+<td><code>&lt;base validada para el contrato requerido&gt;</code></td>
+<td><code>&lt;rol y archivos sin solapamiento&gt;</code></td>
+<td><code>&lt;evidencias y bloqueos revisados&gt;</code></td>
+</tr>
+</tbody>
+</table>
+<p>El orden es una propuesta, no un permiso para crear ramas o integrar. Solo use trabajadores
+paralelos con worktrees y ramas aislados y asignaciones sin solapamiento. El coordinador
+mantiene el tablero y revisa dependencias e integración bajo autorización humana.</p>
+<h2 id="revision-de-la-ficha">Revisión de la ficha</h2>
+<ul>
+<li>[ ] Versiones, alcance, permisos y no objetivos son explícitos.</li>
+<li>[ ] El grafo completo no incorpora trabajo fuera del alcance aprobado.</li>
+<li>[ ] Código, runtime y datos tienen evidencias separadas; lo pendiente permanece visible.</li>
+<li>[ ] La aceptación pertenece a una persona autorizada, no a una publicación de código.</li>
+<li>[ ] El contenido tiene permiso de publicación y no revela información sensible.</li>
+</ul>
+<p>Continúe con la <a href="../spiral-strategy/">estrategia en espiral</a>, la <a href="../ai-guide/">guía de IA</a>
+y la <a href="../validation/">lista de validación</a>. Para resumir un ensayo observado y autorizado,
+use la <a href="../case-template/">plantilla de caso</a>, no estas fichas como prueba de éxito.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.sections", "toc.follow", "search.suggest", "search.highlight", "content.code.copy"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>
