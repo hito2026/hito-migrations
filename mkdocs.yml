@@ -4,18 +4,23 @@ site_description: >-
 site_url: https://hito2026.github.io/hito-migrations/
 theme:
   name: material
+  custom_dir: overrides
   language: es
   font: false
   palette:
     scheme: default
-    primary: blue
-    accent: blue
+    primary: custom
+    accent: custom
   features:
     - navigation.sections
     - toc.follow
     - search.suggest
     - search.highlight
     - content.code.copy
+extra:
+  documentation:
+    version: "0.1.0"
+    updated: "2026-10-16"
 extra_css:
   - stylesheets/extra.css
 markdown_extensions:

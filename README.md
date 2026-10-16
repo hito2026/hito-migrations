@@ -31,7 +31,8 @@ SITE_DIR=site python3 -m unittest discover -s tests -v
 El directorio generado `site/` está excluido de Git. Para una compilación externa,
 use `--site-dir /ruta/temporal/site` y el mismo valor en `SITE_DIR`.
 Las pruebas comprueban las diez rutas, el idioma, las URL canónicas, la estructura
-de navegación, las tarjetas y los recursos locales. Revise también en navegador
+de navegación, las tarjetas, los recursos locales y la versión y fecha visibles
+(incluida la página 404). Revise también en navegador
 la búsqueda, el foco de teclado y la navegación de escritorio y móvil.
 Compilar el sitio no verifica una migración; consulte la [lista de validación](docs/validation.md).
 
@@ -40,8 +41,20 @@ Compilar el sitio no verifica una migración; consulte la [lista de validación]
 MkDocs Material (`>=9.6,<10`) aporta búsqueda superior, navegación lateral y tabla
 de contenidos de las guías. La interfaz usa `language: es`, búsqueda `lang: es`
 y conserva `mkdocs[i18n]` para las traducciones. `font: false` evita cargar fuentes
-externas; `docs/stylesheets/extra.css` define los acentos de Hito y las tarjetas
-con tipografía del sistema. No hay plantillas ni JavaScript personalizados.
+externas. `docs/stylesheets/extra.css` aporta un estilo editorial inspirado en la
+referencia visual de MIT: fondo blanco, rojo profundo, títulos destacados y bloques
+separados por líneas, sin usar su marca ni sugerir afiliación. Se conserva la identidad Hito,
+la tipografía del sistema y la navegación de Material; no hay JavaScript personalizado.
+
+`overrides/main.html` y `overrides/404.html` incluyen el bloque compartido
+`overrides/partials/doc-edition.html` al inicio del contenido. La versión y fecha
+se mantienen en un único lugar, `extra.documentation` de
+`mkdocs.yml`: `version` es la versión de la documentación (no de Odoo) y `updated`
+es la fecha editorial en formato `AAAA-MM-DD`, mostrada como `DD/MM/AAAA`.
+Actualice ambos valores al preparar una edición; compilar no cambia la fecha por sí solo.
+Estos datos no acreditan una migración validada. Si cambia la edición, ajuste también
+los valores esperados en `tests/test_site.py`.
+
 Tras actualizar dependencias, revise también la página 404 y los textos de búsqueda.
 
 ## Contribución segura

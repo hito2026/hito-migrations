@@ -69,13 +69,25 @@ class SiteContract(unittest.TestCase):
                        if 'body[data-md-color-scheme="default"]' in
                        [selector.strip() for selector in selectors.split(",")]]
         self.assertTrue(theme_rules, "La paleta debe declararse en el tema, no solo heredarse de :root")
-        for variable, value in (("--md-primary-fg-color", "#174ea6"),
-                                ("--md-accent-fg-color", "#174ea6"),
-                                ("--md-default-fg-color", "#202b3c"),
-                                ("--md-default-fg-color--light", "#48566a"),
-                                ("--md-typeset-a-color", "#174ea6")):
+        for variable, value in (("--md-primary-fg-color", "#750014"),
+                                ("--md-accent-fg-color", "#750014"),
+                                ("--md-default-fg-color", "#212326"),
+                                ("--md-default-fg-color--light", "#626a73"),
+                                ("--md-typeset-a-color", "#750014")):
             self.assertTrue(any(re.search(rf"{re.escape(variable)}\s*:\s*{value}\s*;", body)
                                 for body in theme_rules), variable)
+
+    def test_documentation_edition_visible_on_every_page(self):
+        pages = [(route or "inicio", self.page(route)) for route in ROUTES]
+        pages.append(("404", Page(SITE / "404.html")))
+        for route, page in pages:
+            with self.subTest(route=route):
+                self.assertTrue(page.has("aside", "aria-label", "Edición de la documentación"))
+                self.assertTrue(page.has("span", "data-doc-version", "0.1.0"))
+                self.assertIn("Versión documental 0.1.0", page.text)
+                self.assertTrue(page.has("time", "datetime", "2026-10-16"))
+                self.assertIn("Actualizado", page.text)
+                self.assertIn("16/10/2026", page.text)
 
     def test_local_links_resources_and_no_external_fonts(self):
         for route in ROUTES:
