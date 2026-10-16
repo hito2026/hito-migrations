@@ -1,4 +1,4 @@
-/* Identidad Hito: tipografía local, superficies claras y acentos azules. */
+/* Identidad Hito: diseño editorial, fuentes locales y acentos rojo profundo. */
 :root {
   --md-text-font: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   --md-code-font: ui-monospace, Consolas, monospace;
@@ -6,30 +6,66 @@
 
 :root,
 body[data-md-color-scheme="default"] {
-  --md-primary-fg-color: #174ea6;
-  --md-accent-fg-color: #174ea6;
-  --md-default-fg-color: #202b3c;
-  --md-default-fg-color--light: #48566a;
-  --md-typeset-a-color: #174ea6;
+  --md-primary-fg-color: #750014;
+  --md-accent-fg-color: #750014;
+  --md-default-fg-color: #212326;
+  --md-default-fg-color--light: #626a73;
+  --md-default-bg-color: #fff;
+  --md-typeset-a-color: #750014;
 }
 
 .md-header {
-  box-shadow: 0 1px 4px #132d5026;
+  --md-primary-bg-color: #212326;
+  --md-primary-bg-color--light: #626a73;
+  color: #212326;
+  background: #fff;
+  border-top: 4px solid #750014;
+  border-bottom: 1px solid #dde1e6;
+  box-shadow: none;
 }
 
 .md-header__topic {
-  font-weight: 650;
+  font-weight: 750;
+  letter-spacing: -.025em;
 }
 
 .md-search__form {
-  border-radius: 6px;
+  background: #f2f4f8;
+  border-radius: 0;
+}
+
+.md-search__input,
+.md-search__input::placeholder {
+  color: #212326;
+}
+
+.md-typeset {
+  font-size: .85rem;
+  line-height: 1.75;
 }
 
 .md-typeset h1,
 .md-typeset h2,
 .md-typeset h3 {
-  color: #202b3c;
-  font-weight: 650;
+  color: #212326;
+  font-weight: 750;
+  letter-spacing: -.025em;
+  line-height: 1.2;
+}
+
+.md-typeset h1 {
+  margin: .8em 0;
+  font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+}
+
+.md-typeset h2 {
+  margin-top: 2.2em;
+  padding-top: .8em;
+  border-top: 1px solid #dde1e6;
+}
+
+.md-typeset a {
+  text-underline-offset: .18em;
 }
 
 .md-typeset a:hover {
@@ -37,15 +73,34 @@ body[data-md-color-scheme="default"] {
 }
 
 .md-nav__link--active {
-  font-weight: 650;
+  font-weight: 750;
+}
+
+.md-typeset .doc-edition {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: .3rem 1rem;
+  margin: 0 0 1.5rem;
+  padding: .65rem 0;
+  border-bottom: 1px solid #dde1e6;
+  color: #626a73;
+  font-size: .65rem;
+  line-height: 1.6;
+}
+
+.doc-edition__label {
+  color: #750014;
+  font-weight: 750;
+  letter-spacing: .06em;
+  text-transform: uppercase;
 }
 
 .md-typeset .draft-notice {
-  padding: 1rem;
-  border: 1px solid #b9cee9;
-  border-left: 4px solid #174ea6;
-  border-radius: 6px;
-  background: #f0f5fc;
+  margin: 1.5rem 0;
+  padding: .8rem 1rem;
+  border-left: 3px solid #750014;
+  background: #f2f4f8;
 }
 
 .md-typeset .draft-notice p {
@@ -55,21 +110,20 @@ body[data-md-color-scheme="default"] {
 .md-typeset .topic-cards {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr));
-  gap: 1rem;
+  gap: 0 1.5rem;
   margin: 1rem 0 2rem;
 }
 
 .md-typeset .topic-card {
   min-width: 0;
-  padding: 1rem;
-  border: 1px solid #c6cfdb;
-  border-radius: 8px;
+  padding: 1.2rem 0 1.5rem;
+  border-top: 2px solid #750014;
   background: #fff;
 }
 
 .md-typeset .topic-card h3 {
   margin: 0 0 .6rem;
-  font-size: 1rem;
+  font-size: 1.1rem;
 }
 
 .md-typeset .topic-card p {
@@ -77,10 +131,16 @@ body[data-md-color-scheme="default"] {
 }
 
 :focus-visible {
-  outline: 3px solid #a34600 !important;
+  outline: 3px solid #750014 !important;
   outline-offset: 3px;
 }
 
-.md-header :focus-visible {
-  outline-color: #fff !important;
+@media (max-width: 44.9375em) {
+  .md-typeset .topic-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .md-typeset .doc-edition {
+    gap: .25rem .8rem;
+  }
 }
