@@ -1,77 +1,37 @@
-# Planifique una migración de Odoo de forma segura
+# Introducción
 
-Documentación de Hito para organizar el alcance, las decisiones y las evidencias de una migración.
-Elija un tema para comenzar; use la búsqueda para localizar conceptos o plantillas.
+## La idea del proyecto
+
+Hito propone una forma ordenada de preparar y conducir migraciones de Odoo:
+**saber qué hay que conservar, dividir el trabajo y comprobar cada avance antes de continuar**.
+Esta guía usa como referencia Odoo 17.0 → 19.0 en Odoo.sh; la ruta de actualización
+se confirma para cada edición y servicio.
+
+No se trata solo de adaptar módulos. También hay que conservar los datos históricos,
+validar los procesos de negocio y preparar el paso a producción con recuperación posible.
+
+## Cómo trabajamos
+
+- **El usuario aporta el contexto y decide:** alcance, accesos, prioridades y aceptación.
+- **Coordinación organiza:** inventario, dependencias, responsables y preguntas pendientes.
+- **El equipo técnico implementa y verifica:** cambios pequeños, pruebas y resultados trazables.
+- **El proveedor de actualización confirma su cobertura y entrega la base actualizada** por la vía acordada.
+
+El código y los datos avanzan en paralelo, pero se aceptan por separado.
+La IA puede ayudar a analizar, adaptar y revisar; no decide permisos ni aprueba una migración.
+Si falta información, se formula una pregunta concreta. No se completa con suposiciones.
 
 <div class="draft-notice" role="note" markdown>
-**Borrador no verificado.** Este sitio es una base documental, no un manual listo para ejecutar.
-Toda la orientación inicial está **sin verificar**. No se afirma ningún resultado de migración.
+**Borrador no verificado.** Se describe una propuesta de trabajo, no una migración exitosa
+ni una receta de ejecución probada. Los datos y evidencias del proyecto se mantienen
+en un registro privado autorizado; el sitio público permanece anonimizado.
 </div>
 
-## Explore la documentación
+## Cómo usar esta guía
 
-<div class="topic-cards" markdown>
+1. Lea el [Procedimiento](procedure.md) para entender las etapas, actores y decisiones.
+2. Complete y entregue las [Instrucciones del usuario](user-instructions.md) para comenzar.
+3. Al cerrar cada etapa, revise lo comprobado y autorice solo el siguiente trabajo acotado.
 
-<div class="topic-card" markdown>
-### [Manual de migración](migration-manual.md)
-Organice las fases, las responsabilidades y las condiciones de un ensayo autorizado.
-</div>
-
-<div class="topic-card" markdown>
-### [Estrategia en espiral](spiral-strategy.md)
-Separe portado, runtime y aceptación histórica con decisiones y evidencias por módulo.
-</div>
-
-<div class="topic-card" markdown>
-### [Plantillas de migración](migration-templates.md)
-Prepare una entrada anonimizada, tarjetas de módulos y oleadas con límites explícitos.
-</div>
-
-<div class="topic-card" markdown>
-### [Orientación por versiones](versions.md)
-Declare el origen, el destino y las dependencias antes de evaluar la compatibilidad.
-</div>
-
-<div class="topic-card" markdown>
-### [Recetas técnicas](recipes.md)
-Estructure propuestas técnicas acotadas y haga visibles los supuestos pendientes.
-</div>
-
-<div class="topic-card" markdown>
-### [Lista de validación](validation.md)
-Defina criterios de aceptación, parada y recuperación con evidencias observables.
-</div>
-
-<div class="topic-card" markdown>
-### [Errores conocidos](known-errors.md)
-Registre fallos reproducibles, su contexto y las limitaciones de las soluciones propuestas.
-</div>
-
-<div class="topic-card" markdown>
-### [Guía de trabajo con IA](ai-guide.md)
-Acuerde tareas y límites de privacidad sin delegar la autorización de una migración.
-</div>
-
-<div class="topic-card" markdown>
-### [Plantilla de caso anonimizado](case-template.md)
-Resuma un ensayo autorizado sin publicar datos sensibles ni atribuir éxitos sin pruebas.
-</div>
-
-</div>
-
-## Etiquetas de evidencia
-
-- **No verificado:** esquema, hipótesis o procedimiento propuesto; no es una instrucción de ejecución.
-- **Verificado en un contexto declarado:** evidencias revisadas de un ensayo autorizado,
-  con versiones exactas, alcance, fecha y limitaciones registrados.
-- **Requiere revalidación:** existen evidencias, pero cambiaron las versiones, las dependencias o el alcance.
-
-La verificación depende del contexto; nunca garantiza que otros entornos funcionen.
-Una compilación estricta del sitio comprueba la integridad documental, no la corrección de una migración.
-
-## Límites
-
-Separe el trabajo de compatibilidad de módulos y código de la migración de base de datos,
-esquema y datos. Las evidencias de una línea de trabajo no sustituyen las de la otra.
-Use solo material apto para publicación; las copias de seguridad, las operaciones sobre
-bases de datos y la publicación requieren autorización humana.
+**Un módulo que instala no demuestra que sus datos se hayan migrado bien.** La aceptación
+requiere resultados de código, funcionamiento e historia, más una decisión humana.

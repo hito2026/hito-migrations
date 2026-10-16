@@ -4,11 +4,13 @@ import re
 import unittest
 from html.parser import HTMLParser
 from pathlib import Path
-from urllib.parse import unquote, urlsplit
+from urllib.parse import unquote, urljoin, urlsplit
+from xml.etree import ElementTree
 
 SITE = Path(os.environ.get("SITE_DIR", "site")).resolve()
-ROUTES = ("", "migration-manual", "spiral-strategy", "migration-templates",
-          "versions", "recipes", "validation", "known-errors", "ai-guide", "case-template")
+LEGACY_ROUTES = ("migration-manual", "spiral-strategy", "migration-templates",
+                 "versions", "recipes", "validation", "known-errors", "ai-guide", "case-template")
+ROUTES = ("", "procedure", "user-instructions", *LEGACY_ROUTES)
 BASE = "https://hito2026.github.io/hito-migrations/"
 
 
@@ -16,11 +18,27 @@ class Page(HTMLParser):
     def __init__(self, path):
         super().__init__()
         self.tags = []
+        self.primary_links = []
+        self._primary_depth = 0
         self.text = path.read_text(encoding="utf-8")
         self.feed(self.text)
 
     def handle_starttag(self, tag, attrs):
-        self.tags.append((tag, dict(attrs)))
+        attrs = dict(attrs)
+        self.tags.append((tag, attrs))
+        if tag == "nav":
+            if self._primary_depth:
+                self._primary_depth += 1
+            elif "md-nav--primary" in attrs.get("class", "").split():
+                self._primary_depth = 1
+        if self._primary_depth and tag == "a" and "md-nav__link" in attrs.get("class", "").split():
+            href = attrs.get("href", "")
+            if href and not href.startswith("#"):
+                self.primary_links.append(href)
+
+    def handle_endtag(self, tag):
+        if tag == "nav" and self._primary_depth:
+            self._primary_depth -= 1
 
     def has(self, tag, key, value):
         return any(t == tag and a.get(key) == value for t, a in self.tags)
@@ -52,15 +70,43 @@ class SiteContract(unittest.TestCase):
                 self.assertIn("md-sidebar--secondary", page.text)
                 self.assertTrue(page.has("nav", "aria-label", "Tabla de contenidos"))
 
-    def test_home_cards_and_visible_evidence(self):
-        page = self.page()
-        self.assertTrue(any("topic-cards" in a.get("class", "").split() for _, a in page.tags))
-        for route in ROUTES[1:]:
-            self.assertTrue(page.has("a", "href", route + "/"))
-        self.assertEqual(page.text.count('class="topic-card"'), 9)
-        self.assertIn("Borrador no verificado", page.text)
-        for label in ("No verificado", "Verificado en un contexto declarado", "Requiere revalidación"):
+    def test_three_section_navigation_and_introduction(self):
+        expected = {BASE, BASE + "procedure/", BASE + "user-instructions/"}
+        for route in ROUTES:
+            with self.subTest(route=route):
+                page = self.page(route)
+                current = BASE + (route + "/" if route else "")
+                self.assertEqual({urljoin(current, link) for link in page.primary_links}, expected)
+                for label in ("Introducción", "Procedimiento", "Instrucciones del usuario"):
+                    self.assertIn(label, page.text)
+        intro = self.page()
+        for text in ("La idea del proyecto", "Cómo trabajamos", "Borrador no verificado"):
+            self.assertIn(text, intro.text)
+        self.assertTrue(intro.has("a", "href", "procedure/"))
+        self.assertTrue(intro.has("a", "href", "user-instructions/"))
+
+    def test_procedure_has_accessible_local_actor_diagram(self):
+        page = self.page("procedure")
+        self.assertTrue(page.has("img", "src", "../assets/migration-process.svg"))
+        self.assertTrue(page.has("img", "alt", "Proceso de migración por actores, etapas y decisiones"))
+        svg = ElementTree.parse(SITE / "assets/migration-process.svg").getroot()
+        self.assertEqual(svg.attrib.get("role"), "img")
+        text = " ".join(svg.itertext())
+        for label in ("Usuario", "Coordinación", "Equipo técnico", "Proveedor",
+                      "Entrada", "Plan", "Código", "Historia", "Ensayo", "Corte"):
+            self.assertIn(label, text)
+        self.assertIn("no es un modelo ejecutable", page.text)
+        self.assertTrue(any(node.attrib.get("class") == "gateway" for node in svg.iter()))
+        self.assertTrue(any(node.attrib.get("class") == "event" for node in svg.iter()))
+
+    def test_user_instructions_offer_stage_specific_prompts(self):
+        page = self.page("user-instructions")
+        for label in ("Para comenzar", "Para adaptar código", "Para probar el funcionamiento",
+                      "Para validar los datos", "Para ensayar el corte", "Para decidir producción"):
             self.assertIn(label, page.text)
+        self.assertGreaterEqual(sum(tag == "pre" for tag, _ in page.tags), 6)
+        for text in ("No modifique archivos", "No restaure bases", "aprobación", "bloqueo"):
+            self.assertIn(text, page.text)
 
     def test_hito_palette_targets_light_theme_scope(self):
         css = (SITE / "stylesheets/extra.css").read_text(encoding="utf-8")
@@ -83,8 +129,8 @@ class SiteContract(unittest.TestCase):
         for route, page in pages:
             with self.subTest(route=route):
                 self.assertTrue(page.has("aside", "aria-label", "Edición de la documentación"))
-                self.assertTrue(page.has("span", "data-doc-version", "0.1.0"))
-                self.assertIn("Versión documental 0.1.0", page.text)
+                self.assertTrue(page.has("span", "data-doc-version", "0.2.0"))
+                self.assertIn("Versión documental 0.2.0", page.text)
                 self.assertTrue(page.has("time", "datetime", "2026-10-16"))
                 self.assertIn("Actualizado", page.text)
                 self.assertIn("16/10/2026", page.text)

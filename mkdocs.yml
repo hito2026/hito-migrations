@@ -19,7 +19,7 @@ theme:
     - content.code.copy
 extra:
   documentation:
-    version: "0.1.0"
+    version: "0.2.0"
     updated: "2026-10-16"
 extra_css:
   - stylesheets/extra.css
@@ -29,14 +29,17 @@ markdown_extensions:
 plugins:
   - search:
       lang: es
+not_in_nav: |
+  /migration-manual.md
+  /spiral-strategy.md
+  /migration-templates.md
+  /versions.md
+  /recipes.md
+  /validation.md
+  /known-errors.md
+  /ai-guide.md
+  /case-template.md
 nav:
-  - Inicio: index.md
-  - Manual de migración: migration-manual.md
-  - Estrategia en espiral: spiral-strategy.md
-  - Plantillas de migración: migration-templates.md
-  - Orientación por versiones: versions.md
-  - Recetas técnicas: recipes.md
-  - Lista de validación: validation.md
-  - Errores conocidos: known-errors.md
-  - Guía de trabajo con IA: ai-guide.md
-  - Plantilla de caso anonimizado: case-template.md
+  - Introducción: index.md
+  - Procedimiento: procedure.md
+  - Instrucciones del usuario: user-instructions.md
