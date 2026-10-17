@@ -1,5 +1,9 @@
 # Introducción
 
+[**Abrir el manual de Gentle Shell**](gentle-shell.md){ .md-button .md-button--primary }
+
+Comandos para acceder al servidor y empezar a trabajar en una migración.
+
 ## La idea del proyecto
 
 Hito propone una forma ordenada de preparar y conducir migraciones de Odoo:

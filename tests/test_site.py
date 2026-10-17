@@ -84,6 +84,7 @@ class SiteContract(unittest.TestCase):
             self.assertIn(text, intro.text)
         self.assertTrue(intro.has("a", "href", "procedure/"))
         self.assertTrue(intro.has("a", "href", "user-instructions/"))
+        self.assertTrue(intro.has("a", "href", "gentle-shell/"))
 
     def test_procedure_has_accessible_local_actor_diagram(self):
         page = self.page("procedure")
