@@ -54,14 +54,16 @@ Compilar el sitio no verifica una migración; consulte la [lista de validación]
 ### Tema y diseño
 
 MkDocs Material (`>=9.6,<10`) aporta búsqueda superior y navegación izquierda.
-La edición 0.2.7 integra el índice de cada guía en esa navegación (`toc.integrate`)
+La edición 0.2.8 integra el índice de cada guía en esa navegación (`toc.integrate`)
 y conserva la ausencia de columna derecha. El conjunto de navegación y contenido
 queda centrado con un máximo de 1280 px; el bloque principal tiene un máximo de
 936 px, tomando como referencia el límite declarado en el CSS de
 [Google Cloud Docs](https://docs.cloud.google.com/docs?hl=es-419), sin reproducir su tema.
 En pantallas menores se usa el ancho disponible y se conserva el margen derecho adaptable.
-Los gráficos de arquitectura y proceso usan una composición vertical de 960 px,
-con texto principal de 20 px y notas de 18 px dentro del SVG. Aprovechan el ancho del
+Los gráficos de arquitectura y proceso conservan una composición de 960 px de ancho,
+con altura y tipografía reducidas un 30 % respecto de la edición 0.2.7. Las alturas son
+1840,3 px y 1498 px, respectivamente; el texto principal es de 14 px y las notas de
+12,6 px dentro del SVG, sin transformaciones que deformen las letras. Aprovechan el ancho del
 bloque sin ampliarlo: imagen al 100%, altura proporcional y contenedor con bordes y
 relleno incluidos en su ancho. Se conservan los enlaces para abrirlos completos.
 Los textos copiables conservan la letra pequeña

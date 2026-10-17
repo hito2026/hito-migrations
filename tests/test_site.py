@@ -112,16 +112,18 @@ class SiteContract(unittest.TestCase):
         self.assertTrue(intro.has("a", "href", "gentle-shell/"))
         self.assertNotIn("Abrir el manual de Gentle Shell", intro.text)
 
-    def test_diagrams_use_legible_vertical_layouts(self):
-        for filename in ("migration-process.svg", "solution-architecture.svg"):
+    def test_diagrams_are_thirty_percent_shorter_at_same_width(self):
+        expected_heights = {"migration-process.svg": 1498, "solution-architecture.svg": 1840.3}
+        for filename, expected_height in expected_heights.items():
             with self.subTest(diagram=filename):
                 svg = ElementTree.parse(SITE / "assets" / filename).getroot()
                 _, _, width, height = map(float, svg.attrib["viewBox"].split())
                 self.assertEqual(width, 960)
-                self.assertGreater(height, width)
+                self.assertAlmostEqual(height, expected_height)
+                self.assertFalse(any("transform" in node.attrib for node in svg.iter()))
                 style = next(node.text for node in svg.iter() if node.tag.endswith("}style"))
-                self.assertRegex(style, r"text\s*\{[^}]*font-size:\s*20px;")
-                self.assertRegex(style, r"\.note\s*\{[^}]*font-size:\s*18px;")
+                self.assertRegex(style, r"text\s*\{[^}]*font-size:\s*14px;")
+                self.assertRegex(style, r"\.note\s*\{[^}]*font-size:\s*12\.6px;")
         css = (SITE / "stylesheets/extra.css").read_text(encoding="utf-8")
         figure = re.search(r"\.md-typeset \.process-diagram\s*\{([^}]*)\}", css).group(1)
         for declaration in ("width: 100%;", "max-width: 100%;", "box-sizing: border-box;", "padding: .25rem;"):
@@ -256,8 +258,8 @@ class SiteContract(unittest.TestCase):
         for route, page in pages:
             with self.subTest(route=route):
                 self.assertTrue(page.has("aside", "aria-label", "Edición de la documentación"))
-                self.assertTrue(page.has("span", "data-doc-version", "0.2.7"))
-                self.assertIn("Versión documental 0.2.7", page.text)
+                self.assertTrue(page.has("span", "data-doc-version", "0.2.8"))
+                self.assertIn("Versión documental 0.2.8", page.text)
                 self.assertTrue(page.has("time", "datetime", "2026-10-17"))
                 self.assertIn("Actualizado", page.text)
                 self.assertIn("17/10/2026", page.text)
