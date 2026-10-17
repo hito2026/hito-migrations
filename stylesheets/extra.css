@@ -14,12 +14,14 @@ body[data-md-color-scheme="default"] {
   --md-typeset-a-color: #750014;
 }
 
-/* El contenido ocupa el ancho disponible junto al menú izquierdo. */
+/* Ancho de lectura acotado, con espacio para el menú y los gráficos. */
 .md-grid {
-  max-width: none;
+  max-width: 1280px;
+  margin-inline: auto;
 }
 
 .md-content__inner {
+  max-width: 936px;
   margin-right: clamp(.8rem, 3vw, 3rem);
 }
 
