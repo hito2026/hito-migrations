@@ -1,93 +1,106 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1040" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 2140" role="img" aria-labelledby="title desc">
   <title id="title">Proceso de migración: actores, etapas y decisiones</title>
   <desc id="desc">Esquema tipo BPMN simplificado, no ejecutable. El usuario aporta la entrada; coordinación acuerda el plan. El equipo técnico adapta y prueba el código mientras el proveedor actualiza la base. Si las pruebas fallan, se vuelve a adaptar. Con entrega y restauración autorizadas se valida la historia; un rechazo vuelve a validación. Se ensaya el corte y el propietario decide autorizarlo o posponerlo. Solo una autorización específica permite el corte y seguimiento.</desc>
   <defs>
     <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" fill="#626a73"/></marker>
     <style>
-      text { font-family: system-ui, sans-serif; fill: #212326; font-size: 16px; text-anchor: middle; }
-      .heading { font-size: 19px; font-weight: 700; fill: #750014; }
-      .note { font-size: 14px; fill: #626a73; }
+      text { font-family: system-ui, sans-serif; fill: #212326; font-size: 20px; text-anchor: middle; }
+      .title { font-size: 26px; font-weight: 750; fill: #750014; }
+      .heading { font-size: 22px; font-weight: 700; }
+      .note { font-size: 18px; fill: #626a73; }
+      .node, .task { fill: #f2f4f8; stroke: #626a73; stroke-width: 1.5; rx: 8; }
+      .boundary { fill: #fff; stroke: #750014; stroke-width: 2; rx: 10; }
+      .pending { fill: #fff; stroke: #626a73; stroke-width: 1.5; stroke-dasharray: 7 5; rx: 8; }
       .lane { fill: #fff; stroke: #dde1e6; }
-      .task { fill: #f2f4f8; stroke: #626a73; stroke-width: 1.5; rx: 8; }
-      .gateway { fill: #fff; stroke: #750014; stroke-width: 2; }
-      .event { fill: #fff; stroke: #750014; stroke-width: 2; }
-      .flow { fill: none; stroke: #626a73; stroke-width: 1.8; marker-end: url(#arrow); }
-      .message { fill: none; stroke: #626a73; stroke-width: 1.8; stroke-dasharray: 7 5; marker-end: url(#arrow); }
+      .gateway, .event { fill: #fff; stroke: #750014; stroke-width: 2; }
+      .flow { fill: none; stroke: #626a73; stroke-width: 2; marker-end: url(#arrow); }
+      .backup, .message { fill: none; stroke: #626a73; stroke-width: 2; stroke-dasharray: 7 5; marker-end: url(#arrow); }
     </style>
   </defs>
-  <rect width="1200" height="1040" fill="#fff"/>
-  <rect class="lane" x="20" y="20" width="280" height="980"/>
-  <rect class="lane" x="310" y="20" width="280" height="980"/>
-  <rect class="lane" x="600" y="20" width="280" height="980"/>
-  <rect class="lane" x="890" y="20" width="290" height="980" stroke-dasharray="7 5"/>
-  <path d="M20 80H1180" stroke="#dde1e6"/>
-  <text class="heading" x="160" y="52">Usuario</text>
-  <text class="heading" x="450" y="52">Coordinación</text>
-  <text class="heading" x="740" y="52">Equipo técnico</text>
-  <text class="heading" x="1035" y="52">Proveedor</text>
-  <text class="note" x="160" y="73">Propietario y referentes</text>
-  <text class="note" x="740" y="73">Incluye plataforma y verificación</text>
-  <text class="note" x="1035" y="73">Participante externo</text>
-
-  <path class="flow" d="M160 124V145"/>
-  <path class="flow" d="M255 178H350"/>
-  <path class="flow" d="M450 211V230"/>
-  <path class="flow" d="M470 250H740V290"/>
-  <path class="message" d="M450 270V280H1035V290"/>
-  <text class="note" x="1035" y="262">Solicitud de actualización</text>
-  <path class="flow" d="M740 360V380"/>
-  <path class="flow" d="M710 410H620V325H650"/>
-  <text class="note" x="637" y="400">No: corregir</text>
-  <path class="flow" d="M740 440V450H160V465"/>
-  <text class="note" x="450" y="443">Sí: preparar validación histórica</text>
-  <path class="flow" d="M255 495H600V535H650"/>
-  <path class="message" d="M1035 360V480H850V535H830"/>
-  <text class="note" x="1035" y="448">Entrega y cobertura</text>
-  <text class="note" x="1035" y="470">Esperar si faltan</text>
-  <path class="flow" d="M650 550H310V625H190"/>
-  <path class="flow" d="M130 625H45V575H620V550H650"/>
-  <text class="note" x="80" y="610">No</text>
-  <path class="flow" d="M160 655V710H650"/>
-  <text class="note" x="450" y="700">Sí: historia aceptada</text>
-  <path class="flow" d="M740 745V765H160V790"/>
-  <path class="flow" d="M190 820H650"/>
-  <text class="note" x="450" y="809">Sí: autorización específica</text>
-  <path class="flow" d="M130 820H80V928"/>
-  <text class="note" x="62" y="850">No</text>
-  <path class="flow" d="M740 855V928"/>
-
-  <circle class="event" cx="160" cy="112" r="12"/>
-  <rect class="task" x="65" y="145" width="190" height="66"/>
-  <text x="160" y="172"><tspan font-weight="700">1. Entrada</tspan><tspan x="160" dy="23">Contexto y límites</tspan></text>
-  <rect class="task" x="350" y="145" width="200" height="66"/>
-  <text x="450" y="172"><tspan font-weight="700">2. Plan</tspan><tspan x="450" dy="23">Alcance y dependencias</tspan></text>
-  <polygon class="gateway" points="450,230 470,250 450,270 430,250"/>
-  <text x="450" y="256">+</text>
-  <text class="note" x="370" y="255">En paralelo</text>
-  <rect class="task" x="650" y="290" width="180" height="70"/>
-  <text x="740" y="315"><tspan font-weight="700">3. Código</tspan><tspan x="740" dy="24">Adaptar y probar</tspan></text>
-  <rect class="task" x="935" y="290" width="200" height="70"/>
-  <text x="1035" y="315">Actualizar la base<tspan x="1035" dy="24">según cobertura</tspan></text>
-  <polygon class="gateway" points="740,380 770,410 740,440 710,410"/>
-  <text x="740" y="415">¿OK?</text>
-  <text class="note" x="830" y="415">Pruebas</text>
-  <rect class="task" x="65" y="465" width="190" height="60"/>
-  <text x="160" y="490">Autorizar restauración<tspan x="160" dy="23">aislada en Staging</tspan></text>
-  <rect class="task" x="650" y="500" width="180" height="70"/>
-  <text x="740" y="525"><tspan font-weight="700">4. Historia</tspan><tspan x="740" dy="24">Validar y conciliar</tspan></text>
-  <text class="note" x="160" y="590">¿Historia aceptada?</text>
-  <polygon class="gateway" points="160,595 190,625 160,655 130,625"/>
-  <text x="160" y="631">?</text>
-  <rect class="task" x="650" y="675" width="180" height="70"/>
-  <text x="740" y="700"><tspan font-weight="700">5. Ensayo</tspan><tspan x="740" dy="24">Corte y recuperación</tspan></text>
-  <polygon class="gateway" points="160,790 190,820 160,850 130,820"/>
-  <text x="160" y="826">?</text>
-  <text class="note" x="175" y="878">¿Autoriza corte?</text>
-  <rect class="task" x="650" y="785" width="180" height="70"/>
-  <text x="740" y="810"><tspan font-weight="700">6. Corte</tspan><tspan x="740" dy="24">Ejecutar y acompañar</tspan></text>
-  <circle class="event" cx="80" cy="942" r="14"/>
-  <text class="note" x="110" y="980">Posponer; resolver pendientes</text>
-  <circle class="event" cx="740" cy="942" r="14" stroke-width="4"/>
-  <text class="note" x="740" y="980">Seguimiento y cierre</text>
-  <text class="note" x="600" y="1024">Esquema simplificado. Cada operación requiere su permiso; no representa el avance de un caso real.</text>
+  <rect width="960" height="2140" fill="#fff"/>
+  <rect class="lane" x="20" y="70" width="570" height="1978"/>
+  <rect class="lane" x="620" y="70" width="310" height="810" stroke-dasharray="7 5"/>
+  <text class="title" x="480" y="33">Proceso de migración: actores, etapas y decisiones</text>
+  <circle class="event" cx="310" cy="100" r="14"/>
+  <rect class="task" x="70" y="145" width="480" height="130"/>
+  <text class="heading" x="310.0" y="178">1. Entrada</text>
+  <text class="note" x="310.0" y="212">Usuario · propietario y referentes</text>
+  <text class="" x="310.0" y="238">Contexto y límites</text>
+  <path class="flow" d="M310 114V145"/>
+  <rect class="task" x="70" y="340" width="480" height="130"/>
+  <text class="heading" x="310.0" y="373">2. Plan</text>
+  <text class="note" x="310.0" y="407">Coordinación</text>
+  <text class="" x="310.0" y="433">Alcance y dependencias</text>
+  <path class="flow" d="M310 275V340"/>
+  <path class="flow" d="M310 470V515"/>
+  <polygon class="gateway" points="310,515 330,535 310,555 290,535"/>
+  <text class="" x="310" y="542">+</text>
+  <text class="note" x="450" y="515">En paralelo</text>
+  <rect class="task" x="70" y="620" width="480" height="140"/>
+  <text class="heading" x="310.0" y="653">3. Código</text>
+  <text class="note" x="310.0" y="687">Equipo técnico · plataforma y verificación</text>
+  <text class="" x="310.0" y="713">Adaptar y probar</text>
+  <path class="flow" d="M310 555V620"/>
+  <rect class="task" x="640" y="620" width="270" height="170"/>
+  <text class="heading" x="775.0" y="653">Proveedor</text>
+  <text class="note" x="775.0" y="687">Participante externo</text>
+  <text class="" x="775.0" y="713">Actualizar la base</text>
+  <text class="" x="775.0" y="739">según cobertura</text>
+  <path class="message" d="M330 535H775V620"/>
+  <text class="note" x="775" y="497">Solicitud de</text>
+  <text class="note" x="775" y="523">actualización</text>
+  <path class="flow" d="M310 760V806"/>
+  <polygon class="gateway" points="310,806 344,840 310,874 276,840"/>
+  <text class="" x="310" y="847">¿OK?</text>
+  <text class="note" x="470" y="846">Pruebas</text>
+  <path class="flow" d="M276 840H45V690.0H70"/>
+  <text class="note" x="136" y="822">No: corregir</text>
+  <rect class="task" x="70" y="935" width="480" height="130"/>
+  <text class="heading" x="310.0" y="968">Autorizar restauración</text>
+  <text class="note" x="310.0" y="1002">Usuario</text>
+  <text class="" x="310.0" y="1028">Aislada en Staging</text>
+  <path class="flow" d="M310 874V935"/>
+  <text class="note" x="337" y="910">Sí</text>
+  <rect class="task" x="70" y="1150" width="480" height="140"/>
+  <text class="heading" x="310.0" y="1183">4. Historia</text>
+  <text class="note" x="310.0" y="1217">Equipo técnico y referentes del usuario</text>
+  <text class="" x="310.0" y="1243">Validar y conciliar</text>
+  <path class="flow" d="M310 1065V1150"/>
+  <path class="message" d="M775 790V825H910V1220.0H550"/>
+  <text class="note" x="750" y="1155.0">Entrega y cobertura</text>
+  <text class="note" x="750" y="1184.0">Esperar si faltan</text>
+  <path class="flow" d="M310 1290V1336"/>
+  <polygon class="gateway" points="310,1336 344,1370 310,1404 276,1370"/>
+  <text class="" x="310" y="1377">?</text>
+  <text class="note" x="470" y="1362">¿Historia</text>
+  <text class="note" x="470" y="1390">aceptada?</text>
+  <path class="flow" d="M276 1370H40V1220.0H70"/>
+  <text class="note" x="100" y="1352">No</text>
+  <rect class="task" x="70" y="1465" width="480" height="130"/>
+  <text class="heading" x="310.0" y="1498">5. Ensayo</text>
+  <text class="note" x="310.0" y="1532">Equipo técnico</text>
+  <text class="" x="310.0" y="1558">Corte y recuperación</text>
+  <path class="flow" d="M310 1404V1465"/>
+  <text class="note" x="337" y="1440">Sí</text>
+  <path class="flow" d="M310 1595V1641"/>
+  <polygon class="gateway" points="310,1641 344,1675 310,1709 276,1675"/>
+  <text class="" x="310" y="1682">?</text>
+  <text class="note" x="475" y="1632">Usuario:</text>
+  <text class="note" x="475" y="1658">¿autoriza corte?</text>
+  <rect class="task" x="70" y="1770" width="480" height="130"/>
+  <text class="heading" x="310.0" y="1803">6. Corte</text>
+  <text class="note" x="310.0" y="1837">Autorización específica del propietario</text>
+  <text class="" x="310.0" y="1863">Ejecutar y acompañar</text>
+  <path class="flow" d="M310 1709V1770"/>
+  <text class="note" x="337" y="1745">Sí</text>
+  <path class="flow" d="M344 1675H775V1819.0"/>
+  <text class="note" x="700" y="1657">No</text>
+  <circle class="event" cx="775" cy="1835.0" r="16"/>
+  <text class="heading" x="775" y="1885.0">Posponer</text>
+  <text class="note" x="775" y="1915.0">Resolver pendientes</text>
+  <path class="flow" d="M310 1900V1959"/>
+  <circle class="event" cx="310" cy="1975" r="16"/>
+  <text class="heading" x="310" y="2025">Seguimiento y cierre</text>
+  <text class="note" x="480" y="2080">Esquema simplificado: cada operación requiere su permiso.</text>
+  <text class="note" x="480" y="2110">No representa el avance de un caso real.</text>
 </svg>

@@ -43,7 +43,7 @@ SITE_DIR=site python3 -m unittest discover -s tests -v
 
 El directorio generado `site/` está excluido de Git. Para una compilación externa,
 use `--site-dir /ruta/temporal/site` y el mismo valor en `SITE_DIR`.
-Las quince pruebas comprueban las catorce rutas (cinco principales y nueve anteriores),
+Las dieciséis pruebas comprueban las catorce rutas (cinco principales y nueve anteriores),
 el idioma, las URL canónicas, el menú de cinco entradas, los diagramas de proceso y arquitectura,
 los ejemplos de instrucciones, los pasos y prompts del manual para Windows/Linux/macOS,
 los recursos locales y la versión y fecha visibles
@@ -54,13 +54,17 @@ Compilar el sitio no verifica una migración; consulte la [lista de validación]
 ### Tema y diseño
 
 MkDocs Material (`>=9.6,<10`) aporta búsqueda superior y navegación izquierda.
-La edición 0.2.6 integra el índice de cada guía en esa navegación (`toc.integrate`)
+La edición 0.2.7 integra el índice de cada guía en esa navegación (`toc.integrate`)
 y conserva la ausencia de columna derecha. El conjunto de navegación y contenido
 queda centrado con un máximo de 1280 px; el bloque principal tiene un máximo de
 936 px, tomando como referencia el límite declarado en el CSS de
 [Google Cloud Docs](https://docs.cloud.google.com/docs?hl=es-419), sin reproducir su tema.
 En pantallas menores se usa el ancho disponible y se conserva el margen derecho adaptable.
-Los gráficos se ajustan al bloque y los textos copiables conservan la letra pequeña
+Los gráficos de arquitectura y proceso usan una composición vertical de 960 px,
+con texto principal de 20 px y notas de 18 px dentro del SVG. Aprovechan el ancho del
+bloque sin ampliarlo: imagen al 100%, altura proporcional y contenedor con bordes y
+relleno incluidos en su ancho. Se conservan los enlaces para abrirlos completos.
+Los textos copiables conservan la letra pequeña
 con `Courier New`, `Courier` o la monoespaciada local.
 El contenedor conserva desplazamiento horizontal como protección ante desbordamientos.
 La interfaz usa `language: es`, búsqueda `lang: es`
