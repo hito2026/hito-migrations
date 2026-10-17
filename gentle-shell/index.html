@@ -487,6 +487,144 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#ejemplo-guiado-de-inicio" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ejemplo guiado de inicio
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Ejemplo guiado de inicio">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#paso-1-identificar-la-terminal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Paso 1 — Identificar la terminal
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#paso-2-conectarse-con-la-cuenta-personal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Paso 2 — Conectarse con la cuenta personal
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#paso-3-abrir-una-sesion-persistente" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Paso 3 — Abrir una sesión persistente
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#paso-4-abrir-gentle-shell-para-comprobar-el-entorno" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Paso 4 — Abrir Gentle Shell para comprobar el entorno
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#paso-5-probar-la-respuesta-del-modelo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Paso 5 — Probar la respuesta del modelo
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#paso-6-abrir-una-consola-auxiliar-y-consultar-los-casos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Paso 6 — Abrir una consola auxiliar y consultar los casos
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#paso-7-elegir-el-identificador-y-crear-el-caso" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Paso 7 — Elegir el identificador y crear el caso
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#paso-8-tomar-la-coordinacion-y-entrar-al-caso" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Paso 8 — Tomar la coordinación y entrar al caso
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#paso-9-abrir-gentle-shell-dentro-del-caso-y-resolver-la-confianza" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Paso 9 — Abrir Gentle Shell dentro del caso y resolver la confianza
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#paso-10-pedir-una-revision-inicial-solo-de-lectura" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Paso 10 — Pedir una revisión inicial solo de lectura
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#paso-11-reunir-y-confirmar-los-datos-antes-de-escribir-la-ficha" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Paso 11 — Reunir y confirmar los datos antes de escribir la ficha
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#si-no-puede-avanzar" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -547,7 +685,7 @@
                 
   <aside class="doc-edition" aria-label="Edición de la documentación">
   <span class="doc-edition__label">Hito · Guías técnicas</span>
-  <span data-doc-version="0.2.8">Versión documental 0.2.8</span>
+  <span data-doc-version="0.2.9">Versión documental 0.2.9</span>
   <span>Actualizado <time datetime="2026-10-17">17/10/2026</time></span>
 </aside>
   
@@ -558,6 +696,8 @@
 <h1 id="usar-gentle-shell-para-una-migracion">Usar Gentle Shell para una migración</h1>
 <p>Siga los pasos en orden. Reemplace <code>ssh.example.com</code>, <code>devN</code> y <code>MIG-CLIENTE-001</code>
 por el servidor, usuario y caso asignados por el administrador.</p>
+<p>Para seguir un caso completo, con verificaciones y un prompt de asistencia en cada
+paso, vaya al <a href="#ejemplo-guiado-de-inicio">ejemplo guiado de inicio</a>.</p>
 <h2 id="1-preparar-el-acceso-una-sola-vez">1. Preparar el acceso — una sola vez</h2>
 <p><strong>En su computadora</strong>, siga únicamente su sistema: <a href="#windows">Windows</a>,
 <a href="#linux">Linux</a> o <a href="#macos">macOS</a>. Pida al administrador su usuario, servidor,
@@ -868,6 +1008,297 @@ con <strong>Ctrl+b</strong>, suelte y presione <strong>c</strong>. <strong>En es
 mig-case status MIG-CLIENTE-001
 </code></pre>
 <p>Reemplace el caso; el estado debe quedar <code>free</code>. Acuerde quién continúa.</p>
+<h2 id="ejemplo-guiado-de-inicio">Ejemplo guiado de inicio</h2>
+<p>Este recorrido muestra cómo pasar de una terminal local a un caso listo para
+completar su ficha. <strong>No ejecuta una migración de código ni de base de datos.</strong>
+Use el caso ficticio <code>MIG-DEMO1719-001</code>, la cuenta personal de ejemplo <code>dev1</code>,
+el alias SSH <code>servidor-migraciones</code> y la sesión <code>main</code>. Reemplácelos por los datos
+asignados; no comparta cuentas ni credenciales. <code>1719</code> es parte del nombre, no una
+confirmación de versiones. El acceso debe estar preparado según el paso 1 del manual.</p>
+<p>Puede hacer cada paso manualmente o desplegar su <strong>prompt de asistencia</strong>.
+Si usa una IA con control de terminales, indique la terminal exacta; si no tiene
+ese control, pídale los comandos para ejecutarlos usted. Antes de actuar, la IA debe
+explicar qué hará, pedir autorización, mostrar el resultado y detenerse antes del
+siguiente paso. Un permiso para conectarse no autoriza crear casos, dar confianza a
+carpetas ni modificar una migración. Herdr no es un requisito de este recorrido.</p>
+<h3 id="paso-1-identificar-la-terminal">Paso 1 — Identificar la terminal</h3>
+<p><strong>En la terminal que pretende usar</strong>, compruebe dónde está y con qué usuario.
+No confunda una pestaña rotulada «Linux» con una conexión SSH activa: después de un
+corte puede haber vuelto a su computadora.</p>
+<p><strong>macOS o Linux:</strong></p>
+<pre><code class="language-sh">whoami
+hostname
+uname -s
+pwd
+command -v ssh
+command -v cloudflared
+</code></pre>
+<p><code>Darwin</code> indica macOS; <code>Linux</code> no basta para probar que está en PC-ALE: contraste
+usuario y equipo con los datos del administrador. <strong>Windows — PowerShell:</strong></p>
+<pre><code class="language-powershell">whoami
+hostname
+Get-Location
+Get-Command ssh, cloudflared -ErrorAction SilentlyContinue
+</code></pre>
+<p><strong>Resultado esperado:</strong> distinguir computadora local y servidor, y saber si existen
+SSH y cloudflared. Si falta una herramienta, vuelva a la preparación de su sistema;
+no instale nada como parte de este diagnóstico.</p>
+<details>
+<summary>Prompt de asistencia — paso 1: identificar la terminal</summary>
+<pre><code class="language-text">Asístame en el paso 1. Identifique conmigo la terminal concreta que voy a usar.
+Explique el paso y pida mi autorización antes de ejecutarlo.
+Compruebe usuario, equipo, sistema, carpeta y disponibilidad de SSH y cloudflared
+con comandos de lectura adecuados a mi sistema. No suponga que ya estoy en Linux
+remoto por el nombre de la pestaña. No instale herramientas ni lea claves privadas.
+Si no puede controlar la terminal, muéstreme qué ejecutar manualmente.
+No pida ni muestre secretos.
+No avance al siguiente paso sin una nueva autorización.
+</code></pre>
+</details>
+<h3 id="paso-2-conectarse-con-la-cuenta-personal">Paso 2 — Conectarse con la cuenta personal</h3>
+<p><strong>En su computadora</strong>, usando el alias ya configurado:</p>
+<pre><code class="language-sh">ssh -l dev1 servidor-migraciones
+</code></pre>
+<p>Use su propio usuario asignado. Complete Cloudflare Access en el navegador si lo
+solicita; no copie códigos al chat. Ante una huella nueva o distinta, deténgase y
+confírmela con el administrador, sin desactivar su comprobación.</p>
+<p><strong>Resultado esperado:</strong> un prompt como <code>dev1@pc-ale:~$</code>. No continúe si sigue en la
+computadora local o si entró con una cuenta que no le corresponde.</p>
+<details>
+<summary>Prompt de asistencia — paso 2: conectarse por SSH</summary>
+<pre><code class="language-text">Asístame en el paso 2. Confirme mi usuario personal y el alias SSH configurado.
+Explique el paso y pida mi autorización antes de ejecutarlo.
+Con los datos confirmados, use ssh -l dev1 servidor-migraciones, reemplazando los
+valores de ejemplo por los míos. Deje que complete Access en el navegador.
+Si cambia la huella, deténgase y pida confirmación al administrador.
+Compruebe el prompt remoto. No instale nada ni desactive controles de acceso.
+No pida ni muestre secretos.
+No avance al siguiente paso sin una nueva autorización.
+</code></pre>
+</details>
+<h3 id="paso-3-abrir-una-sesion-persistente">Paso 3 — Abrir una sesión persistente</h3>
+<p><strong>En el servidor:</strong></p>
+<pre><code class="language-sh">tmux new-session -A -s main
+</code></pre>
+<p>Crea <code>main</code> si no existe o la recupera si ya existe. <strong>Resultado esperado:</strong> la barra
+de tmux muestra <code>[main]</code>. Si recupera trabajo anterior, revise qué está abierto
+antes de escribir: no envíe comandos de shell dentro del chat de un agente.
+La sesión puede sobrevivir a un corte de SSH, pero no a un reinicio del servidor.</p>
+<details>
+<summary>Prompt de asistencia — paso 3: preparar tmux</summary>
+<pre><code class="language-text">Asístame en el paso 3. Verifique que estoy en un prompt del servidor con mi cuenta.
+Explique el paso y pida mi autorización antes de ejecutarlo.
+Ejecute únicamente tmux new-session -A -s main y compruebe la barra de sesión.
+Si se recupera una aplicación o un agente, identifíquelo antes de enviar texto.
+No cierre sesiones existentes ni inicie una migración.
+No pida ni muestre secretos.
+No avance al siguiente paso sin una nueva autorización.
+</code></pre>
+</details>
+<h3 id="paso-4-abrir-gentle-shell-para-comprobar-el-entorno">Paso 4 — Abrir Gentle Shell para comprobar el entorno</h3>
+<p><strong>En un prompt libre dentro de tmux:</strong></p>
+<pre><code class="language-sh">gentle-shell
+</code></pre>
+<p><strong>Resultado esperado:</strong> Gentle Shell muestra el modelo seleccionado y espera
+instrucciones. Abrirlo puede preparar configuración personal en su cuenta, pero no
+confirma que el proveedor responda. Si aparecen actualizaciones, no las ejecute:
+las herramientas compartidas las administra el responsable del servidor.</p>
+<p>Esta primera apertura desde <code>~</code> solo comprueba el entorno. Todavía no es la sesión
+de trabajo de un caso y no debe recibir instrucciones de migración.</p>
+<details>
+<summary>Prompt de asistencia — paso 4: abrir el entorno de prueba</summary>
+<pre><code class="language-text">Asístame en el paso 4. Confirme que hay un prompt libre dentro de tmux.
+Explique el paso y pida mi autorización antes de ejecutarlo.
+Abra únicamente gentle-shell desde mi home. Observe el modelo y si espera entrada.
+No envíe consultas todavía ni instale actualizaciones, cree casos o abra repositorios.
+Si falta autenticación, guíeme con /login sin capturar mis credenciales.
+No pida ni muestre secretos.
+No avance al siguiente paso sin una nueva autorización.
+</code></pre>
+</details>
+<h3 id="paso-5-probar-la-respuesta-del-modelo">Paso 5 — Probar la respuesta del modelo</h3>
+<p><strong>En el chat de Gentle Shell</strong>, con permiso para consumir uso del proveedor:</p>
+<pre><code class="language-text">Responda únicamente: CONEXIÓN OK.
+No use herramientas, no ejecute comandos ni lea o modifique archivos.
+</code></pre>
+<p><strong>Resultado esperado:</strong> una respuesta con <code>CONEXIÓN OK</code> y regreso al estado de espera,
+sin llamadas a herramientas. Puede consumir uso del modelo aunque el mensaje sea
+breve. Si falla, resuelva autenticación o disponibilidad antes de seguir; no cambie
+a otro proveedor sin permiso. Use sus propias credenciales: esta prueba no verifica
+su titularidad ni demuestra que GitHub u Odoo.sh sean accesibles.</p>
+<details>
+<summary>Prompt de asistencia — paso 5: comprobar el proveedor</summary>
+<pre><code class="language-text">Asístame en el paso 5. Muestre el modelo actualmente seleccionado, sin cambiarlo.
+Explique el paso y pida mi autorización antes de ejecutarlo.
+Avise que la consulta consume uso del proveedor. Envíe una sola vez:
+«Responda únicamente: CONEXIÓN OK. No use herramientas, no ejecute comandos ni
+lea o modifique archivos». Observe la respuesta o el error sin reintentos automáticos.
+No use este resultado como prueba de acceso a repositorios o bases.
+No pida ni muestre secretos.
+No avance al siguiente paso sin una nueva autorización.
+</code></pre>
+</details>
+<h3 id="paso-6-abrir-una-consola-auxiliar-y-consultar-los-casos">Paso 6 — Abrir una consola auxiliar y consultar los casos</h3>
+<p><strong>Dentro de tmux</strong>, presione <strong>Ctrl+b</strong>, suelte y luego <strong>c</strong>. Se abre otra ventana
+con un prompt de shell; la anterior conserva Gentle Shell. Allí ejecute:</p>
+<pre><code class="language-sh">mig-case list
+</code></pre>
+<p><strong>Resultado esperado:</strong> una lista de casos y su coordinación. Una salida vacía sin
+errores indica que no se listaron casos; un mensaje de error no equivale a una lista
+vacía. Esto no crea ni reclama nada. Para cambiar de ventana, use <strong>Ctrl+b</strong> y luego
+<strong>0</strong> o <strong>1</strong>, comprobando los números en la barra de tmux.</p>
+<details>
+<summary>Prompt de asistencia — paso 6: consultar casos existentes</summary>
+<pre><code class="language-text">Asístame en el paso 6. Conserve Gentle Shell abierto sin enviarle comandos de shell.
+Explique el paso y pida mi autorización antes de ejecutarlo.
+Abra una consola auxiliar en el mismo tmux con Ctrl+b y luego c. Compruebe que
+hay un prompt y ejecute solo mig-case list. Distinga lista vacía de error.
+No cree casos, reclame coordinación ni cierre la ventana anterior.
+No pida ni muestre secretos.
+No avance al siguiente paso sin una nueva autorización.
+</code></pre>
+</details>
+<h3 id="paso-7-elegir-el-identificador-y-crear-el-caso">Paso 7 — Elegir el identificador y crear el caso</h3>
+<p>El kit exige <code>MIG-&lt;NOMBRE&gt;-&lt;NNN&gt;</code>: nombre alfanumérico en mayúsculas y <strong>exactamente
+tres dígitos finales</strong>. <code>MIG-DEMO-1719</code> no es válido. Para conservar <code>1719</code> como parte
+del nombre se puede proponer <code>MIG-DEMO1719-001</code>; el usuario debe aceptarlo, no la IA.</p>
+<p><strong>En la consola auxiliar</strong>, solo para un caso nuevo autorizado:</p>
+<pre><code class="language-sh">mig-case new MIG-DEMO1719-001
+</code></pre>
+<p><strong>Resultado esperado:</strong> <code>created /srv/migraciones/cases/MIG-DEMO1719-001</code>.
+Crea la ficha, el tablero, el runbook y la configuración de proyecto. No toma la
+coordinación, clona repositorios ni modifica bases. Si el caso ya existe, no lo
+sobrescriba: revise si corresponde retomarlo.</p>
+<details>
+<summary>Prompt de asistencia — paso 7: crear el caso</summary>
+<pre><code class="language-text">Asístame en el paso 7. Pídame el identificador y valide MIG-&lt;NOMBRE&gt;-&lt;NNN&gt;.
+Si propongo MIG-DEMO-1719, explique el rechazo y proponga MIG-DEMO1719-001,
+sin cambiarlo ni crearlo hasta que yo acepte el nombre.
+Explique el paso y pida mi autorización antes de ejecutarlo.
+Para ese ejemplo aceptado, ejecute solo mig-case new MIG-DEMO1719-001 y observe
+el resultado. No sobrescriba casos existentes ni tome aún la coordinación.
+No pida ni muestre secretos.
+No avance al siguiente paso sin una nueva autorización.
+</code></pre>
+</details>
+<h3 id="paso-8-tomar-la-coordinacion-y-entrar-al-caso">Paso 8 — Tomar la coordinación y entrar al caso</h3>
+<p><strong>En la consola auxiliar del servidor:</strong></p>
+<pre><code class="language-sh">mig-case claim MIG-DEMO1719-001 &amp;&amp;
+cd /srv/migraciones/cases/MIG-DEMO1719-001
+</code></pre>
+<p><code>&amp;&amp;</code> evita entrar si falla el reclamo. <strong>Resultado esperado:</strong> el caso queda
+reclamado por su usuario y el prompt muestra su carpeta. Si otra persona lo coordina,
+<strong>no borre su lock</strong>: acuerde el relevo. El lock es un acuerdo operativo, no una
+barrera de seguridad. Haberlo tomado no autoriza operaciones sobre repositorios o bases.</p>
+<details>
+<summary>Prompt de asistencia — paso 8: tomar la coordinación</summary>
+<pre><code class="language-text">Asístame en el paso 8. Caso: MIG-DEMO1719-001; use el identificador real que acepté.
+Explique el paso y pida mi autorización antes de ejecutarlo.
+Ejecute mig-case claim MIG-DEMO1719-001 &amp;&amp; cd /srv/migraciones/cases/MIG-DEMO1719-001.
+Compruebe el resultado y la carpeta del prompt. Si otro usuario coordina el caso,
+deténgase: no borre ni fuerce el lock. No clone ni acceda a bases.
+No pida ni muestre secretos.
+No avance al siguiente paso sin una nueva autorización.
+</code></pre>
+</details>
+<h3 id="paso-9-abrir-gentle-shell-dentro-del-caso-y-resolver-la-confianza">Paso 9 — Abrir Gentle Shell dentro del caso y resolver la confianza</h3>
+<p><strong>Desde la carpeta del caso:</strong></p>
+<pre><code class="language-sh">gentle-shell
+</code></pre>
+<p>Ahora el entorno puede cargar la configuración de esa migración; el modelo puede
+ser distinto del usado en <code>~</code>. Compruébelo antes de enviar instrucciones. No use la
+ventana de prueba del home como coordinador de este caso ni abra coordinadores
+competidores del mismo caso.</p>
+<p>Si aparece <strong><code>Trust project folder?</code></strong>, deténgase: autorizar el inicio no equivale
+a aceptar esa confianza. El permiso permite cargar recursos y configuración <code>.pi</code>,
+instalar paquetes de proyecto faltantes y ejecutar extensiones. Revise quién preparó
+la carpeta. Si confía en ella, puede elegir <strong><code>Trust (this session only)</code></strong>, limitado
+a este caso y esta sesión. No confíe en la carpeta padre de todos los casos por
+comodidad. La elección la hace el usuario; si la IA maneja la terminal, necesita
+una autorización separada para seleccionar la opción concreta.</p>
+<p><strong>Resultado esperado:</strong> el usuario resuelve el diálogo y Gentle Shell espera entrada
+en el caso correcto. Una alerta de herramientas o skills ausentes no demuestra que
+el servidor esté completamente preparado: consúltela con el administrador.</p>
+<details>
+<summary>Prompt de asistencia — paso 9: abrir el entorno del caso</summary>
+<pre><code class="language-text">Asístame en el paso 9. Compruebe que el prompt está en la carpeta del caso reclamado.
+Explique el paso y pida mi autorización antes de ejecutarlo.
+Abra gentle-shell. Si aparece Trust project folder?, muestre la ruta y explique
+que confiar permite cargar .pi, instalar paquetes y ejecutar extensiones.
+Deténgase y pida una decisión separada sobre la opción exacta; no acepte confianza
+ni amplíe el permiso a la carpeta padre automáticamente. Si yo resuelvo el diálogo,
+observe el resultado sin asumir qué opción elegí. Compruebe el caso, modelo y estado
+de espera. No envíe instrucciones de migración ni instale actualizaciones.
+No pida ni muestre secretos.
+No avance al siguiente paso sin una nueva autorización.
+</code></pre>
+</details>
+<h3 id="paso-10-pedir-una-revision-inicial-solo-de-lectura">Paso 10 — Pedir una revisión inicial solo de lectura</h3>
+<p><strong>En Gentle Shell del caso</strong>, autorice únicamente la lectura inicial. Pida al
+administrador la ruta de la guía de lecciones del kit y reemplace
+<code>&lt;RUTA_DE_GUIA_DE_LECCIONES&gt;</code> antes de enviar el prompt. No publique nombres de casos
+reales en ejemplos compartidos. El prompt sirve tanto para pedir asistencia como
+para dárselo directamente al agente:</p>
+<details>
+<summary>Prompt de asistencia — paso 10: revisar el estado inicial</summary>
+<pre><code class="language-text">Asístame en el paso 10. Caso: MIG-DEMO1719-001; use el identificador real aceptado.
+Explique el paso y pida mi autorización antes de ejecutarlo.
+Tras mi aprobación, lea únicamente case-intake.yml, module-board.yml y runbook.md
+ubicados en la carpeta del caso, y estas dos guías:
+- /srv/migraciones/kit/docs/migration-spiral-strategy-spec.md
+- &lt;RUTA_DE_GUIA_DE_LECCIONES&gt;
+Informe qué está registrado, qué datos faltan y qué próximo paso propone,
+con la autorización que necesitaría. No infiera versiones por el nombre del caso
+ni trate valores de plantilla como datos confirmados del proyecto.
+No modifique archivos, no instale paquetes, no clone repositorios,
+no consulte servicios externos ni acceda a bases de datos.
+No use Engram ni memoria persistente mientras su aislamiento no esté validado.
+No pida ni muestre secretos.
+No avance al siguiente paso sin una nueva autorización.
+</code></pre>
+</details>
+<p><strong>Resultado esperado:</strong> un diagnóstico basado en esos archivos, sin cambios.
+En un caso recién creado puede encontrar una ficha sin completar, un tablero con
+<code>modules: []</code> y un runbook con la entrada pendiente. Eso describe la plantilla,
+no una migración inspeccionada ni aprobada. Si falta un archivo, debe informarlo y
+esperar; no crearlo ni sustituir la fuente sin permiso.</p>
+<h3 id="paso-11-reunir-y-confirmar-los-datos-antes-de-escribir-la-ficha">Paso 11 — Reunir y confirmar los datos antes de escribir la ficha</h3>
+<p><strong>Fuera de cualquier comando de ejecución</strong>, complete esta lista con el responsable
+de la migración. Si falta un dato, escriba «sin confirmar»:</p>
+<pre><code class="language-text">Versión de Odoo de origen:
+Versión de Odoo de destino:
+URL del repositorio de origen:
+Rama de origen:
+Proyecto Odoo.sh de origen:
+Proyecto Odoo.sh de destino, si ya existe:
+</code></pre>
+<p>El <code>19.0</code> de una plantilla no confirma el destino del caso. Tampoco el nombre
+<code>DEMO1719</code> confirma una migración 17 → 19. Distinga lo que declara el responsable
+de lo que luego se verificará mediante evidencia autorizada.</p>
+<p><strong>Resultado esperado:</strong> datos confirmados y preguntas pendientes, más una propuesta
+de qué registrar en <code>case-intake.yml</code>. Pida autorización antes de escribirlo.
+Consultar repositorios o bases, registrar claves, pedir una actualización de base,
+hacer commits o push requiere su propio alcance y permiso: no se desprende de haber
+completado esta lista. La coordinación ya tomada no necesita un nuevo reclamo.</p>
+<details>
+<summary>Prompt de asistencia — paso 11: preparar la ficha inicial</summary>
+<pre><code class="language-text">Asístame en el paso 11. Pídame versiones exactas de origen y destino,
+URL y rama del repositorio de origen, y proyectos Odoo.sh de origen y destino.
+Explique el paso y pida mi autorización antes de ejecutarlo.
+Si falta un dato, conserve «sin confirmar». Separe mi declaración de la evidencia
+verificada. No tome 19.0 de la plantilla ni el nombre del caso como confirmación.
+Devuélvame una propuesta de ficha y pida un permiso separado antes de escribirla.
+No consulte repositorios o servicios, acceda a bases, registre claves ni solicite
+actualizaciones de base. No haga commits ni push. No vuelva a reclamar el caso
+si ya está coordinado por mi usuario.
+No pida ni muestre secretos.
+No avance al siguiente paso sin una nueva autorización.
+</code></pre>
+</details>
+<p>Para continuar después de aprobar la ficha y delimitar las fuentes, use
+<a href="#6-empezar-la-migracion">Empezar la migración</a> y las autorizaciones por etapa de
+<a href="../user-instructions/">Instrucciones del usuario</a>. Para desconectarse o entregar,
+siga <a href="#7-retomar-el-trabajo">Retomar el trabajo</a> o <a href="#8-entregar-el-caso">Entregar el caso</a>.</p>
 <h2 id="si-no-puede-avanzar">Si no puede avanzar</h2>
 <table>
 <thead>
