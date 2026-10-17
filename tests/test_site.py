@@ -258,6 +258,46 @@ class SiteContract(unittest.TestCase):
         for limit in ("No modifique archivos", "no instale", "no clone", "servicios externos", "memoria persistente"):
             self.assertIn(limit, readonly)
 
+    def guided_resume_steps(self):
+        page = self.page("gentle-shell")
+        section = re.search(r'<h2 id="ejemplo-guiado-para-retomar-un-caso"[^>]*>.*?</h2>(.*?)(?=<h2\b|\Z)', page.text, re.S)
+        self.assertIsNotNone(section, "Falta el ejemplo guiado para retomar")
+        steps = re.findall(r'<h3\b[^>]*>.*?Paso (\d+)\b.*?</h3>(.*?)(?=<h3\b|\Z)', section.group(1), re.S)
+        self.assertEqual([int(number) for number, _ in steps], list(range(1, 7)))
+        return dict((int(number), body) for number, body in steps)
+
+    def test_guided_resume_covers_disconnect_reconnect_and_existing_instance(self):
+        steps = self.guided_resume_steps()
+        expected = {
+            1: ("terminal", "waiting for input", "main"),
+            2: ("Ctrl+b", "prompt remoto", "exit", "no libera"),
+            3: ("ssh -l dev1 servidor-migraciones", "cuenta"),
+            4: ("tmux list-sessions", "tmux list-panes -a -F", "#{pane_current_path}", "mig-case status MIG-DEMO1719-001"),
+            5: ("tmux attach-session -t main:1", "No ejecute de nuevo", "gentle-shell"),
+            6: ("runbook.md", "module-board.yml", "case-intake.yml", "plantilla", "No use Engram"),
+        }
+        for number, tokens in expected.items():
+            plain = unescape(re.sub(r'<[^>]+>', '', steps[number]))
+            for token in tokens:
+                self.assertIn(token, plain, (number, token))
+        page = self.page("gentle-shell")
+        self.assertTrue(page.has("a", "href", "#ejemplo-guiado-para-retomar-un-caso"))
+        plain = unescape(re.sub(r'<[^>]+>', '', page.text))
+        for limit in ("variante no se probó", "no recupera automáticamente la conversación", "cd /srv/migraciones/cases/MIG-DEMO1719-001"):
+            self.assertIn(limit, plain)
+
+    def test_each_guided_resume_step_has_an_approval_scoped_ai_prompt(self):
+        for number, body in self.guided_resume_steps().items():
+            with self.subTest(step=number):
+                prompts = [unescape(block) for block in re.findall(
+                    r'<pre><code class="language-text">(.*?)</code></pre>', body, re.S)
+                    if unescape(block).startswith("Para retomar, asístame en el paso " + str(number) + ".")]
+                self.assertEqual(len(prompts), 1)
+                for limit in ("Explique el paso y pida mi autorización antes de ejecutarlo.",
+                              "No avance al siguiente paso sin una nueva autorización.",
+                              "No pida ni muestre secretos."):
+                    self.assertIn(limit, prompts[0])
+
     def test_architecture_has_accessible_local_diagram_and_boundaries(self):
         page = self.page("architecture")
         self.assertTrue(page.has("img", "src", "../assets/solution-architecture.svg"))
@@ -303,8 +343,8 @@ class SiteContract(unittest.TestCase):
         for route, page in pages:
             with self.subTest(route=route):
                 self.assertTrue(page.has("aside", "aria-label", "Edición de la documentación"))
-                self.assertTrue(page.has("span", "data-doc-version", "0.2.9"))
-                self.assertIn("Versión documental 0.2.9", page.text)
+                self.assertTrue(page.has("span", "data-doc-version", "0.2.10"))
+                self.assertIn("Versión documental 0.2.10", page.text)
                 self.assertTrue(page.has("time", "datetime", "2026-10-17"))
                 self.assertIn("Actualizado", page.text)
                 self.assertIn("17/10/2026", page.text)

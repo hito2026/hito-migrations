@@ -43,10 +43,12 @@ SITE_DIR=site python3 -m unittest discover -s tests -v
 
 El directorio generado `site/` está excluido de Git. Para una compilación externa,
 use `--site-dir /ruta/temporal/site` y el mismo valor en `SITE_DIR`.
-Las dieciocho pruebas comprueban las catorce rutas (cinco principales y nueve anteriores),
+Las veinte pruebas comprueban las catorce rutas (cinco principales y nueve anteriores),
 el idioma, las URL canónicas, el menú de cinco entradas, los diagramas de proceso y arquitectura,
 los ejemplos de instrucciones, los pasos y prompts del manual para Windows/Linux/macOS,
-el ejemplo guiado de once pasos con un prompt de asistencia y autorización por paso,
+el ejemplo guiado de inicio de once pasos y el de recuperación de seis pasos,
+con prompts de asistencia y autorización por paso; también la distinción entre
+recuperar un agente vivo y volver a abrir uno cerrado (variante no probada),
 los recursos locales y la versión y fecha visibles
 (incluida la página 404). Revise también en navegador
 la búsqueda, el foco de teclado y la navegación de escritorio y móvil.
@@ -55,7 +57,7 @@ Compilar el sitio no verifica una migración; consulte la [lista de validación]
 ### Tema y diseño
 
 MkDocs Material (`>=9.6,<10`) aporta búsqueda superior y navegación izquierda.
-La edición 0.2.9 integra el índice de cada guía en esa navegación (`toc.integrate`)
+La edición 0.2.10 integra el índice de cada guía en esa navegación (`toc.integrate`)
 y conserva la ausencia de columna derecha. El conjunto de navegación y contenido
 queda centrado con un máximo de 1280 px; el bloque principal tiene un máximo de
 936 px, tomando como referencia el límite declarado en el CSS de
