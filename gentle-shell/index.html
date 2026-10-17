@@ -625,6 +625,100 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#ejemplo-guiado-para-retomar-un-caso" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ejemplo guiado para retomar un caso
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Ejemplo guiado para retomar un caso">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#paso-1-identificar-que-quedo-abierto" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Paso 1 — Identificar qué quedó abierto
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#paso-2-desconectarse-sin-cerrar-el-agente" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Paso 2 — Desconectarse sin cerrar el agente
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#paso-3-conectarse-de-nuevo-con-la-misma-cuenta" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Paso 3 — Conectarse de nuevo con la misma cuenta
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#paso-4-localizar-la-instancia-y-comprobar-la-coordinacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Paso 4 — Localizar la instancia y comprobar la coordinación
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#paso-5-recuperar-la-ventana-existente" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Paso 5 — Recuperar la ventana existente
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#paso-6-reconstruir-el-estado-antes-de-continuar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Paso 6 — Reconstruir el estado antes de continuar
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#si-el-agente-ya-no-esta-abierto" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Si el agente ya no está abierto
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#si-no-puede-avanzar" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -685,7 +779,7 @@
                 
   <aside class="doc-edition" aria-label="Edición de la documentación">
   <span class="doc-edition__label">Hito · Guías técnicas</span>
-  <span data-doc-version="0.2.9">Versión documental 0.2.9</span>
+  <span data-doc-version="0.2.10">Versión documental 0.2.10</span>
   <span>Actualizado <time datetime="2026-10-17">17/10/2026</time></span>
 </aside>
   
@@ -697,7 +791,9 @@
 <p>Siga los pasos en orden. Reemplace <code>ssh.example.com</code>, <code>devN</code> y <code>MIG-CLIENTE-001</code>
 por el servidor, usuario y caso asignados por el administrador.</p>
 <p>Para seguir un caso completo, con verificaciones y un prompt de asistencia en cada
-paso, vaya al <a href="#ejemplo-guiado-de-inicio">ejemplo guiado de inicio</a>.</p>
+paso, vaya al <a href="#ejemplo-guiado-de-inicio">ejemplo guiado de inicio</a>.
+Para continuar un caso existente sin duplicar agentes, use el
+<a href="#ejemplo-guiado-para-retomar-un-caso">ejemplo guiado para retomar un caso</a>.</p>
 <h2 id="1-preparar-el-acceso-una-sola-vez">1. Preparar el acceso — una sola vez</h2>
 <p><strong>En su computadora</strong>, siga únicamente su sistema: <a href="#windows">Windows</a>,
 <a href="#linux">Linux</a> o <a href="#macos">macOS</a>. Pida al administrador su usuario, servidor,
@@ -989,13 +1085,27 @@ Siga el orden del <a href="../procedure/">Procedimiento</a>; no autorice toda la
 <p>Para volver, <strong>desde su computadora</strong>:</p>
 <pre><code class="language-sh">ssh servidor-migraciones
 </code></pre>
-<p><strong>En el servidor:</strong></p>
-<pre><code class="language-sh">tmux attach -t trabajo
+<p><strong>En el servidor</strong>, localice primero la instancia y compruebe la coordinación;
+reemplace el caso de ejemplo:</p>
+<pre><code class="language-sh">tmux list-sessions
+tmux list-panes -a -F '#{session_name}:#{window_index}.#{pane_index} | #{pane_current_command} | #{pane_current_path}'
+mig-case status MIG-CLIENTE-001
 </code></pre>
-<p>Si Gentle Shell sigue abierto, pegue:</p>
-<pre><code class="language-text">Lea runbook.md y module-board.yml. Resuma dónde quedamos, los bloqueos y el
-próximo paso autorizado. No ejecute acciones nuevas hasta confirmar el alcance.
+<p>Si lo coordina otra persona, acuerde el relevo. El nombre de proceso <code>node</code> por sí
+solo no identifica el caso: contraste la ruta y después la pantalla.
+Si encuentra el agente en <code>trabajo</code>, ventana <code>0</code>, recupérelo así; cambie ambos
+valores por los que realmente encontró:</p>
+<pre><code class="language-sh">tmux attach-session -t trabajo:0
 </code></pre>
+<p>No vuelva a ejecutar <code>gentle-shell</code> ni reclame otra vez un caso que sigue coordinado
+por su usuario. Si Gentle Shell sigue abierto en el caso correcto, pegue:</p>
+<pre><code class="language-text">Lea únicamente runbook.md, module-board.yml y case-intake.yml del caso actual.
+Resuma dónde quedamos, los bloqueos y el próximo paso propuesto.
+Distinga valores de plantilla de datos confirmados. No modifique archivos,
+consulte servicios ni ejecute acciones nuevas: espere una nueva autorización.
+</code></pre>
+<p>Vea el <a href="#ejemplo-guiado-para-retomar-un-caso">recorrido de reconexión y recuperación</a>
+para distinguir una instancia viva de un agente que ya se cerró.</p>
 <h2 id="8-entregar-el-caso">8. Entregar el caso</h2>
 <p><strong>En Gentle Shell</strong>, antes de salir:</p>
 <pre><code class="language-text">Actualice runbook.md y module-board.yml con lo realizado, las pruebas,
@@ -1299,6 +1409,194 @@ No avance al siguiente paso sin una nueva autorización.
 <a href="#6-empezar-la-migracion">Empezar la migración</a> y las autorizaciones por etapa de
 <a href="../user-instructions/">Instrucciones del usuario</a>. Para desconectarse o entregar,
 siga <a href="#7-retomar-el-trabajo">Retomar el trabajo</a> o <a href="#8-entregar-el-caso">Entregar el caso</a>.</p>
+<h2 id="ejemplo-guiado-para-retomar-un-caso">Ejemplo guiado para retomar un caso</h2>
+<p>Este recorrido recupera una instancia de Gentle Shell que <strong>sigue ejecutándose en
+PC-ALE aunque el usuario cierre SSH</strong>. Luego contrasta el estado con los archivos
+del caso, antes de autorizar trabajo nuevo. No abre una instancia de Odoo ni valida
+una migración: recupera el entorno del agente.</p>
+<p>Use el ejemplo ficticio <code>MIG-DEMO1719-001</code>, cuenta personal <code>dev1</code>, alias
+<code>servidor-migraciones</code> y sesión <code>main</code>, ventana <code>1</code>. Reemplace esos valores por los
+asignados y por los encontrados en las consultas; no suponga que todos los casos
+usan la misma ventana. Cada prompt de asistencia pide autorización antes de actuar
+y se detiene antes del siguiente paso. Si la IA no controla terminales, le debe
+indicar los comandos para ejecutarlos usted.</p>
+<h3 id="paso-1-identificar-que-quedo-abierto">Paso 1 — Identificar qué quedó abierto</h3>
+<p><strong>En la terminal del usuario</strong>, observe la pantalla antes de escribir. Distinga un
+prompt local, un prompt remoto y el chat de Gentle Shell. Si continúa dentro de
+tmux, su barra puede mostrar <code>[main]</code> y la ventana activa. Si el agente indica
+<code>waiting for input</code>, está esperando: no significa que la migración esté terminada.</p>
+<p><strong>Resultado esperado:</strong> identificar equipo, cuenta, sesión, ventana y caso visibles.
+Si el agente está trabajando, no lo interrumpa ni presuponga que se puede desconectar
+sin evaluar la operación. Si ya está desconectado, vaya al paso 3, no ejecute <code>exit</code>
+en su computadora por copiar el paso 2.</p>
+<details>
+<summary>Prompt de asistencia — retomar, paso 1: inspeccionar la terminal</summary>
+<pre><code class="language-text">Para retomar, asístame en el paso 1. Identifique conmigo la terminal exacta.
+Explique el paso y pida mi autorización antes de ejecutarlo.
+Inspeccione solo la pantalla para distinguir equipo local, SSH, tmux y agente.
+Informe sesión, ventana, caso y si el agente espera o trabaja; no envíe texto
+ni comandos todavía. Si no puede ver la terminal, pídame esos datos sin secretos.
+No pida ni muestre secretos.
+No avance al siguiente paso sin una nueva autorización.
+</code></pre>
+</details>
+<h3 id="paso-2-desconectarse-sin-cerrar-el-agente">Paso 2 — Desconectarse sin cerrar el agente</h3>
+<p>Este paso prepara la prueba de salida y regreso. <strong>Dentro de tmux</strong>, presione
+<strong>Ctrl+b</strong>, suelte y presione <strong>d</strong>. Espere el mensaje de separación y el <strong>prompt remoto</strong>. Solo después, para cerrar SSH:</p>
+<pre><code class="language-sh">exit
+</code></pre>
+<p><strong>Resultado esperado:</strong> vuelve al prompt de su computadora. Esto <strong>no libera</strong> la
+coordinación ni cierra intencionalmente Gentle Shell. No use <code>Ctrl+c</code>, <code>kill-session</code>
+ni el comando de salida del agente para simular esta desconexión. Todavía hay que
+reconectar y verificar que el proceso se conservó. tmux no protege de un reinicio
+del servidor ni de que otro usuario termine el proceso.</p>
+<details>
+<summary>Prompt de asistencia — retomar, paso 2: separar tmux y cerrar SSH</summary>
+<pre><code class="language-text">Para retomar, asístame en el paso 2. Confirme que el agente no está trabajando.
+Explique el paso y pida mi autorización antes de ejecutarlo.
+Separe el cliente de tmux con Ctrl+b y luego d. Observe el mensaje de separación
+y el prompt remoto. Solo entonces ejecute exit para cerrar únicamente SSH.
+Si no aparece ese prompt, deténgase. Compruebe retorno a la computadora local.
+No cierre el agente, mate procesos, libere coordinación ni altere otras sesiones.
+No pida ni muestre secretos.
+No avance al siguiente paso sin una nueva autorización.
+</code></pre>
+</details>
+<h3 id="paso-3-conectarse-de-nuevo-con-la-misma-cuenta">Paso 3 — Conectarse de nuevo con la misma cuenta</h3>
+<p><strong>En su computadora:</strong></p>
+<pre><code class="language-sh">ssh -l dev1 servidor-migraciones
+</code></pre>
+<p><strong>Resultado esperado:</strong> vuelve al prompt remoto de su cuenta personal. Complete
+Cloudflare Access en el navegador si lo solicita. Si cambia de cuenta, no verá las
+sesiones personales de la anterior: no use credenciales ajenas para recuperarlas.
+No ejecute todavía <code>gentle-shell</code> ni cree un nuevo caso.</p>
+<details>
+<summary>Prompt de asistencia — retomar, paso 3: volver a PC-ALE</summary>
+<pre><code class="language-text">Para retomar, asístame en el paso 3. Confirme el alias y mi cuenta personal asignada.
+Explique el paso y pida mi autorización antes de ejecutarlo.
+Con los datos confirmados, conecte usando ssh -l dev1 servidor-migraciones,
+reemplazando el ejemplo por mi cuenta y alias. Deje que complete Access fuera del chat.
+Confirme el prompt remoto; no acepte una huella nueva sin verificarla con el administrador.
+No abra agentes ni cree sesiones o casos todavía.
+No pida ni muestre secretos.
+No avance al siguiente paso sin una nueva autorización.
+</code></pre>
+</details>
+<h3 id="paso-4-localizar-la-instancia-y-comprobar-la-coordinacion">Paso 4 — Localizar la instancia y comprobar la coordinación</h3>
+<p><strong>En el prompt del servidor</strong>, no en el chat de un agente:</p>
+<pre><code class="language-sh">tmux list-sessions
+tmux list-panes -a -F '#{session_name}:#{window_index}.#{pane_index} | #{pane_current_command} | #{pane_current_path}'
+mig-case status MIG-DEMO1719-001
+</code></pre>
+<p><strong>Resultado esperado:</strong> una fila como esta, con los valores reales de su sesión:</p>
+<pre><code class="language-text">main:1.0 | node | /srv/migraciones/cases/MIG-DEMO1719-001
+</code></pre>
+<p>La fila orienta hacia <code>main</code>, ventana <code>1</code>, panel <code>0</code>. <code>node</code> no prueba por sí solo
+que sea el agente correcto: hay que contrastar ruta y pantalla. Verifique además
+que el caso sigue coordinado por su usuario. Si otra persona lo coordina, deténgase
+y acuerde el relevo; no borre el lock. No se vuelva a reclamar un caso ya coordinado
+por su usuario solo por reconectar.</p>
+<p>Si aparecen varias sesiones o una marcada <code>attached</code>, no las cierre, separe ni
+reutilice automáticamente. Identifique el caso antes de seleccionar un destino.
+Si falta la sesión o el proceso del caso, vaya a la variante posterior; no cree otro
+coordinador para ocultar el problema.</p>
+<details>
+<summary>Prompt de asistencia — retomar, paso 4: localizar sin modificar</summary>
+<pre><code class="language-text">Para retomar, asístame en el paso 4. Caso: MIG-DEMO1719-001; use mi caso real confirmado.
+Explique el paso y pida mi autorización antes de ejecutarlo.
+Ejecute solo tmux list-sessions, tmux list-panes -a -F
+'#{session_name}:#{window_index}.#{pane_index} | #{pane_current_command} | #{pane_current_path}'
+y mig-case status MIG-DEMO1719-001, sustituyendo el caso confirmado.
+Informe qué sesión/ventana/panel tiene la ruta del caso y quién lo coordina.
+No dé por correcto un proceso solo porque se llama node. No toque otras sesiones,
+cree agentes, fuerce locks ni adjunte todavía. Si algo falta, informe el bloqueo.
+No pida ni muestre secretos.
+No avance al siguiente paso sin una nueva autorización.
+</code></pre>
+</details>
+<h3 id="paso-5-recuperar-la-ventana-existente">Paso 5 — Recuperar la ventana existente</h3>
+<p><strong>En el prompt remoto</strong>, si la consulta localizó su caso en <code>main</code>, ventana <code>1</code>:</p>
+<pre><code class="language-sh">tmux attach-session -t main:1
+</code></pre>
+<p>Reemplace sesión y ventana según lo observado. <strong>Resultado esperado:</strong> reaparecen
+Gentle Shell y la conversación anterior del caso, en la ventana elegida.
+No ejecute de nuevo <code>gentle-shell</code>: si el agente sigue vivo, el directorio de trabajo
+ya está conservado. Tampoco necesita <code>cd</code> para recuperar ese proceso.</p>
+<p>Si aparece otro caso, una aplicación inesperada o un prompt vacío, deténgase:
+recuperar tmux no prueba que el agente buscado siga abierto. No escriba comandos de
+shell en el chat ni envíe una instrucción de migración solo para probar la pantalla.</p>
+<details>
+<summary>Prompt de asistencia — retomar, paso 5: recuperar sin duplicar agentes</summary>
+<pre><code class="language-text">Para retomar, asístame en el paso 5. Use la sesión y ventana identificadas antes.
+Explique el paso y pida mi autorización antes de ejecutarlo.
+Si mi caso está en main:1, ejecute solo tmux attach-session -t main:1;
+si está en otro destino, muéstreme primero el comando exacto corregido y espere permiso.
+Compruebe que vuelve la conversación del caso y el agente espera instrucciones.
+No abra otro gentle-shell, cambie coordinación ni envíe mensajes de migración.
+Si vuelve una pantalla inesperada, deténgase y describa lo observado.
+No pida ni muestre secretos.
+No avance al siguiente paso sin una nueva autorización.
+</code></pre>
+</details>
+<h3 id="paso-6-reconstruir-el-estado-antes-de-continuar">Paso 6 — Reconstruir el estado antes de continuar</h3>
+<p><strong>En la instancia recuperada</strong>, pida una revisión de lectura. La conversación puede
+estar conservada, pero el estado del trabajo debe contrastarse con el runbook, el
+tablero y la ficha. Esta consulta consume uso del modelo; no autoriza escrituras.</p>
+<details>
+<summary>Prompt de asistencia — retomar, paso 6: resumir estado sin ejecutar trabajo</summary>
+<pre><code class="language-text">Para retomar, asístame en el paso 6. Caso: MIG-DEMO1719-001; use el caso confirmado.
+Explique el paso y pida mi autorización antes de ejecutarlo.
+Tras mi aprobación, lea únicamente runbook.md, module-board.yml y case-intake.yml
+de la carpeta actual del caso. Informe:
+1. Qué está registrado y qué sigue sin confirmar.
+2. En qué etapa está el caso y qué bloqueos tiene.
+3. Cuál es el próximo paso propuesto y qué autorización necesita.
+Distinga valores de plantilla de datos confirmados; no infiera versiones por el nombre.
+Si mi usuario ya coordina el caso, no vuelva a reclamarlo.
+No modifique archivos, no ejecute comandos de migración, no consulte repositorios,
+servicios externos ni bases de datos. No use Engram ni memoria persistente mientras
+su aislamiento no esté validado. No retome acciones anteriores automáticamente.
+No pida ni muestre secretos.
+No avance al siguiente paso sin una nueva autorización.
+</code></pre>
+</details>
+<p><strong>Resultado esperado:</strong> un resumen verificable y una propuesta que espera permiso.
+En un caso recién creado, el resumen puede indicar que la ficha sigue sin completar
+y el tablero está vacío. Recuperar la sesión no convierte eso en avance de migración
+ni confirma la versión <code>19.0</code> que viene en la plantilla. Para trabajo nuevo, otorgue
+solo la autorización de la etapa correspondiente de
+<a href="../user-instructions/">Instrucciones del usuario</a>.</p>
+<h3 id="si-el-agente-ya-no-esta-abierto">Si el agente ya no está abierto</h3>
+<p><strong>Esta variante no se probó en el recorrido de reconexión anterior.</strong> No confunda
+un proceso que sigue vivo con volver a abrir uno cerrado. Si no existe la sesión o
+solo queda un prompt, compruebe primero cuenta, ruta, coordinación y si hay otro
+agente del caso activo. Si la coordinación está libre, acuerde quién continúa y
+autorice el reclamo según <a href="#4-abrir-el-caso">Abrir el caso</a>; si la tiene otra persona,
+espere el relevo.</p>
+<p>Solo después de resolver eso, con permiso para abrir un nuevo entorno:</p>
+<pre><code class="language-sh">cd /srv/migraciones/cases/MIG-DEMO1719-001 &amp;&amp; pwd
+</code></pre>
+<p>Si la ruta existe y es la correcta, abra el entorno en una sesión tmux:</p>
+<pre><code class="language-sh">gentle-shell
+</code></pre>
+<p>Esto carga la configuración del directorio, pero <strong>no recupera automáticamente la conversación</strong>
+anterior. Si aparece un diálogo de confianza, necesita su propia decisión. Reconstruya
+el estado con los tres archivos del caso; recuperar un historial guardado requiere
+confirmar el procedimiento disponible en la versión instalada, no inventar opciones
+ni identificadores. No documentamos esta variante como una recuperación comprobada.</p>
+<details>
+<summary>Prompt de asistencia — si falta el agente o su sesión</summary>
+<pre><code class="language-text">Si falta el agente, ayúdeme a diagnosticarlo sin abrir otro automáticamente.
+Explique el paso y pida mi autorización antes de ejecutarlo.
+Confirme mi cuenta, la ruta del caso, su coordinación y si existe otro agente activo.
+No fuerce locks ni cree sesiones para ocultar el problema. Muestre un plan acotado
+para entrar al directorio correcto y abrir el entorno solo si corresponde, sin
+prometer que eso recupera la conversación anterior. Pida permiso para cada acción;
+la confianza de carpeta requiere una decisión separada. No invente flags de reanudación.
+No pida ni muestre secretos.
+No avance al siguiente paso sin una nueva autorización.
+</code></pre>
+</details>
 <h2 id="si-no-puede-avanzar">Si no puede avanzar</h2>
 <table>
 <thead>
