@@ -1,0 +1,647 @@
+
+<!doctype html>
+<html lang="es" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Esquemas y plantillas de migración de Odoo aptos para publicación pública">
+      
+      
+      
+        <link rel="canonical" href="https://hito2026.github.io/hito-migrations/gentle-shell/">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Usar Gentle Shell para una migración - Hito migrations</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#usar-gentle-shell-para-una-migracion" class="md-skip">
+          Saltar a contenido
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabecera">
+    <a href=".." title="Hito migrations" class="md-header__button md-logo" aria-label="Hito migrations" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Hito migrations
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Usar Gentle Shell para una migración
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Búsqueda" placeholder="Búsqueda" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Buscar">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpiar" aria-label="Limpiar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando búsqueda
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navegación" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Hito migrations" class="md-nav__button md-logo" aria-label="Hito migrations" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Hito migrations
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Introducción
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../procedure/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Procedimiento
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../user-instructions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Instrucciones del usuario
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-preparar-el-acceso-una-sola-vez" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Preparar el acceso — una sola vez
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-entrar-al-servidor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Entrar al servidor
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-abrir-su-sesion-de-trabajo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Abrir su sesión de trabajo
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-abrir-el-caso" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Abrir el caso
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-conectar-el-modelo-primera-vez" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Conectar el modelo — primera vez
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-empezar-la-migracion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Empezar la migración
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-retomar-el-trabajo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Retomar el trabajo
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-entregar-el-caso" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Entregar el caso
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#si-no-puede-avanzar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Si no puede avanzar
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+  <aside class="doc-edition" aria-label="Edición de la documentación">
+  <span class="doc-edition__label">Hito · Guías técnicas</span>
+  <span data-doc-version="0.2.1">Versión documental 0.2.1</span>
+  <span>Actualizado <time datetime="2026-10-17">17/10/2026</time></span>
+</aside>
+  
+                  
+
+
+
+<h1 id="usar-gentle-shell-para-una-migracion">Usar Gentle Shell para una migración</h1>
+<p>Siga los pasos en orden. Reemplace <code>ssh.example.com</code>, <code>devN</code> y <code>MIG-CLIENTE-001</code>
+por el servidor, usuario y caso asignados por el administrador.</p>
+<h2 id="1-preparar-el-acceso-una-sola-vez">1. Preparar el acceso — una sola vez</h2>
+<p><strong>En su computadora:</strong> tenga instalados OpenSSH y <code>cloudflared</code>. En Mac con Homebrew:</p>
+<pre><code class="language-sh">brew install cloudflared
+</code></pre>
+<p>Si no tiene una clave SSH, créela. No sobrescriba una existente:</p>
+<pre><code class="language-sh">ssh-keygen -t ed25519
+</code></pre>
+<p>Muestre la clave pública y envíesela al administrador:</p>
+<pre><code class="language-sh">cat ~/.ssh/id_ed25519.pub
+</code></pre>
+<p>Pídale que habilite su usuario, esa clave pública y su email en Cloudflare Access.
+<strong>No copie claves privadas</strong> ni tokens al chat.</p>
+<p>Abra <code>~/.ssh/config</code>:</p>
+<pre><code class="language-sh">mkdir -p ~/.ssh
+chmod 700 ~/.ssh
+nano ~/.ssh/config
+</code></pre>
+<p>Agregue este bloque, reemplazando servidor y usuario. En nano, guarde con
+<strong>Ctrl+O</strong>, <strong>Enter</strong> y cierre con <strong>Ctrl+X</strong>:</p>
+<pre><code class="language-sshconfig">Host servidor-migraciones
+  HostName ssh.example.com
+  User devN
+  IdentityFile ~/.ssh/id_ed25519
+  IdentitiesOnly yes
+  ProxyCommand cloudflared access ssh --hostname %h
+  ServerAliveInterval 30
+</code></pre>
+<pre><code class="language-sh">chmod 600 ~/.ssh/config
+</code></pre>
+<h2 id="2-entrar-al-servidor">2. Entrar al servidor</h2>
+<p><strong>En su computadora:</strong></p>
+<pre><code class="language-sh">cloudflared access login https://ssh.example.com
+</code></pre>
+<p>Complete el login en el navegador. Luego:</p>
+<pre><code class="language-sh">ssh servidor-migraciones
+</code></pre>
+<p>La primera vez, confirme la huella SSH con el administrador antes de aceptarla.
+<strong>Ya en el servidor</strong>, compruebe que aparece su usuario:</p>
+<pre><code class="language-sh">whoami
+</code></pre>
+<h2 id="3-abrir-su-sesion-de-trabajo">3. Abrir su sesión de trabajo</h2>
+<p><strong>En el servidor:</strong></p>
+<pre><code class="language-sh">tmux new-session -A -s trabajo
+</code></pre>
+<p>Si recupera una sesión con Gentle Shell ya abierto, continúe allí: no abra otro
+coordinador del mismo caso. Si aparece una terminal vacía, siga al paso 4.</p>
+<h2 id="4-abrir-el-caso">4. Abrir el caso</h2>
+<p><strong>En la terminal del servidor</strong>, elija un identificador con cliente en mayúsculas
+alfanuméricas y tres dígitos. Reemplace el ejemplo:</p>
+<pre><code class="language-sh">CASO=MIG-CLIENTE-001
+mig-case list
+</code></pre>
+<p><strong>Solo si es un caso nuevo autorizado:</strong></p>
+<pre><code class="language-sh">mig-case new &quot;$CASO&quot;
+</code></pre>
+<p><strong>Para un caso nuevo o existente:</strong></p>
+<pre><code class="language-sh">mig-case status &quot;$CASO&quot;
+mig-case claim &quot;$CASO&quot;
+</code></pre>
+<p>Si lo coordina otra persona, deténgase y acuerde el relevo. No borre su lock.
+<strong>Solo si el reclamo terminó correctamente</strong>, continúe:</p>
+<pre><code class="language-sh">cd &quot;/srv/migraciones/cases/$CASO&quot;
+gentle-shell
+</code></pre>
+<p>Espere a que termine la preparación inicial y aparezca la interfaz.</p>
+<h2 id="5-conectar-el-modelo-primera-vez">5. Conectar el modelo — primera vez</h2>
+<p><strong>Dentro de Gentle Shell</strong>, escriba:</p>
+<pre><code class="language-text">/login
+</code></pre>
+<p>Elija cuenta o clave API, seleccione su proveedor y complete la autenticación.
+Introduzca códigos y claves solo en ese flujo, no en el chat del agente.
+Si ya tiene un proveedor y modelo disponibles, omita este paso.</p>
+<h2 id="6-empezar-la-migracion">6. Empezar la migración</h2>
+<p><strong>En el chat de Gentle Shell</strong>, pegue el mensaje siguiente. Complete los campos
+entre <code>&lt;…&gt;</code> con los datos del caso; use «por confirmar» si falta alguno:</p>
+<pre><code class="language-text">Prepare el diagnóstico y el plan de esta migración.
+
+Origen: &lt;versión exacta de Odoo y edición&gt;.
+Destino: &lt;versión exacta de Odoo y edición&gt;.
+Repositorios autorizados: &lt;URLs y ramas de origen y destino&gt;.
+Entornos autorizados: &lt;proyecto Odoo.sh; Development y Staging disponibles&gt;.
+Procesos que deben conservarse: &lt;flujos, informes e integraciones críticos&gt;.
+Responsables: &lt;técnico; funcional/contable; datos; persona que autoriza&gt;.
+Fuera de alcance: &lt;exclusiones&gt;.
+
+Lea runbook.md, case-intake.yml, module-board.yml y
+/srv/migraciones/kit/docs/migration-spiral-strategy-spec.md.
+Use únicamente las fuentes autorizadas, en modo lectura.
+Complete los datos confirmados en case-intake.yml y registre el diagnóstico,
+las preguntas y el próximo paso en runbook.md.
+Entregue inventario, dependencias, propuesta por módulo y plan por etapas.
+No modifique repositorios ni bases, no haga commits ni push y no opere en producción.
+Si falta acceso o una decisión, indique exactamente qué necesito resolver.
+</code></pre>
+<p>Responda las preguntas del agente y revise el plan. Para autorizar la siguiente
+etapa, copie el mensaje correspondiente de <a href="../user-instructions/">Instrucciones del usuario</a>.
+Siga el orden del <a href="../procedure/">Procedimiento</a>; no autorice toda la migración de una vez.</p>
+<h2 id="7-retomar-el-trabajo">7. Retomar el trabajo</h2>
+<p>Para salir sin cerrar la sesión: <strong>Ctrl+b</strong>, suelte y presione <strong>d</strong>.</p>
+<p>Para volver, <strong>desde su computadora</strong>:</p>
+<pre><code class="language-sh">ssh servidor-migraciones
+</code></pre>
+<p><strong>En el servidor:</strong></p>
+<pre><code class="language-sh">tmux attach -t trabajo
+</code></pre>
+<p>Si Gentle Shell sigue abierto, pegue:</p>
+<pre><code class="language-text">Lea runbook.md y module-board.yml. Resuma dónde quedamos, los bloqueos y el
+próximo paso autorizado. No ejecute acciones nuevas hasta confirmar el alcance.
+</code></pre>
+<h2 id="8-entregar-el-caso">8. Entregar el caso</h2>
+<p><strong>En Gentle Shell</strong>, antes de salir:</p>
+<pre><code class="language-text">Actualice runbook.md y module-board.yml con lo realizado, las pruebas,
+los fallos, los pendientes y el próximo paso. No marque como terminado
+lo que no se comprobó. Indique si quedan trabajadores o procesos activos.
+</code></pre>
+<p>Resuelva los procesos activos antes de entregar la coordinación. Abra otra ventana
+con <strong>Ctrl+b</strong>, suelte y presione <strong>c</strong>. <strong>En esa terminal del servidor:</strong></p>
+<pre><code class="language-sh">mig-case release MIG-CLIENTE-001
+mig-case status MIG-CLIENTE-001
+</code></pre>
+<p>Reemplace el caso; el estado debe quedar <code>free</code>. Acuerde quién continúa.</p>
+<h2 id="si-no-puede-avanzar">Si no puede avanzar</h2>
+<table>
+<thead>
+<tr>
+<th>Mensaje o problema</th>
+<th>Acción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Vence la conexión antes de entrar</td>
+<td>En su computadora, ejecute <code>cloudflared access login https://ssh.example.com</code> y complete el navegador</td>
+</tr>
+<tr>
+<td><code>Permission denied (publickey)</code></td>
+<td>Pida al administrador verificar su usuario y el alta de su <code>.pub</code></td>
+</tr>
+<tr>
+<td>Cambió la huella SSH</td>
+<td>Deténgase y confirme la nueva huella con el administrador</td>
+</tr>
+<tr>
+<td><code>No models available</code></td>
+<td>En Gentle Shell, ejecute <code>/login</code></td>
+</tr>
+<tr>
+<td>Otro usuario coordina el caso</td>
+<td>Acuerde el relevo antes de reclamarlo</td>
+</tr>
+<tr>
+<td>Falta acceso a GitHub u Odoo.sh</td>
+<td>Solicite acceso para su propia cuenta; no use credenciales ajenas</td>
+</tr>
+<tr>
+<td>Falta <code>mig-case</code>, falla el editor o aparece una actualización</td>
+<td>Consulte al administrador; no instale ni actualice herramientas compartidas</td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.sections", "toc.follow", "search.suggest", "search.highlight", "content.code.copy"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>
