@@ -19,6 +19,10 @@ body[data-md-color-scheme="default"] {
   max-width: none;
 }
 
+.md-content__inner {
+  margin-right: clamp(.8rem, 3vw, 3rem);
+}
+
 .md-header {
   --md-primary-bg-color: #212326;
   --md-primary-bg-color--light: #626a73;
@@ -47,6 +51,12 @@ body[data-md-color-scheme="default"] {
 .md-typeset {
   font-size: .85rem;
   line-height: 1.75;
+}
+
+.md-typeset pre > code {
+  font-family: "Courier New", Courier, monospace;
+  font-size: .65rem;
+  line-height: 1.5;
 }
 
 .md-typeset h1,
@@ -146,8 +156,9 @@ body[data-md-color-scheme="default"] {
 .md-typeset .process-diagram img {
   display: block;
   width: 100%;
-  min-width: 48rem;
-  max-width: none;
+  min-width: 0;
+  max-width: 100%;
+  height: auto;
 }
 
 .md-typeset .process-diagram figcaption {
