@@ -4,6 +4,12 @@ Empiece pidiendo un diagnóstico, no una ejecución completa. Copie los mensajes
 y reemplace los campos entre `<…>` **en su registro privado autorizado**, nunca en este sitio.
 No incluya credenciales. Una instrucción habilita solo la etapa y las acciones que indique.
 
+## Usar el entorno de trabajo
+
+Si trabaja en el servidor del equipo, consulte el [manual de uso de Gentle Shell](gentle-shell.md):
+ejecute los comandos de acceso, abra el caso y copie el mensaje para empezar la migración.
+Después utilice las instrucciones de esta página para autorizar cada etapa.
+
 ## Para comenzar
 
 Reúna versiones y edición, fuentes autorizadas, procesos críticos y una persona que pueda

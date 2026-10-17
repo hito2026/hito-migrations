@@ -19,8 +19,8 @@ theme:
     - content.code.copy
 extra:
   documentation:
-    version: "0.2.0"
-    updated: "2026-10-16"
+    version: "0.2.1"
+    updated: "2026-10-17"
 extra_css:
   - stylesheets/extra.css
 markdown_extensions:
@@ -30,6 +30,7 @@ plugins:
   - search:
       lang: es
 not_in_nav: |
+  /gentle-shell.md
   /migration-manual.md
   /spiral-strategy.md
   /migration-templates.md

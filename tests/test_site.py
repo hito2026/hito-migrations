@@ -10,7 +10,7 @@ from xml.etree import ElementTree
 SITE = Path(os.environ.get("SITE_DIR", "site")).resolve()
 LEGACY_ROUTES = ("migration-manual", "spiral-strategy", "migration-templates",
                  "versions", "recipes", "validation", "known-errors", "ai-guide", "case-template")
-ROUTES = ("", "procedure", "user-instructions", *LEGACY_ROUTES)
+ROUTES = ("", "procedure", "user-instructions", "gentle-shell", *LEGACY_ROUTES)
 BASE = "https://hito2026.github.io/hito-migrations/"
 
 
@@ -108,6 +108,24 @@ class SiteContract(unittest.TestCase):
         for text in ("No modifique archivos", "No restaure bases", "aprobación", "bloqueo"):
             self.assertIn(text, page.text)
 
+    def test_gentle_shell_manual_is_linked_and_scoped(self):
+        self.assertTrue(self.page("user-instructions").has("a", "href", "../gentle-shell/"))
+        page = self.page("gentle-shell")
+        for heading in ("Preparar el acceso", "Entrar al servidor", "Abrir su sesión",
+                        "Abrir el caso", "Conectar el modelo", "Empezar la migración",
+                        "Retomar el trabajo", "Entregar el caso"):
+            self.assertIn(heading, page.text)
+        plain = re.sub(r"<[^>]+>", "", page.text)
+        for command in ("cloudflared access login", "ssh servidor-migraciones", "tmux attach",
+                        "mig-case new", "mig-case claim", "mig-case release", "/login",
+                        "gentle-shell", "case-intake.yml", "No modifique repositorios"):
+            self.assertIn(command, plain)
+        self.assertNotIn("Estado de las comprobaciones", plain)
+        self.assertNotIn("13 pruebas", plain)
+        self.assertIn("No copie claves privadas", plain)
+        self.assertTrue(page.has("a", "href", "../user-instructions/"))
+        self.assertTrue(page.has("a", "href", "../procedure/"))
+
     def test_hito_palette_targets_light_theme_scope(self):
         css = (SITE / "stylesheets/extra.css").read_text(encoding="utf-8")
         # Contrato del selector generado; el color calculado requiere un navegador.
@@ -129,11 +147,11 @@ class SiteContract(unittest.TestCase):
         for route, page in pages:
             with self.subTest(route=route):
                 self.assertTrue(page.has("aside", "aria-label", "Edición de la documentación"))
-                self.assertTrue(page.has("span", "data-doc-version", "0.2.0"))
-                self.assertIn("Versión documental 0.2.0", page.text)
-                self.assertTrue(page.has("time", "datetime", "2026-10-16"))
+                self.assertTrue(page.has("span", "data-doc-version", "0.2.1"))
+                self.assertIn("Versión documental 0.2.1", page.text)
+                self.assertTrue(page.has("time", "datetime", "2026-10-17"))
                 self.assertIn("Actualizado", page.text)
-                self.assertIn("16/10/2026", page.text)
+                self.assertIn("17/10/2026", page.text)
 
     def test_local_links_resources_and_no_external_fonts(self):
         for route in ROUTES:
