@@ -2,14 +2,18 @@
 
 Base documental para migraciones de Odoo, preparada para publicación pública.
 Los esquemas son **borradores no verificados**, no procedimientos probados ni
-pruebas de migraciones exitosas. La guía tiene cuatro entradas:
+pruebas de migraciones exitosas. La guía tiene cinco entradas:
 [Introducción](docs/index.md), [Procedimiento](docs/procedure.md),
-[Instrucciones del usuario](docs/user-instructions.md) y [Gentle Shell](docs/gentle-shell.md).
+[Instrucciones del usuario](docs/user-instructions.md), [Gentle Shell](docs/gentle-shell.md)
+y [Arquitectura](docs/architecture.md).
 
 El [manual de uso de Gentle Shell](docs/gentle-shell.md) tiene una sección propia en el menú.
-Incluye preparación y acceso desde Windows (PowerShell), Linux y macOS; después continúa
+Incluye preparación y acceso desde Windows (PowerShell), Linux y macOS, con un prompt
+copiable por sistema para realizar la configuración con ayuda de una IA; después continúa
 con comandos comunes en el servidor y mensajes para iniciar, retomar y entregar una migración.
-Utiliza ejemplos anónimos. La edición documental 0.2.2 incorpora el menú y los pasos por sistema.
+Utiliza ejemplos anónimos. La sección Arquitectura y su diagrama local distinguen
+administración en la Mac de Ale, acceso de usuarios y ejecución en PC-ALE; no incluyen
+IPs, dominios privados ni credenciales. La edición documental 0.2.3 incorpora esta sección.
 
 Las nueve guías anteriores conservan sus URL y permanecen disponibles como referencias,
 fuera del menú principal. `not_in_nav` en `mkdocs.yml` declara esa exclusión; no elimina
@@ -39,9 +43,9 @@ SITE_DIR=site python3 -m unittest discover -s tests -v
 
 El directorio generado `site/` está excluido de Git. Para una compilación externa,
 use `--site-dir /ruta/temporal/site` y el mismo valor en `SITE_DIR`.
-Las once pruebas comprueban las trece rutas (cuatro principales y nueve anteriores),
-el idioma, las URL canónicas, el menú de cuatro entradas, el diagrama por actores,
-los ejemplos de instrucciones, los pasos del manual para Windows/Linux/macOS,
+Las trece pruebas comprueban las catorce rutas (cinco principales y nueve anteriores),
+el idioma, las URL canónicas, el menú de cinco entradas, los diagramas de proceso y arquitectura,
+los ejemplos de instrucciones, los pasos y prompts del manual para Windows/Linux/macOS,
 los recursos locales y la versión y fecha visibles
 (incluida la página 404). Revise también en navegador
 la búsqueda, el foco de teclado y la navegación de escritorio y móvil.

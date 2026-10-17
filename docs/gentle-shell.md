@@ -11,6 +11,38 @@ huella SSH esperada y alta de su email en Cloudflare Access.
 
 ### Windows
 
+Para hacerlo con una IA, despliegue y copie el siguiente prompt. Para hacerlo manualmente,
+continúe con los comandos debajo.
+
+<details markdown>
+<summary>Prompt para configurar el acceso con una IA — Windows</summary>
+
+```text
+Ayúdeme a configurar el acceso a PC-ALE desde Windows usando PowerShell y OpenSSH nativo, sin WSL.
+
+Antes de empezar, pídame el hostname, mi usuario Linux asignado y la huella SSH
+esperada; confirme que el administrador habilitó mi cuenta y mi email en Access.
+Trabaje solo en mi computadora. Pida autorización para las rutas concretas y
+antes de instalar herramientas o editar configuración; conserve una copia del
+archivo SSH de configuración existente y agregue el alias sin sobrescribir otros accesos.
+Compruebe mi versión y arquitectura de Windows, OpenSSH Client y cloudflared.
+Si falta SSH, instale solo OpenSSH Client, no OpenSSH Server ni reglas de firewall.
+Use descargas oficiales de cloudflared compatibles con mi equipo.
+Reutilice mi clave pública autorizada o guíeme para crear una sin sobrescribir
+claves existentes. No lea ni copie el contenido de ninguna clave privada.
+Solo la clave pública .pub se entrega al administrador; espere que confirme su alta.
+Configure servidor-migraciones en mi archivo .ssh/config, sin crear config.txt,
+con mi usuario, mi clave y la ruta absoluta entre comillas de cloudflared.exe.
+Guíeme para completar Cloudflare Access en el navegador fuera del chat.
+No capture ni reproduzca tokens, códigos ni claves API; no me pida pegarlos aquí.
+Compruebe ssh servidor-migraciones, whoami y gentle-shell --version con mi cuenta.
+No modifique el servidor, no use sudo remoto, no toque bases ni inicie una migración.
+Si algo falla, muestre el error sin secretos y el próximo paso; no desactive Access
+ni la comprobación de la huella. Termine con los comandos para entrar y retomar tmux.
+```
+
+</details>
+
 Abra **PowerShell**, no CMD ni WSL. Compruebe el cliente SSH:
 
 ```powershell
@@ -58,6 +90,39 @@ Agregue el bloque de [Configurar SSH](#configurar-ssh). Guarde con **Ctrl+S** y 
 El archivo debe llamarse `config`, **no `config.txt`**.
 
 ### Linux
+
+Para hacerlo con una IA, despliegue y copie el siguiente prompt. Para hacerlo manualmente,
+continúe con los comandos debajo.
+
+<details markdown>
+<summary>Prompt para configurar el acceso con una IA — Linux</summary>
+
+```text
+Ayúdeme a configurar el acceso a PC-ALE desde Linux usando mi terminal local.
+
+Antes de empezar, pídame el hostname, mi usuario Linux asignado y la huella SSH
+esperada; confirme que el administrador habilitó mi cuenta y mi email en Access.
+Trabaje solo en mi computadora. Pida autorización para las rutas concretas y
+antes de instalar herramientas o editar configuración; conserve una copia del
+archivo SSH de configuración existente y agregue el alias sin sobrescribir otros accesos.
+Detecte mi distribución y arquitectura antes de proponer comandos.
+Compruebe OpenSSH Client y curl. Instale solo lo que falte con el gestor apropiado
+y cloudflared desde fuentes oficiales, con binario compatible x86-64 o ARM64.
+Prefiera cloudflared en ~/.local/bin; no suponga que esa ruta está en mi PATH.
+Reutilice mi clave pública autorizada o guíeme para crear una sin sobrescribir
+claves existentes. No lea ni copie el contenido de ninguna clave privada.
+Solo la clave pública .pub se entrega al administrador; espere que confirme su alta.
+Configure servidor-migraciones en ~/.ssh/config con mi usuario, mi clave y la ruta
+absoluta de cloudflared. Aplique 700 a ~/.ssh y 600 a su archivo config.
+Guíeme para completar Cloudflare Access en el navegador fuera del chat.
+No capture ni reproduzca tokens, códigos ni claves API; no me pida pegarlos aquí.
+Compruebe ssh servidor-migraciones, whoami y gentle-shell --version con mi cuenta.
+No modifique el servidor, no use sudo remoto, no toque bases ni inicie una migración.
+Si algo falla, muestre el error sin secretos y el próximo paso; no desactive Access
+ni la comprobación de la huella. Termine con los comandos para entrar y retomar tmux.
+```
+
+</details>
 
 Abra una **terminal**. Instale las herramientas de su distribución; elija un solo bloque.
 
@@ -122,6 +187,40 @@ chmod 600 ~/.ssh/config
 ```
 
 ### macOS
+
+Para hacerlo con una IA, despliegue y copie el siguiente prompt. Para hacerlo manualmente,
+continúe con los comandos debajo.
+
+<details markdown>
+<summary>Prompt para configurar el acceso con una IA — macOS</summary>
+
+```text
+Ayúdeme a configurar el acceso a PC-ALE desde macOS usando Terminal.
+
+Antes de empezar, pídame el hostname, mi usuario Linux asignado y la huella SSH
+esperada; confirme que el administrador habilitó mi cuenta y mi email en Access.
+Trabaje solo en mi computadora. Pida autorización para las rutas concretas y
+antes de instalar herramientas o editar configuración; conserve una copia del
+archivo SSH de configuración existente y agregue el alias sin sobrescribir otros accesos.
+Detecte si mi Mac es Intel o Apple Silicon. Compruebe OpenSSH y Homebrew.
+Use Homebrew para instalar cloudflared solo si falta; si falta Homebrew, guíeme
+con su sitio oficial y espere mi autorización antes de instalarlo.
+Obtenga la ruta real con command -v cloudflared; no suponga /usr/local/bin
+ni /opt/homebrew/bin para todos los equipos.
+Reutilice mi clave pública autorizada o guíeme para crear una sin sobrescribir
+claves existentes. No lea ni copie el contenido de ninguna clave privada.
+Solo la clave pública .pub se entrega al administrador; espere que confirme su alta.
+Configure servidor-migraciones en ~/.ssh/config con mi usuario, mi clave y la ruta
+absoluta de cloudflared. Aplique 700 a ~/.ssh y 600 a su archivo config.
+Guíeme para completar Cloudflare Access en el navegador fuera del chat.
+No capture ni reproduzca tokens, códigos ni claves API; no me pida pegarlos aquí.
+Compruebe ssh servidor-migraciones, whoami y gentle-shell --version con mi cuenta.
+No modifique el servidor, no use sudo remoto, no toque bases ni inicie una migración.
+Si algo falla, muestre el error sin secretos y el próximo paso; no desactive Access
+ni la comprobación de la huella. Termine con los comandos para entrar y retomar tmux.
+```
+
+</details>
 
 Abra **Terminal**. Si no tiene Homebrew, instálelo desde [brew.sh](https://brew.sh/).
 Después ejecute:

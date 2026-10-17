@@ -19,7 +19,7 @@ theme:
     - content.code.copy
 extra:
   documentation:
-    version: "0.2.2"
+    version: "0.2.3"
     updated: "2026-10-17"
 extra_css:
   - stylesheets/extra.css
@@ -44,3 +44,4 @@ nav:
   - Procedimiento: procedure.md
   - Instrucciones del usuario: user-instructions.md
   - Gentle Shell: gentle-shell.md
+  - Arquitectura: architecture.md

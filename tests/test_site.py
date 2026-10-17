@@ -2,6 +2,7 @@
 import os
 import re
 import unittest
+from html import unescape
 from html.parser import HTMLParser
 from pathlib import Path
 from urllib.parse import unquote, urljoin, urlsplit
@@ -10,7 +11,7 @@ from xml.etree import ElementTree
 SITE = Path(os.environ.get("SITE_DIR", "site")).resolve()
 LEGACY_ROUTES = ("migration-manual", "spiral-strategy", "migration-templates",
                  "versions", "recipes", "validation", "known-errors", "ai-guide", "case-template")
-ROUTES = ("", "procedure", "user-instructions", "gentle-shell", *LEGACY_ROUTES)
+ROUTES = ("", "procedure", "user-instructions", "gentle-shell", "architecture", *LEGACY_ROUTES)
 BASE = "https://hito2026.github.io/hito-migrations/"
 
 
@@ -70,14 +71,16 @@ class SiteContract(unittest.TestCase):
                 self.assertIn("md-sidebar--secondary", page.text)
                 self.assertTrue(page.has("nav", "aria-label", "Tabla de contenidos"))
 
-    def test_four_section_navigation_and_introduction(self):
-        expected = {BASE, BASE + "procedure/", BASE + "user-instructions/", BASE + "gentle-shell/"}
+    def test_five_section_navigation_and_introduction(self):
+        expected = {BASE, BASE + "procedure/", BASE + "user-instructions/",
+                    BASE + "gentle-shell/", BASE + "architecture/"}
         for route in ROUTES:
             with self.subTest(route=route):
                 page = self.page(route)
                 current = BASE + (route + "/" if route else "")
                 self.assertEqual({urljoin(current, link) for link in page.primary_links}, expected)
-                for label in ("Introducción", "Procedimiento", "Instrucciones del usuario", "Gentle Shell"):
+                for label in ("Introducción", "Procedimiento", "Instrucciones del usuario",
+                              "Gentle Shell", "Arquitectura"):
                     self.assertIn(label, page.text)
         intro = self.page()
         for text in ("La idea del proyecto", "Cómo trabajamos", "Borrador no verificado"):
@@ -144,6 +147,57 @@ class SiteContract(unittest.TestCase):
         self.assertIn("C:/Users/", plain)
         self.assertIn("Windows o macOS", plain)
 
+    def test_each_platform_offers_a_safe_copyable_ai_prompt(self):
+        page = self.page("gentle-shell")
+        blocks = [unescape(block) for block in re.findall(
+            r'<pre><code class="language-text">(.*?)</code></pre>', page.text, re.S)]
+        for platform in ("Windows", "Linux", "macOS"):
+            prompts = [block for block in blocks
+                       if block.startswith("Ayúdeme a configurar el acceso a PC-ALE desde " + platform)]
+            self.assertEqual(len(prompts), 1, platform)
+            prompt = prompts[0]
+            for rule in ("hostname", "usuario", "huella", "autorización", "sin sobrescribir",
+                         "clave privada", "tokens", "navegador", "whoami", "gentle-shell --version",
+                         "No modifique el servidor"):
+                self.assertIn(rule, prompt, (platform, rule))
+        windows = next(block for block in blocks if block.startswith(
+            "Ayúdeme a configurar el acceso a PC-ALE desde Windows"))
+        self.assertIn("PowerShell", windows)
+        self.assertIn("no OpenSSH Server", windows)
+        linux = next(block for block in blocks if block.startswith(
+            "Ayúdeme a configurar el acceso a PC-ALE desde Linux"))
+        self.assertIn("distribución", linux)
+        self.assertIn("arquitectura", linux)
+        mac = next(block for block in blocks if block.startswith(
+            "Ayúdeme a configurar el acceso a PC-ALE desde macOS"))
+        self.assertIn("Homebrew", mac)
+        self.assertIn("Intel", mac)
+        self.assertIn("Apple Silicon", mac)
+
+    def test_architecture_has_accessible_local_diagram_and_boundaries(self):
+        page = self.page("architecture")
+        self.assertTrue(page.has("img", "src", "../assets/solution-architecture.svg"))
+        self.assertTrue(page.has("img", "alt", "Arquitectura de Mac de Ale, usuarios y PC-ALE"))
+        self.assertTrue(page.has("figure", "tabindex", "0"))
+        svg = ElementTree.parse(SITE / "assets/solution-architecture.svg").getroot()
+        self.assertEqual(svg.attrib.get("role"), "img")
+        ids = {node.attrib.get("id") for node in svg.iter()}
+        self.assertTrue(set(svg.attrib["aria-labelledby"].split()).issubset(ids))
+        text = " ".join(svg.itertext())
+        for label in ("Mac de Ale", "Windows", "Linux", "macOS", "PC-ALE", "Gentle Shell",
+                      "Pi", "Cloudflare Access", "SSH", "tmux", "Kit", "Casos", "Odoo.sh",
+                      "GitHub", "Engram", "pendiente", "Tailscale"):
+            self.assertIn(label, text)
+        for label in ("Administración", "Ejecución", "Credenciales", "Límites y pendientes"):
+            self.assertIn(label, page.text)
+        plain = re.sub(r"<[^>]+>", "", page.text)
+        self.assertIn("no pasa por la Mac", plain)
+        self.assertIn("un coordinador por caso", plain)
+        self.assertIn("sin sudo ni Docker", plain)
+        self.assertTrue(page.has("a", "href", "../gentle-shell/"))
+        self.assertFalse(any(node.tag.rsplit("}", 1)[-1] in ("script", "foreignObject", "image")
+                             for node in svg.iter()))
+
     def test_hito_palette_targets_light_theme_scope(self):
         css = (SITE / "stylesheets/extra.css").read_text(encoding="utf-8")
         # Contrato del selector generado; el color calculado requiere un navegador.
@@ -165,8 +219,8 @@ class SiteContract(unittest.TestCase):
         for route, page in pages:
             with self.subTest(route=route):
                 self.assertTrue(page.has("aside", "aria-label", "Edición de la documentación"))
-                self.assertTrue(page.has("span", "data-doc-version", "0.2.2"))
-                self.assertIn("Versión documental 0.2.2", page.text)
+                self.assertTrue(page.has("span", "data-doc-version", "0.2.3"))
+                self.assertIn("Versión documental 0.2.3", page.text)
                 self.assertTrue(page.has("time", "datetime", "2026-10-17"))
                 self.assertIn("Actualizado", page.text)
                 self.assertIn("17/10/2026", page.text)
