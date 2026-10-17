@@ -1,13 +1,13 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 2629" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 1840.3" role="img" aria-labelledby="title desc">
   <title id="title">Arquitectura: Mac de Ale, usuarios y PC-ALE</title>
   <desc id="desc">La Mac de Ale administra PC-ALE mediante SSH y conserva Tailscale como acceso de respaldo. Los usuarios de Windows, Linux y macOS se autentican en Cloudflare Access y se conectan por el túnel existente a sus cuentas SSH. En PC-ALE, cada usuario ejecuta Gentle Shell con Pi y subagentes dentro de tmux, utiliza un kit de solo lectura y trabaja en casos compartidos con un coordinador por caso. Las credenciales son personales. Desde PC-ALE se accede al proveedor de IA, GitHub y Odoo.sh según los permisos. Engram requiere validar activación y aislamiento. Buzz y Odoo existentes conviven sin reconfiguración.</desc>
   <defs>
     <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" fill="#626a73"/></marker>
     <style>
-      text { font-family: system-ui, sans-serif; fill: #212326; font-size: 20px; text-anchor: middle; }
-      .title { font-size: 26px; font-weight: 750; fill: #750014; }
-      .heading { font-size: 22px; font-weight: 700; }
-      .note { font-size: 18px; fill: #626a73; }
+      text { font-family: system-ui, sans-serif; fill: #212326; font-size: 14px; text-anchor: middle; }
+      .title { font-size: 18.2px; font-weight: 750; fill: #750014; }
+      .heading { font-size: 15.4px; font-weight: 700; }
+      .note { font-size: 12.6px; fill: #626a73; }
       .node, .task { fill: #f2f4f8; stroke: #626a73; stroke-width: 1.5; rx: 8; }
       .boundary { fill: #fff; stroke: #750014; stroke-width: 2; rx: 10; }
       .pending { fill: #fff; stroke: #626a73; stroke-width: 1.5; stroke-dasharray: 7 5; rx: 8; }
@@ -17,116 +17,116 @@
       .backup, .message { fill: none; stroke: #626a73; stroke-width: 2; stroke-dasharray: 7 5; marker-end: url(#arrow); }
     </style>
   </defs>
-  <rect width="960" height="2629" fill="#fff"/>
-  <rect class="boundary" x="10" y="642" width="940" height="1413"/>
-  <text class="title" x="480" y="38">Administración, acceso y ejecución de migraciones</text>
-  <rect class="node" x="30" y="80" width="420" height="257"/>
-  <text class="heading" x="240.0" y="113">Mac de Ale · administración</text>
-  <text class="" x="240.0" y="147">Gentle Shell + Pi local</text>
-  <text class="" x="240.0" y="173">Fuentes de configuración, kit y</text>
-  <text class="" x="240.0" y="199">guías</text>
-  <text class="note" x="240.0" y="225">Cambios y publicación con permiso</text>
-  <text class="note" x="240.0" y="251">humano</text>
-  <text class="note" x="240.0" y="277">Cuenta administradora distinta de los</text>
-  <text class="note" x="240.0" y="303">devs</text>
-  <rect class="node" x="510" y="80" width="420" height="179"/>
-  <text class="heading" x="720.0" y="113">Computadora de cada usuario</text>
-  <text class="" x="720.0" y="147">Windows · Linux · macOS</text>
-  <text class="" x="720.0" y="173">Terminal SSH + cloudflared</text>
-  <text class="note" x="720.0" y="199">Navegador: identidad en Access</text>
-  <text class="note" x="720.0" y="225">Clave SSH propia para su cuenta Linux</text>
-  <path class="flow" d="M450 208.5H480V397H720V427"/>
-  <path class="flow" d="M720 259V427"/>
-  <path class="backup" d="M240 337V427"/>
-  <rect class="pending" x="30" y="427" width="420" height="130"/>
-  <text class="heading" x="240.0" y="460">Tailscale · respaldo</text>
-  <text class="heading" x="240.0" y="489">administrativo</text>
-  <text class="note" x="240.0" y="523">Ruta independiente de Cloudflare</text>
-  <rect class="node" x="510" y="427" width="420" height="127"/>
-  <text class="heading" x="720.0" y="460">Cloudflare Access</text>
-  <text class="" x="720.0" y="494">Identidad y política de acceso</text>
-  <text class="note" x="720.0" y="520">No sustituye la clave SSH</text>
-  <text class="title" x="480" y="682">PC-ALE · servidor Linux multiusuario</text>
-  <rect class="node" x="30" y="737" width="420" height="127"/>
-  <text class="heading" x="240.0" y="770">SSH: cuenta y clave del usuario</text>
-  <text class="note" x="240.0" y="804">Sin contraseña ni root por SSH</text>
-  <text class="note" x="240.0" y="830">Usuarios sin sudo ni Docker</text>
-  <rect class="node" x="510" y="737" width="420" height="153"/>
-  <text class="heading" x="720.0" y="770">Cloudflare Tunnel</text>
-  <text class="" x="720.0" y="804">Contenedor existente de</text>
-  <text class="" x="720.0" y="830">cloudflared</text>
-  <text class="note" x="720.0" y="856">Conexión saliente hacia Cloudflare</text>
-  <path class="backup" d="M240 557V612H20V777H30"/>
-  <path class="flow" d="M720 554V612H940V782H930"/>
-  <path class="flow" d="M510 817H450"/>
-  <text class="note" x="480" y="804">SSH</text>
-  <rect class="node" x="50" y="965" width="860" height="153"/>
-  <text class="heading" x="480.0" y="998">dev1 … dev5 · sesiones tmux por usuario</text>
-  <text class="" x="480.0" y="1032">Gentle Shell + Pi + herramientas y subagentes</text>
-  <text class="note" x="480.0" y="1058">Los procesos ejecutan aquí, no en la computadora del usuario</text>
-  <text class="note" x="480.0" y="1084">tmux conserva la sesión al desconectarse, no ante un reinicio</text>
-  <path class="flow" d="M240 864V930H480V965"/>
-  <rect class="node" x="30" y="1193" width="420" height="231"/>
-  <text class="heading" x="240.0" y="1226">Herramientas y Kit compartidos</text>
-  <text class="" x="240.0" y="1260">/opt/gentle-shell</text>
-  <text class="" x="240.0" y="1286">/srv/migraciones/kit</text>
-  <text class="note" x="240.0" y="1312">Root administra; usuarios leen y</text>
-  <text class="note" x="240.0" y="1338">ejecutan</text>
-  <text class="note" x="240.0" y="1364">Estrategia, plantillas, mig-case y</text>
-  <text class="note" x="240.0" y="1390">utilidades</text>
-  <rect class="node" x="510" y="1193" width="420" height="153"/>
-  <text class="heading" x="720.0" y="1226">Configuración personal</text>
-  <text class="" x="720.0" y="1260">~/.gentle-shell/agent</text>
-  <text class="note" x="720.0" y="1286">Credenciales propias de IA, GitHub y</text>
-  <text class="note" x="720.0" y="1312">Odoo.sh; no se comparten</text>
-  <path class="flow" d="M480 1118V1158H240V1193"/>
-  <path class="flow" d="M480 1158H720V1193"/>
-  <rect class="node" x="50" y="1499" width="860" height="127"/>
-  <text class="heading" x="480.0" y="1532">Casos · /srv/migraciones/cases/MIG-CLIENTE-001</text>
-  <text class="" x="480.0" y="1566">Intake · tablero · runbook · clones y worktrees</text>
-  <text class="note" x="480.0" y="1592">Un coordinador por caso; lock operativo, no barrera de seguridad</text>
-  <path class="flow" d="M240 1424V1499"/>
-  <path class="flow" d="M720 1346V1499"/>
-  <rect class="pending" x="50" y="1701" width="860" height="127"/>
-  <text class="heading" x="480.0" y="1734">Engram instalado · activación y aislamiento pendientes</text>
-  <text class="note" x="480.0" y="1768">No es una memoria compartida validada.</text>
-  <text class="note" x="480.0" y="1794">El tablero y el runbook mantienen la continuidad.</text>
-  <rect class="node" x="50" y="1888" width="860" height="127"/>
-  <text class="heading" x="480.0" y="1921">Servicios que conviven</text>
-  <text class="" x="480.0" y="1955">Buzz y Odoo existentes</text>
-  <text class="note" x="480.0" y="1981">Sin reconfiguración por esta solución</text>
-  <path class="flow" d="M480 1626V1656H940V2090H160V2180H800"/>
-  <text class="heading" x="480" y="2135">Servicios externos · accesos personales</text>
-  <text class="note" x="480" y="2163">Operaciones autorizadas según la etapa</text>
-  <path class="flow" d="M160 2180V2205"/>
-  <path class="flow" d="M480 2180V2205"/>
-  <path class="flow" d="M800 2180V2205"/>
-  <rect class="node" x="20" y="2205" width="280" height="231"/>
-  <text class="heading" x="160.0" y="2238">Proveedor de IA</text>
-  <text class="" x="160.0" y="2272">Inferencia y</text>
-  <text class="" x="160.0" y="2298">respuestas del modelo</text>
-  <text class="note" x="160.0" y="2324">Recibe el contexto</text>
-  <text class="note" x="160.0" y="2350">autorizado del agente</text>
-  <text class="note" x="160.0" y="2376">No ejecuta directamente</text>
-  <text class="note" x="160.0" y="2402">los comandos SSH</text>
-  <rect class="node" x="340" y="2205" width="280" height="205"/>
-  <text class="heading" x="480.0" y="2238">GitHub</text>
-  <text class="" x="480.0" y="2272">Repositorios y ramas</text>
-  <text class="" x="480.0" y="2298">autorizadas</text>
-  <text class="note" x="480.0" y="2324">Lectura para diagnóstico</text>
-  <text class="note" x="480.0" y="2350">Commit y push requieren</text>
-  <text class="note" x="480.0" y="2376">permiso</text>
-  <rect class="node" x="660" y="2205" width="280" height="289"/>
-  <text class="heading" x="800.0" y="2238">Odoo.sh /</text>
-  <text class="heading" x="800.0" y="2267">actualización de</text>
-  <text class="heading" x="800.0" y="2296">base</text>
-  <text class="" x="800.0" y="2330">Origen: lectura</text>
-  <text class="" x="800.0" y="2356">Development: pruebas</text>
-  <text class="note" x="800.0" y="2382">Staging: historia con</text>
-  <text class="note" x="800.0" y="2408">base actualizada</text>
-  <text class="note" x="800.0" y="2434">Código y migración de</text>
-  <text class="note" x="800.0" y="2460">datos por separado</text>
-  <text class="note" x="480" y="2539">La Mac administra; PC-ALE ejecuta. El usuario no pasa por la Mac.</text>
-  <text class="note" x="480" y="2569">Sin direcciones privadas ni credenciales.</text>
-  <text class="note" x="480" y="2599">Acceso técnico no equivale a autorización de migración.</text>
+  <rect width="960" height="1840.3" fill="#fff"/>
+  <rect class="boundary" x="10" y="449.4" width="940" height="989.1"/>
+  <text class="title" x="480" y="26.6">Administración, acceso y ejecución de migraciones</text>
+  <rect class="node" x="30" y="56" width="420" height="179.9"/>
+  <text class="heading" x="240.0" y="79.1">Mac de Ale · administración</text>
+  <text class="" x="240.0" y="102.9">Gentle Shell + Pi local</text>
+  <text class="" x="240.0" y="121.1">Fuentes de configuración, kit y</text>
+  <text class="" x="240.0" y="139.3">guías</text>
+  <text class="note" x="240.0" y="157.5">Cambios y publicación con permiso</text>
+  <text class="note" x="240.0" y="175.7">humano</text>
+  <text class="note" x="240.0" y="193.9">Cuenta administradora distinta de los</text>
+  <text class="note" x="240.0" y="212.1">devs</text>
+  <rect class="node" x="510" y="56" width="420" height="125.3"/>
+  <text class="heading" x="720.0" y="79.1">Computadora de cada usuario</text>
+  <text class="" x="720.0" y="102.9">Windows · Linux · macOS</text>
+  <text class="" x="720.0" y="121.1">Terminal SSH + cloudflared</text>
+  <text class="note" x="720.0" y="139.3">Navegador: identidad en Access</text>
+  <text class="note" x="720.0" y="157.5">Clave SSH propia para su cuenta Linux</text>
+  <path class="flow" d="M450 145.95H480V277.9H720V298.9"/>
+  <path class="flow" d="M720 181.3V298.9"/>
+  <path class="backup" d="M240 235.9V298.9"/>
+  <rect class="pending" x="30" y="298.9" width="420" height="91"/>
+  <text class="heading" x="240.0" y="322">Tailscale · respaldo</text>
+  <text class="heading" x="240.0" y="342.3">administrativo</text>
+  <text class="note" x="240.0" y="366.1">Ruta independiente de Cloudflare</text>
+  <rect class="node" x="510" y="298.9" width="420" height="88.9"/>
+  <text class="heading" x="720.0" y="322">Cloudflare Access</text>
+  <text class="" x="720.0" y="345.8">Identidad y política de acceso</text>
+  <text class="note" x="720.0" y="364">No sustituye la clave SSH</text>
+  <text class="title" x="480" y="477.4">PC-ALE · servidor Linux multiusuario</text>
+  <rect class="node" x="30" y="515.9" width="420" height="88.9"/>
+  <text class="heading" x="240.0" y="539">SSH: cuenta y clave del usuario</text>
+  <text class="note" x="240.0" y="562.8">Sin contraseña ni root por SSH</text>
+  <text class="note" x="240.0" y="581">Usuarios sin sudo ni Docker</text>
+  <rect class="node" x="510" y="515.9" width="420" height="107.1"/>
+  <text class="heading" x="720.0" y="539">Cloudflare Tunnel</text>
+  <text class="" x="720.0" y="562.8">Contenedor existente de</text>
+  <text class="" x="720.0" y="581">cloudflared</text>
+  <text class="note" x="720.0" y="599.2">Conexión saliente hacia Cloudflare</text>
+  <path class="backup" d="M240 389.9V428.4H20V543.9H30"/>
+  <path class="flow" d="M720 387.8V428.4H940V547.4H930"/>
+  <path class="flow" d="M510 571.9H450"/>
+  <text class="note" x="480" y="562.8">SSH</text>
+  <rect class="node" x="50" y="675.5" width="860" height="107.1"/>
+  <text class="heading" x="480.0" y="698.6">dev1 … dev5 · sesiones tmux por usuario</text>
+  <text class="" x="480.0" y="722.4">Gentle Shell + Pi + herramientas y subagentes</text>
+  <text class="note" x="480.0" y="740.6">Los procesos ejecutan aquí, no en la computadora del usuario</text>
+  <text class="note" x="480.0" y="758.8">tmux conserva la sesión al desconectarse, no ante un reinicio</text>
+  <path class="flow" d="M240 604.8V651H480V675.5"/>
+  <rect class="node" x="30" y="835.1" width="420" height="161.7"/>
+  <text class="heading" x="240.0" y="858.2">Herramientas y Kit compartidos</text>
+  <text class="" x="240.0" y="882">/opt/gentle-shell</text>
+  <text class="" x="240.0" y="900.2">/srv/migraciones/kit</text>
+  <text class="note" x="240.0" y="918.4">Root administra; usuarios leen y</text>
+  <text class="note" x="240.0" y="936.6">ejecutan</text>
+  <text class="note" x="240.0" y="954.8">Estrategia, plantillas, mig-case y</text>
+  <text class="note" x="240.0" y="973">utilidades</text>
+  <rect class="node" x="510" y="835.1" width="420" height="107.1"/>
+  <text class="heading" x="720.0" y="858.2">Configuración personal</text>
+  <text class="" x="720.0" y="882">~/.gentle-shell/agent</text>
+  <text class="note" x="720.0" y="900.2">Credenciales propias de IA, GitHub y</text>
+  <text class="note" x="720.0" y="918.4">Odoo.sh; no se comparten</text>
+  <path class="flow" d="M480 782.6V810.6H240V835.1"/>
+  <path class="flow" d="M480 810.6H720V835.1"/>
+  <rect class="node" x="50" y="1049.3" width="860" height="88.9"/>
+  <text class="heading" x="480.0" y="1072.4">Casos · /srv/migraciones/cases/MIG-CLIENTE-001</text>
+  <text class="" x="480.0" y="1096.2">Intake · tablero · runbook · clones y worktrees</text>
+  <text class="note" x="480.0" y="1114.4">Un coordinador por caso; lock operativo, no barrera de seguridad</text>
+  <path class="flow" d="M240 996.8V1049.3"/>
+  <path class="flow" d="M720 942.2V1049.3"/>
+  <rect class="pending" x="50" y="1190.7" width="860" height="88.9"/>
+  <text class="heading" x="480.0" y="1213.8">Engram instalado · activación y aislamiento pendientes</text>
+  <text class="note" x="480.0" y="1237.6">No es una memoria compartida validada.</text>
+  <text class="note" x="480.0" y="1255.8">El tablero y el runbook mantienen la continuidad.</text>
+  <rect class="node" x="50" y="1321.6" width="860" height="88.9"/>
+  <text class="heading" x="480.0" y="1344.7">Servicios que conviven</text>
+  <text class="" x="480.0" y="1368.5">Buzz y Odoo existentes</text>
+  <text class="note" x="480.0" y="1386.7">Sin reconfiguración por esta solución</text>
+  <path class="flow" d="M480 1138.2V1159.2H940V1463H160V1526H800"/>
+  <text class="heading" x="480" y="1494.5">Servicios externos · accesos personales</text>
+  <text class="note" x="480" y="1514.1">Operaciones autorizadas según la etapa</text>
+  <path class="flow" d="M160 1526V1543.5"/>
+  <path class="flow" d="M480 1526V1543.5"/>
+  <path class="flow" d="M800 1526V1543.5"/>
+  <rect class="node" x="20" y="1543.5" width="280" height="161.7"/>
+  <text class="heading" x="160.0" y="1566.6">Proveedor de IA</text>
+  <text class="" x="160.0" y="1590.4">Inferencia y</text>
+  <text class="" x="160.0" y="1608.6">respuestas del modelo</text>
+  <text class="note" x="160.0" y="1626.8">Recibe el contexto</text>
+  <text class="note" x="160.0" y="1645">autorizado del agente</text>
+  <text class="note" x="160.0" y="1663.2">No ejecuta directamente</text>
+  <text class="note" x="160.0" y="1681.4">los comandos SSH</text>
+  <rect class="node" x="340" y="1543.5" width="280" height="143.5"/>
+  <text class="heading" x="480.0" y="1566.6">GitHub</text>
+  <text class="" x="480.0" y="1590.4">Repositorios y ramas</text>
+  <text class="" x="480.0" y="1608.6">autorizadas</text>
+  <text class="note" x="480.0" y="1626.8">Lectura para diagnóstico</text>
+  <text class="note" x="480.0" y="1645">Commit y push requieren</text>
+  <text class="note" x="480.0" y="1663.2">permiso</text>
+  <rect class="node" x="660" y="1543.5" width="280" height="202.3"/>
+  <text class="heading" x="800.0" y="1566.6">Odoo.sh /</text>
+  <text class="heading" x="800.0" y="1586.9">actualización de</text>
+  <text class="heading" x="800.0" y="1607.2">base</text>
+  <text class="" x="800.0" y="1631">Origen: lectura</text>
+  <text class="" x="800.0" y="1649.2">Development: pruebas</text>
+  <text class="note" x="800.0" y="1667.4">Staging: historia con</text>
+  <text class="note" x="800.0" y="1685.6">base actualizada</text>
+  <text class="note" x="800.0" y="1703.8">Código y migración de</text>
+  <text class="note" x="800.0" y="1722">datos por separado</text>
+  <text class="note" x="480" y="1777.3">La Mac administra; PC-ALE ejecuta. El usuario no pasa por la Mac.</text>
+  <text class="note" x="480" y="1798.3">Sin direcciones privadas ni credenciales.</text>
+  <text class="note" x="480" y="1819.3">Acceso técnico no equivale a autorización de migración.</text>
 </svg>
