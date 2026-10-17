@@ -70,14 +70,14 @@ class SiteContract(unittest.TestCase):
                 self.assertIn("md-sidebar--secondary", page.text)
                 self.assertTrue(page.has("nav", "aria-label", "Tabla de contenidos"))
 
-    def test_three_section_navigation_and_introduction(self):
-        expected = {BASE, BASE + "procedure/", BASE + "user-instructions/"}
+    def test_four_section_navigation_and_introduction(self):
+        expected = {BASE, BASE + "procedure/", BASE + "user-instructions/", BASE + "gentle-shell/"}
         for route in ROUTES:
             with self.subTest(route=route):
                 page = self.page(route)
                 current = BASE + (route + "/" if route else "")
                 self.assertEqual({urljoin(current, link) for link in page.primary_links}, expected)
-                for label in ("Introducción", "Procedimiento", "Instrucciones del usuario"):
+                for label in ("Introducción", "Procedimiento", "Instrucciones del usuario", "Gentle Shell"):
                     self.assertIn(label, page.text)
         intro = self.page()
         for text in ("La idea del proyecto", "Cómo trabajamos", "Borrador no verificado"):
@@ -85,6 +85,7 @@ class SiteContract(unittest.TestCase):
         self.assertTrue(intro.has("a", "href", "procedure/"))
         self.assertTrue(intro.has("a", "href", "user-instructions/"))
         self.assertTrue(intro.has("a", "href", "gentle-shell/"))
+        self.assertNotIn("Abrir el manual de Gentle Shell", intro.text)
 
     def test_procedure_has_accessible_local_actor_diagram(self):
         page = self.page("procedure")
@@ -127,6 +128,22 @@ class SiteContract(unittest.TestCase):
         self.assertTrue(page.has("a", "href", "../user-instructions/"))
         self.assertTrue(page.has("a", "href", "../procedure/"))
 
+    def test_gentle_shell_has_platform_specific_client_steps(self):
+        page = self.page("gentle-shell")
+        for anchor in ("windows", "linux", "macos"):
+            self.assertTrue(any(tag in ("h2", "h3", "h4") and attrs.get("id") == anchor
+                                for tag, attrs in page.tags), anchor)
+        plain = re.sub(r"<[^>]+>", "", page.text)
+        for command in ("PowerShell", "OpenSSH.Client~~~~0.0.1.0", "Invoke-WebRequest",
+                        "Get-Content", "notepad", "$HOME\\.ssh\\config",
+                        "openssh-client", "openssh-clients", "cloudflared-linux-amd64",
+                        "cloudflared-linux-arm64", "brew install cloudflared", "nano ~/.ssh/config"):
+            self.assertIn(command, plain)
+        self.assertIn("A partir de aquí", plain)
+        self.assertIn("comandos de Linux en el servidor", plain)
+        self.assertIn("C:/Users/", plain)
+        self.assertIn("Windows o macOS", plain)
+
     def test_hito_palette_targets_light_theme_scope(self):
         css = (SITE / "stylesheets/extra.css").read_text(encoding="utf-8")
         # Contrato del selector generado; el color calculado requiere un navegador.
@@ -148,8 +165,8 @@ class SiteContract(unittest.TestCase):
         for route, page in pages:
             with self.subTest(route=route):
                 self.assertTrue(page.has("aside", "aria-label", "Edición de la documentación"))
-                self.assertTrue(page.has("span", "data-doc-version", "0.2.1"))
-                self.assertIn("Versión documental 0.2.1", page.text)
+                self.assertTrue(page.has("span", "data-doc-version", "0.2.2"))
+                self.assertIn("Versión documental 0.2.2", page.text)
                 self.assertTrue(page.has("time", "datetime", "2026-10-17"))
                 self.assertIn("Actualizado", page.text)
                 self.assertIn("17/10/2026", page.text)

@@ -2,14 +2,14 @@
 
 Base documental para migraciones de Odoo, preparada para publicación pública.
 Los esquemas son **borradores no verificados**, no procedimientos probados ni
-pruebas de migraciones exitosas. La guía tiene tres entradas:
-[Introducción](docs/index.md), [Procedimiento](docs/procedure.md) e
-[Instrucciones del usuario](docs/user-instructions.md).
+pruebas de migraciones exitosas. La guía tiene cuatro entradas:
+[Introducción](docs/index.md), [Procedimiento](docs/procedure.md),
+[Instrucciones del usuario](docs/user-instructions.md) y [Gentle Shell](docs/gentle-shell.md).
 
-El [manual de uso de Gentle Shell](docs/gentle-shell.md), enlazado desde las instrucciones,
-contiene los comandos de acceso, autenticación, tmux y coordinación con `mig-case`,
-y mensajes listos para iniciar, retomar y entregar una migración. Utiliza ejemplos anónimos.
-La edición documental 0.2.1 incorpora este manual sin cambiar las tres entradas del menú.
+El [manual de uso de Gentle Shell](docs/gentle-shell.md) tiene una sección propia en el menú.
+Incluye preparación y acceso desde Windows (PowerShell), Linux y macOS; después continúa
+con comandos comunes en el servidor y mensajes para iniciar, retomar y entregar una migración.
+Utiliza ejemplos anónimos. La edición documental 0.2.2 incorpora el menú y los pasos por sistema.
 
 Las nueve guías anteriores conservan sus URL y permanecen disponibles como referencias,
 fuera del menú principal. `not_in_nav` en `mkdocs.yml` declara esa exclusión; no elimina
@@ -39,9 +39,10 @@ SITE_DIR=site python3 -m unittest discover -s tests -v
 
 El directorio generado `site/` está excluido de Git. Para una compilación externa,
 use `--site-dir /ruta/temporal/site` y el mismo valor en `SITE_DIR`.
-Las diez pruebas comprueban las trece rutas (tres principales, el manual de Gentle Shell y nueve anteriores),
-el idioma, las URL canónicas, el menú de tres entradas, el diagrama por actores,
-los ejemplos de instrucciones, el enlace y contenido operativo del manual, los recursos locales y la versión y fecha visibles
+Las once pruebas comprueban las trece rutas (cuatro principales y nueve anteriores),
+el idioma, las URL canónicas, el menú de cuatro entradas, el diagrama por actores,
+los ejemplos de instrucciones, los pasos del manual para Windows/Linux/macOS,
+los recursos locales y la versión y fecha visibles
 (incluida la página 404). Revise también en navegador
 la búsqueda, el foco de teclado y la navegación de escritorio y móvil.
 Compilar el sitio no verifica una migración; consulte la [lista de validación](docs/validation.md).

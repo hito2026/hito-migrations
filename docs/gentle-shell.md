@@ -5,37 +5,156 @@ por el servidor, usuario y caso asignados por el administrador.
 
 ## 1. Preparar el acceso — una sola vez
 
-**En su computadora:** tenga instalados OpenSSH y `cloudflared`. En Mac con Homebrew:
+**En su computadora**, siga únicamente su sistema: [Windows](#windows),
+[Linux](#linux) o [macOS](#macos). Pida al administrador su usuario, servidor,
+huella SSH esperada y alta de su email en Cloudflare Access.
 
-```sh
-brew install cloudflared
+### Windows
+
+Abra **PowerShell**, no CMD ni WSL. Compruebe el cliente SSH:
+
+```powershell
+ssh -V
 ```
 
-Si no tiene una clave SSH, créela. No sobrescriba una existente:
+Solo si `ssh` no existe, abra PowerShell **como administrador**, ejecute lo siguiente
+y después vuelva a una ventana normal. No instale OpenSSH Server:
 
-```sh
-ssh-keygen -t ed25519
+```powershell
+Add-WindowsCapability -Online -Name OpenSSH.Client~~~~0.0.1.0
 ```
 
-Muestre la clave pública y envíesela al administrador:
+En PowerShell **normal**, instale `cloudflared` para su usuario
+(Windows de 64 bits, x86-64):
+
+```powershell
+New-Item -ItemType Directory -Force -Path "$HOME\cloudflared", "$HOME\.ssh" | Out-Null
+Invoke-WebRequest -Uri "https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-windows-amd64.exe" -OutFile "$HOME\cloudflared\cloudflared.exe" -ErrorAction Stop
+& "$HOME\cloudflared\cloudflared.exe" --version
+```
+
+Si usa otro tipo de Windows, solicite al administrador el cliente compatible de
+[descargas oficiales](https://developers.cloudflare.com/cloudflare-one/networks/connectors/cloudflare-tunnel/downloads/#windows).
+
+Cree una clave solo si no tiene la indicada; muestre la parte pública:
+
+```powershell
+if (-not (Test-Path "$HOME\.ssh\id_ed25519")) {
+    ssh-keygen -t ed25519 -f "$HOME\.ssh\id_ed25519"
+}
+Get-Content "$HOME\.ssh\id_ed25519.pub"
+```
+
+Envíe **solo esa clave pública** al administrador y espere el alta. Abra la configuración:
+
+```powershell
+if (-not (Test-Path "$HOME\.ssh\config")) {
+    New-Item -ItemType File -Path "$HOME\.ssh\config" | Out-Null
+}
+notepad "$HOME\.ssh\config"
+```
+
+Agregue el bloque de [Configurar SSH](#configurar-ssh). Guarde con **Ctrl+S** y cierre.
+El archivo debe llamarse `config`, **no `config.txt`**.
+
+### Linux
+
+Abra una **terminal**. Instale las herramientas de su distribución; elija un solo bloque.
+
+**Ubuntu / Debian:**
 
 ```sh
+sudo apt-get update
+sudo apt-get install openssh-client curl nano
+```
+
+**Fedora:**
+
+```sh
+sudo dnf install openssh-clients curl nano
+```
+
+En otras distribuciones, instale esos clientes con su gestor de paquetes.
+Para instalar `cloudflared` en su usuario, consulte la arquitectura:
+
+```sh
+uname -m
+mkdir -p ~/.local/bin
+```
+
+**Si muestra `x86_64`:**
+
+```sh
+curl -fL https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64 -o ~/.local/bin/cloudflared
+```
+
+**Si muestra `aarch64` o `arm64`:**
+
+```sh
+curl -fL https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-arm64 -o ~/.local/bin/cloudflared
+```
+
+Para otra arquitectura, use la [descarga oficial correspondiente](https://developers.cloudflare.com/cloudflare-one/networks/connectors/cloudflare-tunnel/downloads/#linux).
+**Solo si la descarga terminó correctamente**, continúe:
+
+```sh
+chmod 755 ~/.local/bin/cloudflared
+~/.local/bin/cloudflared --version
+mkdir -p ~/.ssh
+chmod 700 ~/.ssh
+if [ ! -f ~/.ssh/id_ed25519 ]; then
+    ssh-keygen -t ed25519 -f ~/.ssh/id_ed25519
+fi
 cat ~/.ssh/id_ed25519.pub
 ```
 
-Pídale que habilite su usuario, esa clave pública y su email en Cloudflare Access.
-**No copie claves privadas** ni tokens al chat.
-
-Abra `~/.ssh/config`:
+Envíe **solo esa clave pública** al administrador y espere el alta. Abra la configuración:
 
 ```sh
-mkdir -p ~/.ssh
-chmod 700 ~/.ssh
 nano ~/.ssh/config
 ```
 
-Agregue este bloque, reemplazando servidor y usuario. En nano, guarde con
-**Ctrl+O**, **Enter** y cierre con **Ctrl+X**:
+Agregue el bloque de [Configurar SSH](#configurar-ssh). Guarde con **Ctrl+O**, **Enter**
+y cierre con **Ctrl+X**. Luego:
+
+```sh
+chmod 600 ~/.ssh/config
+```
+
+### macOS
+
+Abra **Terminal**. Si no tiene Homebrew, instálelo desde [brew.sh](https://brew.sh/).
+Después ejecute:
+
+```sh
+brew install cloudflared
+ssh -V
+cloudflared --version
+mkdir -p ~/.ssh
+chmod 700 ~/.ssh
+if [ ! -f ~/.ssh/id_ed25519 ]; then
+    ssh-keygen -t ed25519 -f ~/.ssh/id_ed25519
+fi
+cat ~/.ssh/id_ed25519.pub
+```
+
+Envíe **solo esa clave pública** al administrador y espere el alta. Abra la configuración:
+
+```sh
+nano ~/.ssh/config
+```
+
+Agregue el bloque de [Configurar SSH](#configurar-ssh). Guarde con **Ctrl+O**, **Enter**
+y cierre con **Ctrl+X**. Luego:
+
+```sh
+chmod 600 ~/.ssh/config
+```
+
+### Configurar SSH
+
+Agregue este bloque a la configuración abierta. Reemplace servidor y usuario Linux
+por los asignados. Cambie también `/RUTA/CLOUDFLARED` según la tabla:
 
 ```sshconfig
 Host servidor-migraciones
@@ -43,30 +162,49 @@ Host servidor-migraciones
   User devN
   IdentityFile ~/.ssh/id_ed25519
   IdentitiesOnly yes
-  ProxyCommand cloudflared access ssh --hostname %h
+  ProxyCommand "/RUTA/CLOUDFLARED" access ssh --hostname %h
   ServerAliveInterval 30
 ```
 
-```sh
-chmod 600 ~/.ssh/config
-```
+| Sistema | Qué poner entre las comillas de `ProxyCommand` |
+| --- | --- |
+| Windows | `C:/Users/SU_USUARIO/cloudflared/cloudflared.exe`; reemplace `SU_USUARIO` por su usuario local de Windows, no por `devN` |
+| Linux | La ruta completa de su ejecutable; ejecute `realpath ~/.local/bin/cloudflared` y copie el resultado |
+| macOS | Ejecute `command -v cloudflared` y copie el resultado, por ejemplo `/opt/homebrew/bin/cloudflared` |
+
+Conserve las comillas si la ruta contiene espacios. **No copie claves privadas** ni tokens al chat.
 
 ## 2. Entrar al servidor
 
-**En su computadora:**
+**En su computadora**, reemplace el hostname y ejecute el bloque de su sistema.
+
+**Windows — PowerShell:**
+
+```powershell
+& "$HOME\cloudflared\cloudflared.exe" access login https://ssh.example.com
+```
+
+**Linux — terminal:**
+
+```sh
+~/.local/bin/cloudflared access login https://ssh.example.com
+```
+
+**macOS — Terminal:**
 
 ```sh
 cloudflared access login https://ssh.example.com
 ```
 
-Complete el login en el navegador. Luego:
+Complete el login en el navegador. Luego, en **cualquiera de los tres sistemas**:
 
 ```sh
 ssh servidor-migraciones
 ```
 
 La primera vez, confirme la huella SSH con el administrador antes de aceptarla.
-**Ya en el servidor**, compruebe que aparece su usuario:
+**A partir de aquí, todos ejecutan los mismos comandos de Linux en el servidor**,
+aunque su computadora use Windows o macOS. Compruebe que aparece su usuario:
 
 ```sh
 whoami
@@ -205,7 +343,7 @@ Reemplace el caso; el estado debe quedar `free`. Acuerde quién continúa.
 
 | Mensaje o problema | Acción |
 | --- | --- |
-| Vence la conexión antes de entrar | En su computadora, ejecute `cloudflared access login https://ssh.example.com` y complete el navegador |
+| Vence la conexión antes de entrar | Repita el login de su sistema en el paso 2 y complete el navegador |
 | `Permission denied (publickey)` | Pida al administrador verificar su usuario y el alta de su `.pub` |
 | Cambió la huella SSH | Deténgase y confirme la nueva huella con el administrador |
 | `No models available` | En Gentle Shell, ejecute `/login` |
