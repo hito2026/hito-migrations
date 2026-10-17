@@ -11,9 +11,9 @@ tareas, los rombos decisiones y los círculos inicio o fin. Las líneas disconti
 representan intercambios con el proveedor. Es una ayuda de lectura; **no es un modelo ejecutable**
 ni una especificación BPMN completa.
 
-<figure class="process-diagram" tabindex="0" aria-label="Diagrama del procedimiento; desplazamiento horizontal disponible">
+<figure class="process-diagram" tabindex="0" aria-label="Diagrama del procedimiento; gráfico adaptable al ancho disponible">
   <img src="../assets/migration-process.svg" alt="Proceso de migración por actores, etapas y decisiones">
-  <figcaption>Lea de arriba hacia abajo. En pantallas pequeñas, desplace el diagrama o abra la imagen.</figcaption>
+  <figcaption>Lea de arriba hacia abajo. Abra el diagrama completo para ampliarlo.</figcaption>
 </figure>
 
 [Abrir el diagrama completo](assets/migration-process.svg).

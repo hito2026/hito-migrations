@@ -19,7 +19,7 @@ theme:
     - content.code.copy
 extra:
   documentation:
-    version: "0.2.4"
+    version: "0.2.5"
     updated: "2026-10-17"
 extra_css:
   - stylesheets/extra.css

@@ -43,7 +43,7 @@ SITE_DIR=site python3 -m unittest discover -s tests -v
 
 El directorio generado `site/` está excluido de Git. Para una compilación externa,
 use `--site-dir /ruta/temporal/site` y el mismo valor en `SITE_DIR`.
-Las trece pruebas comprueban las catorce rutas (cinco principales y nueve anteriores),
+Las quince pruebas comprueban las catorce rutas (cinco principales y nueve anteriores),
 el idioma, las URL canónicas, el menú de cinco entradas, los diagramas de proceso y arquitectura,
 los ejemplos de instrucciones, los pasos y prompts del manual para Windows/Linux/macOS,
 los recursos locales y la versión y fecha visibles
@@ -56,7 +56,10 @@ Compilar el sitio no verifica una migración; consulte la [lista de validación]
 MkDocs Material (`>=9.6,<10`) aporta búsqueda superior y navegación izquierda.
 La edición 0.2.4 integra el índice de cada guía en esa navegación (`toc.integrate`),
 elimina la columna derecha y amplía el contenido al ancho disponible (`.md-grid`).
-Los gráficos conservan desplazamiento horizontal dentro de su contenedor en pantallas pequeñas. La interfaz usa `language: es`, búsqueda `lang: es`
+La edición 0.2.5 añade un margen derecho adaptable, ajusta los gráficos al ancho disponible
+y reduce los bloques copiables con `Courier New`, `Courier` o la monoespaciada local.
+El contenedor conserva desplazamiento horizontal como protección ante desbordamientos.
+La interfaz usa `language: es`, búsqueda `lang: es`
 y conserva `mkdocs[i18n]` para las traducciones. `font: false` evita cargar fuentes
 externas. `docs/stylesheets/extra.css` aporta un estilo editorial inspirado en la
 referencia visual de MIT: fondo blanco, rojo profundo, títulos destacados y bloques
@@ -75,8 +78,8 @@ los valores esperados en `tests/test_site.py`.
 El procedimiento usa `docs/assets/migration-process.svg`: un diagrama local tipo BPMN
 simplificado, con actores, tareas, decisiones y retornos. No es un modelo BPMN ejecutable
 ni representa el estado de una migración real. Tiene descripción accesible y equivalente
-en texto; el contenedor permite desplazamiento horizontal en pantallas pequeñas y con
-teclado. No requiere plugins, JavaScript ni servicios de diagramación externos.
+en texto; se adapta al ancho del contenido y puede abrirse por separado para ampliarlo.
+El contenedor conserva desplazamiento horizontal y acceso por teclado si algún contenido desborda. No requiere plugins, JavaScript ni servicios de diagramación externos.
 
 Tras actualizar dependencias, revise también la página 404 y los textos de búsqueda.
 

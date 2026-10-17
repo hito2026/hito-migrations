@@ -74,6 +74,23 @@ class SiteContract(unittest.TestCase):
         self.assertRegex(css, r"\.md-grid\s*\{[^}]*max-width:\s*none\s*;")
         self.assertRegex(css, r"\.process-diagram\s*\{[^}]*overflow-x:\s*auto\s*;")
 
+    def test_right_margin_and_diagrams_fit_available_width(self):
+        css = (SITE / "stylesheets/extra.css").read_text(encoding="utf-8")
+        self.assertRegex(css, r"\.md-content__inner\s*\{[^}]*margin-right:\s*clamp\(\.8rem, 3vw, 3rem\)\s*;")
+        image = re.search(r"\.md-typeset \.process-diagram img\s*\{([^}]*)\}", css)
+        self.assertIsNotNone(image)
+        for declaration in ("width: 100%;", "min-width: 0;", "max-width: 100%;", "height: auto;"):
+            self.assertIn(declaration, image.group(1))
+        self.assertNotIn("min-width: 48rem", image.group(1))
+
+    def test_copyable_blocks_use_smaller_courier_font(self):
+        css = (SITE / "stylesheets/extra.css").read_text(encoding="utf-8")
+        block = re.search(r"\.md-typeset pre > code\s*\{([^}]*)\}", css)
+        self.assertIsNotNone(block)
+        for declaration in ('font-family: "Courier New", Courier, monospace;',
+                            'font-size: .65rem;', 'line-height: 1.5;'):
+            self.assertIn(declaration, block.group(1))
+
     def test_five_section_navigation_and_introduction(self):
         expected = {BASE, BASE + "procedure/", BASE + "user-instructions/",
                     BASE + "gentle-shell/", BASE + "architecture/"}
@@ -222,8 +239,8 @@ class SiteContract(unittest.TestCase):
         for route, page in pages:
             with self.subTest(route=route):
                 self.assertTrue(page.has("aside", "aria-label", "Edición de la documentación"))
-                self.assertTrue(page.has("span", "data-doc-version", "0.2.4"))
-                self.assertIn("Versión documental 0.2.4", page.text)
+                self.assertTrue(page.has("span", "data-doc-version", "0.2.5"))
+                self.assertIn("Versión documental 0.2.5", page.text)
                 self.assertTrue(page.has("time", "datetime", "2026-10-17"))
                 self.assertIn("Actualizado", page.text)
                 self.assertIn("17/10/2026", page.text)

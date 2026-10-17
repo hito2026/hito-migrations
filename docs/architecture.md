@@ -7,9 +7,9 @@ el trabajo remoto **no pasa por la Mac**.
 
 ## Diagrama de arquitectura
 
-<figure class="process-diagram" tabindex="0" aria-label="Arquitectura de la solución; desplazamiento horizontal disponible">
+<figure class="process-diagram" tabindex="0" aria-label="Arquitectura de la solución; gráfico adaptable al ancho disponible">
   <img src="../assets/solution-architecture.svg" alt="Arquitectura de Mac de Ale, usuarios y PC-ALE">
-  <figcaption>Líneas continuas: acceso y trabajo. Líneas discontinuas: administración de respaldo o componentes pendientes. Desplace el gráfico en pantallas pequeñas.</figcaption>
+  <figcaption>Líneas continuas: acceso y trabajo. Líneas discontinuas: administración de respaldo o componentes pendientes. Abra el gráfico completo para ampliarlo.</figcaption>
 </figure>
 
 [Abrir el gráfico completo](assets/solution-architecture.svg).
