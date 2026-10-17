@@ -53,8 +53,10 @@ Compilar el sitio no verifica una migración; consulte la [lista de validación]
 
 ### Tema y diseño
 
-MkDocs Material (`>=9.6,<10`) aporta búsqueda superior, navegación lateral y tabla
-de contenidos de las guías. La interfaz usa `language: es`, búsqueda `lang: es`
+MkDocs Material (`>=9.6,<10`) aporta búsqueda superior y navegación izquierda.
+La edición 0.2.4 integra el índice de cada guía en esa navegación (`toc.integrate`),
+elimina la columna derecha y amplía el contenido al ancho disponible (`.md-grid`).
+Los gráficos conservan desplazamiento horizontal dentro de su contenedor en pantallas pequeñas. La interfaz usa `language: es`, búsqueda `lang: es`
 y conserva `mkdocs[i18n]` para las traducciones. `font: false` evita cargar fuentes
 externas. `docs/stylesheets/extra.css` aporta un estilo editorial inspirado en la
 referencia visual de MIT: fondo blanco, rojo profundo, títulos destacados y bloques

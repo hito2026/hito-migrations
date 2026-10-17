@@ -13,13 +13,13 @@ theme:
     accent: custom
   features:
     - navigation.sections
-    - toc.follow
+    - toc.integrate
     - search.suggest
     - search.highlight
     - content.code.copy
 extra:
   documentation:
-    version: "0.2.3"
+    version: "0.2.4"
     updated: "2026-10-17"
 extra_css:
   - stylesheets/extra.css

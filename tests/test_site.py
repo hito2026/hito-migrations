@@ -64,12 +64,15 @@ class SiteContract(unittest.TestCase):
             self.assertIn("md-sidebar--primary", page.text)
             self.assertNotIn('class="md-tabs"', page.text)
 
-    def test_guide_right_toc(self):
-        for route in ROUTES[1:]:
+    def test_wide_content_without_right_sidebar(self):
+        for route in ROUTES:
             with self.subTest(route=route):
                 page = self.page(route)
-                self.assertIn("md-sidebar--secondary", page.text)
-                self.assertTrue(page.has("nav", "aria-label", "Tabla de contenidos"))
+                self.assertNotIn("md-sidebar--secondary", page.text)
+                self.assertIn("md-sidebar--primary", page.text)
+        css = (SITE / "stylesheets/extra.css").read_text(encoding="utf-8")
+        self.assertRegex(css, r"\.md-grid\s*\{[^}]*max-width:\s*none\s*;")
+        self.assertRegex(css, r"\.process-diagram\s*\{[^}]*overflow-x:\s*auto\s*;")
 
     def test_five_section_navigation_and_introduction(self):
         expected = {BASE, BASE + "procedure/", BASE + "user-instructions/",
@@ -219,8 +222,8 @@ class SiteContract(unittest.TestCase):
         for route, page in pages:
             with self.subTest(route=route):
                 self.assertTrue(page.has("aside", "aria-label", "Edición de la documentación"))
-                self.assertTrue(page.has("span", "data-doc-version", "0.2.3"))
-                self.assertIn("Versión documental 0.2.3", page.text)
+                self.assertTrue(page.has("span", "data-doc-version", "0.2.4"))
+                self.assertIn("Versión documental 0.2.4", page.text)
                 self.assertTrue(page.has("time", "datetime", "2026-10-17"))
                 self.assertIn("Actualizado", page.text)
                 self.assertIn("17/10/2026", page.text)

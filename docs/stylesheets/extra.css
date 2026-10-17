@@ -14,6 +14,11 @@ body[data-md-color-scheme="default"] {
   --md-typeset-a-color: #750014;
 }
 
+/* El contenido ocupa el ancho disponible junto al menú izquierdo. */
+.md-grid {
+  max-width: none;
+}
+
 .md-header {
   --md-primary-bg-color: #212326;
   --md-primary-bg-color--light: #626a73;
