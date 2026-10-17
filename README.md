@@ -54,10 +54,14 @@ Compilar el sitio no verifica una migración; consulte la [lista de validación]
 ### Tema y diseño
 
 MkDocs Material (`>=9.6,<10`) aporta búsqueda superior y navegación izquierda.
-La edición 0.2.4 integra el índice de cada guía en esa navegación (`toc.integrate`),
-elimina la columna derecha y amplía el contenido al ancho disponible (`.md-grid`).
-La edición 0.2.5 añade un margen derecho adaptable, ajusta los gráficos al ancho disponible
-y reduce los bloques copiables con `Courier New`, `Courier` o la monoespaciada local.
+La edición 0.2.6 integra el índice de cada guía en esa navegación (`toc.integrate`)
+y conserva la ausencia de columna derecha. El conjunto de navegación y contenido
+queda centrado con un máximo de 1280 px; el bloque principal tiene un máximo de
+936 px, tomando como referencia el límite declarado en el CSS de
+[Google Cloud Docs](https://docs.cloud.google.com/docs?hl=es-419), sin reproducir su tema.
+En pantallas menores se usa el ancho disponible y se conserva el margen derecho adaptable.
+Los gráficos se ajustan al bloque y los textos copiables conservan la letra pequeña
+con `Courier New`, `Courier` o la monoespaciada local.
 El contenedor conserva desplazamiento horizontal como protección ante desbordamientos.
 La interfaz usa `language: es`, búsqueda `lang: es`
 y conserva `mkdocs[i18n]` para las traducciones. `font: false` evita cargar fuentes

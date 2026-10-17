@@ -64,14 +64,16 @@ class SiteContract(unittest.TestCase):
             self.assertIn("md-sidebar--primary", page.text)
             self.assertNotIn('class="md-tabs"', page.text)
 
-    def test_wide_content_without_right_sidebar(self):
+    def test_bounded_content_without_right_sidebar(self):
         for route in ROUTES:
             with self.subTest(route=route):
                 page = self.page(route)
                 self.assertNotIn("md-sidebar--secondary", page.text)
                 self.assertIn("md-sidebar--primary", page.text)
         css = (SITE / "stylesheets/extra.css").read_text(encoding="utf-8")
-        self.assertRegex(css, r"\.md-grid\s*\{[^}]*max-width:\s*none\s*;")
+        self.assertRegex(css, r"\.md-grid\s*\{[^}]*max-width:\s*1280px\s*;")
+        self.assertRegex(css, r"\.md-grid\s*\{[^}]*margin-inline:\s*auto\s*;")
+        self.assertRegex(css, r"\.md-content__inner\s*\{[^}]*max-width:\s*936px\s*;")
         self.assertRegex(css, r"\.process-diagram\s*\{[^}]*overflow-x:\s*auto\s*;")
 
     def test_right_margin_and_diagrams_fit_available_width(self):
@@ -239,8 +241,8 @@ class SiteContract(unittest.TestCase):
         for route, page in pages:
             with self.subTest(route=route):
                 self.assertTrue(page.has("aside", "aria-label", "Edición de la documentación"))
-                self.assertTrue(page.has("span", "data-doc-version", "0.2.5"))
-                self.assertIn("Versión documental 0.2.5", page.text)
+                self.assertTrue(page.has("span", "data-doc-version", "0.2.6"))
+                self.assertIn("Versión documental 0.2.6", page.text)
                 self.assertTrue(page.has("time", "datetime", "2026-10-17"))
                 self.assertIn("Actualizado", page.text)
                 self.assertIn("17/10/2026", page.text)
