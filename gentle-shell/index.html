@@ -16,6 +16,8 @@
         <link rel="prev" href="../user-instructions/">
       
       
+        <link rel="next" href="../architecture/">
+      
       
         
       
@@ -501,6 +503,33 @@
   
 
     
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Arquitectura
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
   </ul>
 </nav>
                   </div>
@@ -691,7 +720,7 @@
                 
   <aside class="doc-edition" aria-label="Edición de la documentación">
   <span class="doc-edition__label">Hito · Guías técnicas</span>
-  <span data-doc-version="0.2.2">Versión documental 0.2.2</span>
+  <span data-doc-version="0.2.3">Versión documental 0.2.3</span>
   <span>Actualizado <time datetime="2026-10-17">17/10/2026</time></span>
 </aside>
   
@@ -707,6 +736,33 @@ por el servidor, usuario y caso asignados por el administrador.</p>
 <a href="#linux">Linux</a> o <a href="#macos">macOS</a>. Pida al administrador su usuario, servidor,
 huella SSH esperada y alta de su email en Cloudflare Access.</p>
 <h3 id="windows">Windows</h3>
+<p>Para hacerlo con una IA, despliegue y copie el siguiente prompt. Para hacerlo manualmente,
+continúe con los comandos debajo.</p>
+<details>
+<summary>Prompt para configurar el acceso con una IA — Windows</summary>
+<pre><code class="language-text">Ayúdeme a configurar el acceso a PC-ALE desde Windows usando PowerShell y OpenSSH nativo, sin WSL.
+
+Antes de empezar, pídame el hostname, mi usuario Linux asignado y la huella SSH
+esperada; confirme que el administrador habilitó mi cuenta y mi email en Access.
+Trabaje solo en mi computadora. Pida autorización para las rutas concretas y
+antes de instalar herramientas o editar configuración; conserve una copia del
+archivo SSH de configuración existente y agregue el alias sin sobrescribir otros accesos.
+Compruebe mi versión y arquitectura de Windows, OpenSSH Client y cloudflared.
+Si falta SSH, instale solo OpenSSH Client, no OpenSSH Server ni reglas de firewall.
+Use descargas oficiales de cloudflared compatibles con mi equipo.
+Reutilice mi clave pública autorizada o guíeme para crear una sin sobrescribir
+claves existentes. No lea ni copie el contenido de ninguna clave privada.
+Solo la clave pública .pub se entrega al administrador; espere que confirme su alta.
+Configure servidor-migraciones en mi archivo .ssh/config, sin crear config.txt,
+con mi usuario, mi clave y la ruta absoluta entre comillas de cloudflared.exe.
+Guíeme para completar Cloudflare Access en el navegador fuera del chat.
+No capture ni reproduzca tokens, códigos ni claves API; no me pida pegarlos aquí.
+Compruebe ssh servidor-migraciones, whoami y gentle-shell --version con mi cuenta.
+No modifique el servidor, no use sudo remoto, no toque bases ni inicie una migración.
+Si algo falla, muestre el error sin secretos y el próximo paso; no desactive Access
+ni la comprobación de la huella. Termine con los comandos para entrar y retomar tmux.
+</code></pre>
+</details>
 <p>Abra <strong>PowerShell</strong>, no CMD ni WSL. Compruebe el cliente SSH:</p>
 <pre><code class="language-powershell">ssh -V
 </code></pre>
@@ -737,6 +793,34 @@ notepad &quot;$HOME\.ssh\config&quot;
 <p>Agregue el bloque de <a href="#configurar-ssh">Configurar SSH</a>. Guarde con <strong>Ctrl+S</strong> y cierre.
 El archivo debe llamarse <code>config</code>, <strong>no <code>config.txt</code></strong>.</p>
 <h3 id="linux">Linux</h3>
+<p>Para hacerlo con una IA, despliegue y copie el siguiente prompt. Para hacerlo manualmente,
+continúe con los comandos debajo.</p>
+<details>
+<summary>Prompt para configurar el acceso con una IA — Linux</summary>
+<pre><code class="language-text">Ayúdeme a configurar el acceso a PC-ALE desde Linux usando mi terminal local.
+
+Antes de empezar, pídame el hostname, mi usuario Linux asignado y la huella SSH
+esperada; confirme que el administrador habilitó mi cuenta y mi email en Access.
+Trabaje solo en mi computadora. Pida autorización para las rutas concretas y
+antes de instalar herramientas o editar configuración; conserve una copia del
+archivo SSH de configuración existente y agregue el alias sin sobrescribir otros accesos.
+Detecte mi distribución y arquitectura antes de proponer comandos.
+Compruebe OpenSSH Client y curl. Instale solo lo que falte con el gestor apropiado
+y cloudflared desde fuentes oficiales, con binario compatible x86-64 o ARM64.
+Prefiera cloudflared en ~/.local/bin; no suponga que esa ruta está en mi PATH.
+Reutilice mi clave pública autorizada o guíeme para crear una sin sobrescribir
+claves existentes. No lea ni copie el contenido de ninguna clave privada.
+Solo la clave pública .pub se entrega al administrador; espere que confirme su alta.
+Configure servidor-migraciones en ~/.ssh/config con mi usuario, mi clave y la ruta
+absoluta de cloudflared. Aplique 700 a ~/.ssh y 600 a su archivo config.
+Guíeme para completar Cloudflare Access en el navegador fuera del chat.
+No capture ni reproduzca tokens, códigos ni claves API; no me pida pegarlos aquí.
+Compruebe ssh servidor-migraciones, whoami y gentle-shell --version con mi cuenta.
+No modifique el servidor, no use sudo remoto, no toque bases ni inicie una migración.
+Si algo falla, muestre el error sin secretos y el próximo paso; no desactive Access
+ni la comprobación de la huella. Termine con los comandos para entrar y retomar tmux.
+</code></pre>
+</details>
 <p>Abra una <strong>terminal</strong>. Instale las herramientas de su distribución; elija un solo bloque.</p>
 <p><strong>Ubuntu / Debian:</strong></p>
 <pre><code class="language-sh">sudo apt-get update
@@ -775,6 +859,35 @@ y cierre con <strong>Ctrl+X</strong>. Luego:</p>
 <pre><code class="language-sh">chmod 600 ~/.ssh/config
 </code></pre>
 <h3 id="macos">macOS</h3>
+<p>Para hacerlo con una IA, despliegue y copie el siguiente prompt. Para hacerlo manualmente,
+continúe con los comandos debajo.</p>
+<details>
+<summary>Prompt para configurar el acceso con una IA — macOS</summary>
+<pre><code class="language-text">Ayúdeme a configurar el acceso a PC-ALE desde macOS usando Terminal.
+
+Antes de empezar, pídame el hostname, mi usuario Linux asignado y la huella SSH
+esperada; confirme que el administrador habilitó mi cuenta y mi email en Access.
+Trabaje solo en mi computadora. Pida autorización para las rutas concretas y
+antes de instalar herramientas o editar configuración; conserve una copia del
+archivo SSH de configuración existente y agregue el alias sin sobrescribir otros accesos.
+Detecte si mi Mac es Intel o Apple Silicon. Compruebe OpenSSH y Homebrew.
+Use Homebrew para instalar cloudflared solo si falta; si falta Homebrew, guíeme
+con su sitio oficial y espere mi autorización antes de instalarlo.
+Obtenga la ruta real con command -v cloudflared; no suponga /usr/local/bin
+ni /opt/homebrew/bin para todos los equipos.
+Reutilice mi clave pública autorizada o guíeme para crear una sin sobrescribir
+claves existentes. No lea ni copie el contenido de ninguna clave privada.
+Solo la clave pública .pub se entrega al administrador; espere que confirme su alta.
+Configure servidor-migraciones en ~/.ssh/config con mi usuario, mi clave y la ruta
+absoluta de cloudflared. Aplique 700 a ~/.ssh y 600 a su archivo config.
+Guíeme para completar Cloudflare Access en el navegador fuera del chat.
+No capture ni reproduzca tokens, códigos ni claves API; no me pida pegarlos aquí.
+Compruebe ssh servidor-migraciones, whoami y gentle-shell --version con mi cuenta.
+No modifique el servidor, no use sudo remoto, no toque bases ni inicie una migración.
+Si algo falla, muestre el error sin secretos y el próximo paso; no desactive Access
+ni la comprobación de la huella. Termine con los comandos para entrar y retomar tmux.
+</code></pre>
+</details>
 <p>Abra <strong>Terminal</strong>. Si no tiene Homebrew, instálelo desde <a href="https://brew.sh/">brew.sh</a>.
 Después ejecute:</p>
 <pre><code class="language-sh">brew install cloudflared

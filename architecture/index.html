@@ -1,0 +1,843 @@
+
+<!doctype html>
+<html lang="es" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Esquemas y plantillas de migración de Odoo aptos para publicación pública">
+      
+      
+      
+        <link rel="canonical" href="https://hito2026.github.io/hito-migrations/architecture/">
+      
+      
+        <link rel="prev" href="../gentle-shell/">
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Arquitectura - Hito migrations</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#arquitectura-de-la-solucion" class="md-skip">
+          Saltar a contenido
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabecera">
+    <a href=".." title="Hito migrations" class="md-header__button md-logo" aria-label="Hito migrations" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Hito migrations
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Arquitectura
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Búsqueda" placeholder="Búsqueda" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Buscar">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpiar" aria-label="Limpiar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando búsqueda
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navegación" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Hito migrations" class="md-nav__button md-logo" aria-label="Hito migrations" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Hito migrations
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Introducción
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../procedure/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Procedimiento
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../user-instructions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Instrucciones del usuario
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../gentle-shell/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Gentle Shell
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Arquitectura
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Arquitectura
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#diagrama-de-arquitectura" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Diagrama de arquitectura
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-mac-de-ale-administracion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Mac de Ale — Administración
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-computadora-del-usuario-acceso" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Computadora del usuario — Acceso
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-pc-ale-ejecucion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. PC-ALE — Ejecución
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. PC-ALE — Ejecución">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#coordinacion-dentro-del-servidor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Coordinación dentro del servidor
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-servicios-externos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Servicios externos
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-credenciales-y-separacion-de-responsabilidades" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Credenciales y separación de responsabilidades
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-limites-y-pendientes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Límites y pendientes
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#diagrama-de-arquitectura" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Diagrama de arquitectura
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-mac-de-ale-administracion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Mac de Ale — Administración
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-computadora-del-usuario-acceso" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Computadora del usuario — Acceso
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-pc-ale-ejecucion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. PC-ALE — Ejecución
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. PC-ALE — Ejecución">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#coordinacion-dentro-del-servidor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Coordinación dentro del servidor
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-servicios-externos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Servicios externos
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-credenciales-y-separacion-de-responsabilidades" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Credenciales y separación de responsabilidades
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-limites-y-pendientes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Límites y pendientes
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+  <aside class="doc-edition" aria-label="Edición de la documentación">
+  <span class="doc-edition__label">Hito · Guías técnicas</span>
+  <span data-doc-version="0.2.3">Versión documental 0.2.3</span>
+  <span>Actualizado <time datetime="2026-10-17">17/10/2026</time></span>
+</aside>
+  
+                  
+
+
+
+<h1 id="arquitectura-de-la-solucion">Arquitectura de la solución</h1>
+<p><strong>PC-ALE ejecuta las migraciones; la Mac de Ale administra la plataforma;
+cada usuario trabaja desde su propia computadora.</strong> Gentle Shell utiliza Pi como
+runtime del agente en ambos equipos. Las conexiones de los usuarios van al servidor:
+el trabajo remoto <strong>no pasa por la Mac</strong>.</p>
+<h2 id="diagrama-de-arquitectura">Diagrama de arquitectura</h2>
+<figure class="process-diagram" tabindex="0" aria-label="Arquitectura de la solución; desplazamiento horizontal disponible">
+  <img src="../assets/solution-architecture.svg" alt="Arquitectura de Mac de Ale, usuarios y PC-ALE">
+  <figcaption>Líneas continuas: acceso y trabajo. Líneas discontinuas: administración de respaldo o componentes pendientes. Desplace el gráfico en pantallas pequeñas.</figcaption>
+</figure>
+
+<p><a href="../assets/solution-architecture.svg">Abrir el gráfico completo</a>.
+Los bloques y recorridos se describen a continuación.</p>
+<h2 id="1-mac-de-ale-administracion">1. Mac de Ale — Administración</h2>
+<p>Es el puesto desde el que se instala, configura y mantiene la solución:</p>
+<ul>
+<li>Ejecuta su propia instancia de <strong>Gentle Shell + Pi</strong>, independiente de la del servidor.</li>
+<li>Mantiene las fuentes de configuración, el kit y la documentación; prepara cambios
+  y comprobaciones antes de enviarlos al servidor.</li>
+<li>Accede por SSH con la cuenta administradora para instalar herramientas compartidas,
+  gestionar usuarios y revisar permisos. Los cambios privilegiados requieren autorización y sudo.</li>
+<li>Conserva un acceso administrativo de respaldo por <strong>Tailscale</strong>, independiente del
+  acceso habitual del equipo mediante Cloudflare.</li>
+<li>Publica la documentación aprobada en GitHub Pages; el sitio explica el uso, no controla el servidor.</li>
+</ul>
+<p>«Gobernar» significa administrar y coordinar cambios, no compartir una sesión ni una cuenta.
+No se ha implementado un servicio de control automático que replique todo lo que cambia en la Mac.
+Apagarla no es, por diseño, una orden de detener las sesiones de PC-ALE;
+la continuidad sigue dependiendo del servidor, la red y los servicios externos.</p>
+<h2 id="2-computadora-del-usuario-acceso">2. Computadora del usuario — Acceso</h2>
+<p>Puede usar <strong>Windows, Linux o macOS</strong>. Necesita un cliente SSH, <code>cloudflared</code>,
+una clave personal y su identidad autorizada en Cloudflare Access.</p>
+<ol>
+<li>El navegador completa la autenticación de Cloudflare.</li>
+<li><code>cloudflared access ssh</code> transporta la conexión hacia el túnel existente.</li>
+<li>SSH comprueba la clave pública para su cuenta Linux, por ejemplo <code>dev1</code>.</li>
+<li>El usuario abre o recupera su sesión de tmux y ejecuta Gentle Shell en el caso autorizado.</li>
+</ol>
+<p>La interfaz de terminal se ve en la computadora del usuario, pero <strong>los procesos, comandos
+y archivos del trabajo remoto están en PC-ALE</strong>. No hace falta instalar Gentle Shell ni
+un runtime Odoo en la computadora del usuario para este recorrido.</p>
+<p>Siga los comandos del <a href="../gentle-shell/">manual de uso</a>.</p>
+<h2 id="3-pc-ale-ejecucion">3. PC-ALE — Ejecución</h2>
+<p>Servidor Linux multiusuario que concentra herramientas y espacios de trabajo.
+La instalación base y el kit están preparados para iniciar casos; eso no reemplaza
+los accesos, permisos y verificaciones específicos de cada migración.</p>
+<table>
+<thead>
+<tr>
+<th>Componente</th>
+<th>Función y ubicación</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SSH</td>
+<td>Admite claves y cuentas del grupo autorizado; no contraseñas ni acceso root por SSH</td>
+</tr>
+<tr>
+<td>Cloudflare Tunnel</td>
+<td>Conserva el contenedor del túnel existente; conecta el servidor con Cloudflare</td>
+</tr>
+<tr>
+<td>Usuarios Linux</td>
+<td><code>dev1</code> a <code>dev5</code>, cada uno con home y configuración personal, sin sudo ni Docker</td>
+</tr>
+<tr>
+<td>tmux</td>
+<td>Conserva la terminal y sus procesos cuando el usuario se desconecta; no sobrevive por sí solo a un reinicio del servidor</td>
+</tr>
+<tr>
+<td>Gentle Shell + Pi</td>
+<td>Ejecuta el agente, sus herramientas y los subagentes en la sesión del usuario</td>
+</tr>
+<tr>
+<td>Instalación compartida</td>
+<td>Herramientas bajo <code>/opt/gentle-shell</code>, administradas por root y no modificables por los usuarios del equipo</td>
+</tr>
+<tr>
+<td>Configuración personal</td>
+<td><code>~/.gentle-shell/agent</code> en cada cuenta; autenticación y estado propios</td>
+</tr>
+<tr>
+<td>Kit de migración</td>
+<td><code>/srv/migraciones/kit</code>, compartido en modo lectura: estrategia, plantillas y utilidades</td>
+</tr>
+<tr>
+<td>Casos</td>
+<td><code>/srv/migraciones/cases/MIG-CLIENTE-001</code>, compartidos según los permisos del grupo</td>
+</tr>
+</tbody>
+</table>
+<p>Cada caso contiene intake, tablero, runbook y preferencias del modelo.
+Los clones y worktrees autorizados se mantienen dentro del espacio del caso.
+La adaptación de código se realiza allí; las pruebas del runtime Odoo se realizan en
+los entornos Odoo.sh autorizados, no en un contenedor Odoo nuevo de esta solución.</p>
+<h3 id="coordinacion-dentro-del-servidor">Coordinación dentro del servidor</h3>
+<p>Debe haber <strong>un coordinador por caso</strong>, incluso cuando intervengan otros sistemas de agentes.
+<code>mig-case claim</code> registra quién coordina y <code>mig-case release</code> entrega esa coordinación.
+El lock es un acuerdo operativo, no impide por sí solo que otro integrante edite archivos.</p>
+<p>El coordinador mantiene el tablero y asigna trabajos acotados. Los subagentes trabajan
+sobre superficies disjuntas o worktrees aislados; los verificadores revisan evidencias.
+No se deben iniciar dos coordinadores sobre el mismo caso para «trabajar más rápido».</p>
+<h2 id="4-servicios-externos">4. Servicios externos</h2>
+<table>
+<thead>
+<tr>
+<th>Servicio</th>
+<th>Relación con PC-ALE</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Proveedor de IA</td>
+<td>Recibe las solicitudes del agente con las credenciales del usuario; las herramientas ejecutan en el servidor bajo sus permisos</td>
+</tr>
+<tr>
+<td>GitHub</td>
+<td>Proporciona repositorios y recibe cambios solo con permiso explícito de commit/push; no se copian cuentas entre usuarios</td>
+</tr>
+<tr>
+<td>Odoo.sh origen</td>
+<td>Se consulta en modo lectura para inventario y diagnóstico dentro del alcance autorizado</td>
+</tr>
+<tr>
+<td>Odoo.sh Development</td>
+<td>Recibe código y pruebas de funcionamiento cuando esa etapa está autorizada</td>
+</tr>
+<tr>
+<td>Odoo.sh Staging</td>
+<td>Se usa para validar la base actualizada y la historia con restauración y aislamiento autorizados</td>
+</tr>
+<tr>
+<td>Proveedor de actualización</td>
+<td>Entrega la base actualizada según cobertura acordada; portar módulos no migra por sí solo los datos</td>
+</tr>
+</tbody>
+</table>
+<p>Tener acceso a un servicio no autoriza todas sus operaciones. Las decisiones por etapa
+se mantienen en el <a href="../procedure/">procedimiento</a> y en las <a href="../user-instructions/">instrucciones del usuario</a>.</p>
+<h2 id="5-credenciales-y-separacion-de-responsabilidades">5. Credenciales y separación de responsabilidades</h2>
+<ul>
+<li>Cada usuario configura sus propios accesos al modelo, GitHub y Odoo.sh en su cuenta Linux.
+  El login de Cloudflare, la clave SSH y el login del modelo son controles distintos.</li>
+<li>Las claves privadas no se distribuyen desde la Mac ni se guardan en el kit o los casos.</li>
+<li>Los archivos compartidos de un caso son visibles para las personas autorizadas a ese espacio;
+  no se deben usar para guardar secretos personales.</li>
+<li>La cuenta administradora mantiene la plataforma. Las cuentas del equipo ejecutan únicamente
+  lo autorizado para la migración. Ningún agente reemplaza la aprobación humana.</li>
+<li>El contenido enviado al proveedor de IA debe pertenecer al alcance y tratamiento de datos
+  autorizados; usar SSH no evita que el agente envíe contexto al modelo.</li>
+</ul>
+<h2 id="6-limites-y-pendientes">6. Límites y pendientes</h2>
+<p>La arquitectura distingue lo instalado de lo validado:</p>
+<ul>
+<li>Se comprobaron acceso SSH externo, arranque de Gentle Shell, utilidades del kit y permisos básicos.</li>
+<li><strong>Engram está instalado, pero su activación y aislamiento multiusuario siguen pendientes.</strong>
+  No se representa como una memoria compartida operativa. El runbook y el tablero son el registro explícito.</li>
+<li>La compatibilidad del editor instalado y la prueba de relevo real entre usuarios siguen pendientes.</li>
+<li>No se documenta aquí una recuperación ensayada de todo el servidor ni una auditoría completa de seguridad.</li>
+<li>Los agentes Buzz, los servicios Odoo existentes y el túnel conviven con la solución;
+  este trabajo no los reconfigura ni habilita coordinación simultánea del mismo caso.</li>
+<li>No se muestran hostnames, IPs, emails, claves ni datos de clientes. Los rótulos «PC-ALE»
+  y «Mac de Ale» son los nombres solicitados para explicar los roles de los equipos.</li>
+</ul>
+<p><strong>Para operar:</strong> abra <a href="../gentle-shell/">Gentle Shell</a>. <strong>Para planificar una migración:</strong>
+complete las <a href="../user-instructions/">Instrucciones del usuario</a>.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.sections", "toc.follow", "search.suggest", "search.highlight", "content.code.copy"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>
