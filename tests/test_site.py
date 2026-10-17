@@ -213,6 +213,51 @@ class SiteContract(unittest.TestCase):
         self.assertIn("Intel", mac)
         self.assertIn("Apple Silicon", mac)
 
+    def guided_start_steps(self):
+        page = self.page("gentle-shell")
+        section = re.search(r'<h2 id="ejemplo-guiado-de-inicio"[^>]*>.*?</h2>(.*?)(?=<h2\b|\Z)', page.text, re.S)
+        self.assertIsNotNone(section, "Falta el ejemplo guiado de inicio")
+        steps = re.findall(r'<h3\b[^>]*>.*?Paso (\d+)\b.*?</h3>(.*?)(?=<h3\b|\Z)', section.group(1), re.S)
+        self.assertEqual([int(number) for number, _ in steps], list(range(1, 12)))
+        return dict((int(number), body) for number, body in steps)
+
+    def test_guided_start_covers_the_observed_user_workflow(self):
+        steps = self.guided_start_steps()
+        expected = {
+            1: ("whoami", "Darwin", "Get-Command"),
+            2: ("ssh -l dev1 servidor-migraciones", "navegador"),
+            3: ("tmux new-session -A -s main", "reinicio"),
+            4: ("gentle-shell", "actualizaciones"),
+            5: ("CONEXIÓN OK", "consumir", "credenciales"),
+            6: ("Ctrl+b", "mig-case list", "vacía"),
+            7: ("MIG-DEMO-1719", "MIG-DEMO1719-001", "mig-case new"),
+            8: ("mig-case claim MIG-DEMO1719-001", "&&", "no borre"),
+            9: ("gentle-shell", "Trust (this session only)", "instalar", "extensiones"),
+            10: ("case-intake.yml", "module-board.yml", "runbook.md", "<RUTA_DE_GUIA_DE_LECCIONES>", "Engram"),
+            11: ("Versión de Odoo de origen:", "Rama de origen:", "plantilla", "19.0"),
+        }
+        for number, tokens in expected.items():
+            plain = unescape(re.sub(r'<[^>]+>', '', steps[number]))
+            for token in tokens:
+                self.assertIn(token, plain, (number, token))
+        page = self.page("gentle-shell")
+        self.assertTrue(page.has("a", "href", "#ejemplo-guiado-de-inicio"))
+
+    def test_each_guided_start_step_has_an_approval_scoped_ai_prompt(self):
+        for number, body in self.guided_start_steps().items():
+            with self.subTest(step=number):
+                prompts = [unescape(block) for block in re.findall(
+                    r'<pre><code class="language-text">(.*?)</code></pre>', body, re.S)
+                    if unescape(block).startswith("Asístame en el paso " + str(number) + ".")]
+                self.assertEqual(len(prompts), 1)
+                prompt = prompts[0]
+                self.assertIn("Explique el paso y pida mi autorización antes de ejecutarlo.", prompt)
+                self.assertIn("No avance al siguiente paso sin una nueva autorización.", prompt)
+                self.assertIn("No pida ni muestre secretos.", prompt)
+        readonly = unescape(self.guided_start_steps()[10])
+        for limit in ("No modifique archivos", "no instale", "no clone", "servicios externos", "memoria persistente"):
+            self.assertIn(limit, readonly)
+
     def test_architecture_has_accessible_local_diagram_and_boundaries(self):
         page = self.page("architecture")
         self.assertTrue(page.has("img", "src", "../assets/solution-architecture.svg"))
@@ -258,8 +303,8 @@ class SiteContract(unittest.TestCase):
         for route, page in pages:
             with self.subTest(route=route):
                 self.assertTrue(page.has("aside", "aria-label", "Edición de la documentación"))
-                self.assertTrue(page.has("span", "data-doc-version", "0.2.8"))
-                self.assertIn("Versión documental 0.2.8", page.text)
+                self.assertTrue(page.has("span", "data-doc-version", "0.2.9"))
+                self.assertIn("Versión documental 0.2.9", page.text)
                 self.assertTrue(page.has("time", "datetime", "2026-10-17"))
                 self.assertIn("Actualizado", page.text)
                 self.assertIn("17/10/2026", page.text)
