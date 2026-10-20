@@ -2,10 +2,10 @@
 
 Base documental para migraciones de Odoo, preparada para publicación pública.
 Los esquemas son **borradores no verificados**, no procedimientos probados ni
-pruebas de migraciones exitosas. La guía tiene cinco entradas:
+pruebas de migraciones exitosas. La guía tiene seis entradas:
 [Introducción](docs/index.md), [Procedimiento](docs/procedure.md),
 [Instrucciones del usuario](docs/user-instructions.md), [Gentle Shell](docs/gentle-shell.md)
-y [Arquitectura](docs/architecture.md).
+[Arquitectura](docs/architecture.md) y [Plan técnico](docs/spiral-strategy.md).
 
 El [manual de uso de Gentle Shell](docs/gentle-shell.md) tiene una sección propia en el menú.
 Incluye preparación y acceso desde Windows (PowerShell), Linux y macOS, con un prompt
@@ -15,9 +15,15 @@ Utiliza ejemplos anónimos. La sección Arquitectura y su diagrama local disting
 administración en la Mac de Ale, acceso de usuarios y ejecución en PC-ALE; no incluyen
 IPs, dominios privados ni credenciales. La edición documental 0.2.3 incorpora esta sección.
 
-Las nueve guías anteriores conservan sus URL y permanecen disponibles como referencias,
-fuera del menú principal. `not_in_nav` en `mkdocs.yml` declara esa exclusión; no elimina
-las páginas ni sus entradas de búsqueda.
+**Plan técnico** muestra directamente un único documento: la estrategia de migración
+en espiral, con sus seis ciclos, clasificación de módulos, estados de evidencia y
+coordinación por oleadas. No es un catálogo de archivos. Incluye un enlace al Markdown
+original para copiarlo a otro arnés; la fuente se mantiene en `docs/spiral-strategy.md`.
+No requiere Gentle Shell ni acredita resultados de una migración real.
+
+Las guías anteriores conservan sus URL. La estrategia en espiral pasa al menú como
+Plan técnico; las otras ocho siguen como referencias fuera del menú. `not_in_nav` en
+`mkdocs.yml` declara esa exclusión; no elimina páginas ni sus entradas de búsqueda.
 
 ## Preparación local
 
@@ -43,8 +49,9 @@ SITE_DIR=site python3 -m unittest discover -s tests -v
 
 El directorio generado `site/` está excluido de Git. Para una compilación externa,
 use `--site-dir /ruta/temporal/site` y el mismo valor en `SITE_DIR`.
-Las veinte pruebas comprueban las catorce rutas (cinco principales y nueve anteriores),
-el idioma, las URL canónicas, el menú de cinco entradas, los diagramas de proceso y arquitectura,
+Las veintiuna pruebas comprueban las catorce rutas (cinco principales y nueve anteriores),
+el idioma, las URL canónicas, el menú de seis entradas, el documento único del plan en
+espiral y su enlace Markdown, y los diagramas de proceso y arquitectura,
 los ejemplos de instrucciones, los pasos y prompts del manual para Windows/Linux/macOS,
 el ejemplo guiado de inicio de once pasos y el de recuperación de seis pasos,
 con prompts de asistencia y autorización por paso; también la distinción entre

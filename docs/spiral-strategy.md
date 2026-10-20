@@ -1,5 +1,10 @@
 # Estrategia de migración en espiral
 
+**Plan técnico general de migración.** Este es el documento completo del plan en espiral.
+Para llevarlo a otro arnés, [abra el Markdown original](https://raw.githubusercontent.com/hito2026/hito-migrations/refs/heads/docs/spiral-strategy/docs/spiral-strategy.md),
+seleccione todo y copie con **Ctrl+A → Ctrl+C** o **⌘A → ⌘C** en Mac.
+El enlace muestra la última fuente subida a la rama documental; no requiere Gentle Shell.
+
 **Estado: propuesta no verificada.** Organice decisiones y evidencias en ciclos pequeños,
 no como una receta ejecutable ni como una migración exitosa. La compatibilidad o
 publicación del código no acredita la migración de datos ni la aceptación funcional o contable.

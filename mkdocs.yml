@@ -19,8 +19,8 @@ theme:
     - content.code.copy
 extra:
   documentation:
-    version: "0.2.10"
-    updated: "2026-10-17"
+    version: "0.2.11"
+    updated: "2026-10-20"
 extra_css:
   - stylesheets/extra.css
 markdown_extensions:
@@ -31,7 +31,6 @@ plugins:
       lang: es
 not_in_nav: |
   /migration-manual.md
-  /spiral-strategy.md
   /migration-templates.md
   /versions.md
   /recipes.md
@@ -45,3 +44,4 @@ nav:
   - Instrucciones del usuario: user-instructions.md
   - Gentle Shell: gentle-shell.md
   - Arquitectura: architecture.md
+  - Plan técnico: spiral-strategy.md

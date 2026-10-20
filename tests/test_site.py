@@ -93,16 +93,30 @@ class SiteContract(unittest.TestCase):
                             'font-size: .65rem;', 'line-height: 1.5;'):
             self.assertIn(declaration, block.group(1))
 
-    def test_five_section_navigation_and_introduction(self):
+    def test_technical_plan_is_the_single_spiral_document(self):
+        page = self.page("spiral-strategy")
+        for phrase in ("Estrategia de migración en espiral", "S1 — Entrada", "S2 — Inventario",
+                       "S3 — Portado", "S4 — Runtime", "S5 — Aceptación", "S6 — Plan",
+                       "Clasificar antes de portar", "Estados del tablero y evidencia",
+                       "Coordinación por oleadas", "no verificada"):
+            self.assertIn(phrase, page.text)
+        raw = "https://raw.githubusercontent.com/hito2026/hito-migrations/refs/heads/docs/spiral-strategy/docs/spiral-strategy.md"
+        self.assertTrue(page.has("a", "href", raw))
+        for route in ROUTES:
+            self.assertIn("Plan técnico", self.page(route).text)
+        self.assertFalse((SITE / "technical-plan").exists())
+        self.assertFalse((SITE / "migrando").exists())
+
+    def test_six_section_navigation_and_introduction(self):
         expected = {BASE, BASE + "procedure/", BASE + "user-instructions/",
-                    BASE + "gentle-shell/", BASE + "architecture/"}
+                    BASE + "gentle-shell/", BASE + "architecture/", BASE + "spiral-strategy/"}
         for route in ROUTES:
             with self.subTest(route=route):
                 page = self.page(route)
                 current = BASE + (route + "/" if route else "")
                 self.assertEqual({urljoin(current, link) for link in page.primary_links}, expected)
                 for label in ("Introducción", "Procedimiento", "Instrucciones del usuario",
-                              "Gentle Shell", "Arquitectura"):
+                              "Gentle Shell", "Arquitectura", "Plan técnico"):
                     self.assertIn(label, page.text)
         intro = self.page()
         for text in ("La idea del proyecto", "Cómo trabajamos", "Borrador no verificado"):
@@ -343,11 +357,11 @@ class SiteContract(unittest.TestCase):
         for route, page in pages:
             with self.subTest(route=route):
                 self.assertTrue(page.has("aside", "aria-label", "Edición de la documentación"))
-                self.assertTrue(page.has("span", "data-doc-version", "0.2.10"))
-                self.assertIn("Versión documental 0.2.10", page.text)
-                self.assertTrue(page.has("time", "datetime", "2026-10-17"))
+                self.assertTrue(page.has("span", "data-doc-version", "0.2.11"))
+                self.assertIn("Versión documental 0.2.11", page.text)
+                self.assertTrue(page.has("time", "datetime", "2026-10-20"))
                 self.assertIn("Actualizado", page.text)
-                self.assertIn("17/10/2026", page.text)
+                self.assertIn("20/10/2026", page.text)
 
     def test_local_links_resources_and_no_external_fonts(self):
         for route in ROUTES:
