@@ -25,7 +25,7 @@
     
     
       
-        <title>Hito migrations</title>
+        <title>Introducción - Hito migrations</title>
       
     
     
@@ -207,6 +207,60 @@
   
   
   
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Migrando
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Migrando
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
     <li class="md-nav__item md-nav__item--active">
       
       <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
@@ -277,10 +331,104 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#que-cambia-entre-origen-y-destino" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Qué cambia entre origen y destino
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#como-trabajamos" class="md-nav__link">
     <span class="md-ellipsis">
       
         Cómo trabajamos
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Cómo trabajamos">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#adaptar-el-repositorio-actual" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Adaptar el repositorio actual
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#preparar-el-repositorio-de-destino" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Preparar el repositorio de destino
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#que-implica-reemplazar-un-modulo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Qué implica reemplazar un módulo
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#la-actualizacion-de-la-base-de-datos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        La actualización de la base de datos
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#validar-y-avanzar-en-espiral" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Validar y avanzar en espiral
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#que-aporta-el-agente" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Qué aporta el agente
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#responsabilidades-y-decisiones" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Responsabilidades y decisiones
       
     </span>
   </a>
@@ -305,9 +453,10 @@
     </li>
   
 
-    
-      
-      
+              
+            
+              
+                
   
   
   
@@ -332,36 +481,10 @@
     </li>
   
 
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="user-instructions/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Instrucciones del usuario
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
+              
+            
+              
+                
   
   
   
@@ -386,57 +509,11 @@
     </li>
   
 
-    
+              
+            
+          </ul>
+        </nav>
       
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="architecture/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Arquitectura
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="spiral-strategy/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Plan técnico
-  
-
-    
-  </span>
-  
-  
-
-      </a>
     </li>
   
 
@@ -456,8 +533,8 @@
                 
   <aside class="doc-edition" aria-label="Edición de la documentación">
   <span class="doc-edition__label">Hito · Guías técnicas</span>
-  <span data-doc-version="0.2.11">Versión documental 0.2.11</span>
-  <span>Actualizado <time datetime="2026-10-20">20/10/2026</time></span>
+  <span data-doc-version="0.3.0">Versión documental 0.3.0</span>
+  <span>Actualizado <time datetime="2026-10-21">21/10/2026</time></span>
 </aside>
   
                   
@@ -466,35 +543,255 @@
 
 <h1 id="introduccion">Introducción</h1>
 <h2 id="la-idea-del-proyecto">La idea del proyecto</h2>
-<p>Hito propone una forma ordenada de preparar y conducir migraciones de Odoo:
-<strong>saber qué hay que conservar, dividir el trabajo y comprobar cada avance antes de continuar</strong>.
-Esta guía usa como referencia Odoo 17.0 → 19.0 en Odoo.sh; la ruta de actualización
-se confirma para cada edición y servicio.</p>
-<p>No se trata solo de adaptar módulos. También hay que conservar los datos históricos,
-validar los procesos de negocio y preparar el paso a producción con recuperación posible.</p>
+<p>Migrar Odoo significa <strong>llevar a una nueva versión tanto el sistema que ejecuta el negocio
+como la información que ese negocio necesita conservar</strong>. No alcanza con cambiar la
+versión de Odoo, apuntar a otra rama de código o conseguir que un módulo se instale.
+También deben mantenerse las funciones necesarias, las relaciones entre documentos,
+los datos históricos y los controles de acceso.</p>
+<p>El esquema de trabajo de Hito toma como referencia <strong>Odoo 17.0 → 19.0 en Odoo.sh</strong>.
+La edición, la ruta de actualización y la cobertura del servicio se confirman para cada caso.
+La migración se organiza en tres frentes relacionados, pero con resultados distintos:</p>
+<table>
+<thead>
+<tr>
+<th>Frente</th>
+<th>Trabajo que se realiza</th>
+<th>Qué debe comprobarse</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Código</td>
+<td>Seleccionar versiones compatibles, adaptar módulos propios y resolver reemplazos.</td>
+<td>Que el conjunto de módulos instale y funcione en la versión destino.</td>
+</tr>
+<tr>
+<td>Base de datos</td>
+<td>Solicitar a Odoo la actualización de una copia de la base y revisar su cobertura.</td>
+<td>Que los datos y sus relaciones se conserven en el entorno actualizado.</td>
+</tr>
+<tr>
+<td>Negocio y aceptación</td>
+<td>Ejecutar escenarios reales acordados con los referentes.</td>
+<td>Que los procesos críticos funcionen y las diferencias sean aceptadas por sus responsables.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>El código y la base pueden avanzar en paralelo; ninguno acredita por sí solo una
+migración aceptada.</strong> El encuentro entre ambos se comprueba en un entorno de pruebas,
+antes de considerar el paso a producción.</p>
+<h2 id="que-cambia-entre-origen-y-destino">Qué cambia entre origen y destino</h2>
+<p>Un proyecto no contiene únicamente el código oficial de Odoo. El <strong>repositorio principal</strong>
+reúne la configuración y las referencias a otros repositorios, frecuentemente mediante
+<strong>submódulos</strong>. Cada origen de código requiere una decisión propia:</p>
+<table>
+<thead>
+<tr>
+<th>Origen en 17.0</th>
+<th>Tratamiento previsto para 19.0</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Odoo y sus componentes oficiales</td>
+<td>Utilizar la versión destino admitida por la plataforma y el servicio contratado.</td>
+</tr>
+<tr>
+<td>OCA</td>
+<td>Revisar si existe una rama 19.0 compatible y qué módulos incluye; actualizar las referencias solo después de comprobar dependencias y cobertura.</td>
+</tr>
+<tr>
+<td>ADHOC y sus forks</td>
+<td>Contrastar la versión destino con las personalizaciones del fork e identificar módulos cambiados, reorganizados o reemplazados.</td>
+</tr>
+<tr>
+<td>Módulos de Hito</td>
+<td>Adaptar el código propio, sus dependencias y sus pruebas en las ramas de destino correspondientes.</td>
+</tr>
+<tr>
+<td>Personalizaciones <code>custom-cliente</code></td>
+<td>Revisar las necesidades específicas del cliente y migrar las que continúan dentro del alcance.</td>
+</tr>
+<tr>
+<td>Repositorio principal</td>
+<td>Preparar una rama de migración que integre las referencias compatibles y la configuración del destino.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Cambiar de rama no demuestra equivalencia</strong> funcional ni conservación de datos. Un módulo
+puede no existir en destino, estar en otro repositorio, haber cambiado de diseño o haber
+sido sustituido. Además, deben conservarse o trasladarse las modificaciones propias del fork.</p>
+<p>Por eso, primero se identifica lo instalado y utilizado, y luego se decide qué reutilizar,
+qué adaptar, qué reemplazar y qué requiere investigación. No se migra todo por defecto.</p>
 <h2 id="como-trabajamos">Cómo trabajamos</h2>
+<p>El esquema contempla dos formas de organizar el código destino. La elección depende del
+proyecto; no modifica la necesidad de actualizar la base y validar el resultado completo.</p>
+<h3 id="adaptar-el-repositorio-actual">Adaptar el repositorio actual</h3>
+<p>Se prepara una rama de trabajo sobre la estructura existente y se lleva cada componente
+a una referencia compatible con 19.0. Los módulos propios se adaptan y los de terceros
+se toman de una versión adecuada cuando existe, preservando las diferencias necesarias.</p>
+<p>Odoo.sh puede gestionar la actualización de prueba de la base y el cambio de versión de
+su entorno. <strong>Ese servicio no adapta automáticamente el código de OCA, ADHOC, Hito ni las
+personalizaciones del cliente.</strong> Si esas referencias siguen en 17.0 o no son compatibles,
+la aplicación todavía no está preparada para funcionar en 19.0.</p>
+<p>Después se integran código y base actualizada en pruebas, se observan los errores y se
+corrigen sus causas. Los cambios de módulos de terceros son un foco de revisión, no una
+predicción de que todo fallará ni de que un cambio de rama resolverá todas las diferencias.</p>
+<h3 id="preparar-el-repositorio-de-destino">Preparar el repositorio de destino</h3>
+<p><strong>Para Equipavic y Smarttract, el enfoque indicado en el esquema es preparar un repositorio
+de destino para 19.0 con la arquitectura actual de la localización de Hito</strong>, en lugar de
+reproducir sin revisión la organización histórica de repositorios y submódulos.
+Esto describe el diseño propuesto, no afirma que su implementación ya esté terminada.</p>
+<p>La organización diferencia la localización argentina, los módulos genéricos compartidos,
+los repositorios o forks de terceros y las personalizaciones del cliente. Los nombres y
+las referencias reales se mantienen en el registro privado de cada proyecto.</p>
+<p>El recorrido previsto es:</p>
+<ol>
+<li><strong>Preparar el repositorio y la rama de destino.</strong> Definir la estructura, las fuentes
+   permitidas y las referencias que integrará el proyecto para 19.0.</li>
+<li><strong>Relacionar el inventario de origen con el destino.</strong> Identificar para cada módulo
+   si conserva su implementación, se adapta o pasa a una alternativa. Revisar sus
+   dependencias y ubicarlo en el repositorio que corresponde a la nueva arquitectura.</li>
+<li><strong>Actualizar el código y solicitar la actualización de la base en paralelo.</strong>
+   La adaptación técnica y la solicitud al servicio de Odoo son trabajos separados;
+   no hace falta esperar a terminar todos los módulos para iniciar la solicitud autorizada.</li>
+<li><strong>Integrar la copia actualizada con el código destino.</strong> Restaurar o incorporar la
+   entrega únicamente en el entorno aislado autorizado, con las condiciones de copia
+   y recuperación acordadas. No se reemplaza la base de producción en este paso.</li>
+<li><strong>Resolver diferencias y verificar.</strong> Registrar errores, corregir código o preparar
+   transformaciones de datos cuando sean necesarias y estén aprobadas; repetir las pruebas
+   hasta reunir evidencia suficiente para la aceptación.</li>
+</ol>
+<p>No es un traslado mecánico de carpetas: el destino debe conservar las capacidades y la
+historia que el usuario necesita, aunque cambie la organización del código.</p>
+<h3 id="que-implica-reemplazar-un-modulo">Qué implica reemplazar un módulo</h3>
+<p>El esquema utiliza como ejemplo un módulo de pagos <code>payment_group</code> procedente de un fork
+de ADHOC y un posible destino en el repositorio <code>account-payment-pro</code>. El ejemplo ilustra
+una <strong>decisión de correspondencia que debe investigarse</strong>, no una equivalencia ya probada
+ni una afirmación de que esos sean los módulos efectivos de todos los proyectos.</p>
+<p>Antes de adoptar una alternativa hay que comprobar las funciones que cubre, sus dependencias,
+las personalizaciones y el tratamiento de los registros existentes. Cambiar un submódulo de
+Git no convierte los datos: si cambian modelos, campos o relaciones, debe definirse y probarse
+su transición. Una brecha funcional, contable o histórica requiere una decisión explícita.</p>
+<h2 id="la-actualizacion-de-la-base-de-datos">La actualización de la base de datos</h2>
+<p>El servicio oficial <a href="https://upgrade.odoo.com/">Odoo Upgrade</a> recibe la solicitud de
+actualización de una base de origen y entrega, cuando el proceso resulta satisfactorio,
+una base para la versión destino. La cobertura de datos estándar y de personalizaciones
+se confirma para el caso; no se presume por haber recibido una entrega.</p>
+<p>En Odoo.sh se utiliza el flujo de actualización de prueba sobre una rama <strong>Staging</strong>;
+el formulario del servicio también distingue solicitudes de prueba y de producción.
+El <a href="procedure/#6-en-paralelo-solicitar-la-actualizacion-de-la-base">Procedimiento</a>
+explica dónde iniciar la solicitud. El envío de datos, la restauración y las pruebas
+requieren sus permisos correspondientes.</p>
+<p><strong>Una base actualizada no acredita aceptación de los datos ni compatibilidad del código
+personalizado.</strong> Debe integrarse con los módulos de destino y comprobarse con escenarios,
+valores esperados y criterios acordados. El origen se preserva: una restauración de prueba
+no es una autorización para modificarlo ni para ejecutar un corte a producción.</p>
+<h2 id="validar-y-avanzar-en-espiral">Validar y avanzar en espiral</h2>
+<p>El trabajo se realiza en <strong>espiral</strong>: inventariar y decidir, adaptar un conjunto acotado,
+probar, analizar diferencias y volver a corregir cuando sea necesario. Las dependencias
+orientan el orden: primero los componentes base y después los módulos que los utilizan.
+Un hallazgo puede obligar a revisar una decisión anterior; no se fuerza el avance por haber
+terminado una lista de tareas.</p>
+<p>La verificación separa tres niveles:</p>
 <ul>
-<li><strong>El usuario aporta el contexto y decide:</strong> alcance, accesos, prioridades y aceptación.</li>
-<li><strong>Coordinación organiza:</strong> inventario, dependencias, responsables y preguntas pendientes.</li>
-<li><strong>El equipo técnico implementa y verifica:</strong> cambios pequeños, pruebas y resultados trazables.</li>
-<li><strong>El proveedor de actualización confirma su cobertura y entrega la base actualizada</strong> por la vía acordada.</li>
+<li><strong>Técnico:</strong> instalación, carga, dependencias, permisos y resultados de pruebas de código.</li>
+<li><strong>Funcional:</strong> operaciones del negocio, informes e integraciones con resultados esperados.</li>
+<li><strong>Histórico:</strong> saldos, documentos, numeraciones, estados y relaciones de la copia migrada,
+  según los dominios incluidos en el alcance.</li>
 </ul>
-<p>El código y los datos avanzan en paralelo, pero se aceptan por separado.
-La IA puede ayudar a analizar, adaptar y revisar; no decide permisos ni aprueba una migración.
-Si falta información, se formula una pregunta concreta. No se completa con suposiciones.</p>
+<p>Una base nueva puede servir para probar código, pero no demuestra la conservación de la
+historia. A su vez, una base convertida no demuestra que sus procesos funcionen correctamente.
+Las diferencias y las comprobaciones omitidas se registran, no se ocultan con un estado de éxito.</p>
+<p>Solo después se presenta la aceptación a los referentes y se prepara o completa el ensayo
+de corte y recuperación. <strong>La producción exige autorización específica</strong>, evidencias revisadas,
+responsables, condiciones de parada y un plan de recuperación acordado.</p>
+<h2 id="que-aporta-el-agente">Qué aporta el agente</h2>
+<p>El agente ejecutado desde Gentle Shell ayuda a organizar y desarrollar el trabajo dentro
+de los permisos del caso. El esquema le asigna estas funciones:</p>
+<table>
+<thead>
+<tr>
+<th>Función</th>
+<th>Aporte esperado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Analizar la estrategia</td>
+<td>Identificar qué módulos deben migrarse realmente, cuáles ya tienen una versión compatible y cuáles necesitan análisis por reemplazo.</td>
+</tr>
+<tr>
+<td>Adaptar técnicamente</td>
+<td>Trabajar sobre Python, XML, vistas, manifiestos y dependencias de los módulos autorizados.</td>
+</tr>
+<tr>
+<td>Registrar el avance</td>
+<td>Mantener trazabilidad de módulos migrados, pendientes y que requieren revisión, con bloqueos y dependencias visibles.</td>
+</tr>
+<tr>
+<td>Preparar pruebas técnicas</td>
+<td>Proponer y, con medios y permisos disponibles, ejecutar comprobaciones de instalación y comportamiento técnico; registrar resultados reales.</td>
+</tr>
+<tr>
+<td>Apoyar pruebas funcionales</td>
+<td>Ayudar a definir escenarios y resultados esperados para que los responsables comprueben los procesos.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>El apoyo a pruebas funcionales figura como capacidad no probada en el esquema recibido.</strong>
+No debe presentarse como una función ya validada ni como una aceptación automática.
+Preparar una prueba tampoco equivale a haberla ejecutado o superado.</p>
+<p>El agente debe seguir <code>migration-spiral-strategy-spec.md</code>, informar lo que no sabe y
+pedir decisiones cuando falte una fuente, un permiso o una definición. <strong>No sustituye la aceptación humana</strong>
+ni puede concederse acceso, ampliar el alcance o autorizar producción por su cuenta.
+Los conteos de módulos se respaldan con el inventario y las comprobaciones: no se inventan
+cantidades ni se deduce progreso de la mera ausencia de errores informados.</p>
+<h2 id="responsabilidades-y-decisiones">Responsabilidades y decisiones</h2>
+<table>
+<thead>
+<tr>
+<th>Responsable</th>
+<th>Decisiones y entregas</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Usuario migrador y coordinación</td>
+<td>Aportar contexto y fuentes autorizadas, organizar dependencias, mantener el registro y resolver o elevar bloqueos.</td>
+</tr>
+<tr>
+<td>Equipo técnico y agente</td>
+<td>Proponer e implementar cambios acotados, preparar pruebas y entregar resultados, fallos y límites de lo comprobado.</td>
+</tr>
+<tr>
+<td>Servicio de actualización de Odoo</td>
+<td>Procesar la solicitud y entregar la base actualizada dentro de la cobertura confirmada.</td>
+</tr>
+<tr>
+<td>Referentes funcionales y contables</td>
+<td>Definir criterios, revisar escenarios y diferencias y aceptar o rechazar los resultados de su ámbito.</td>
+</tr>
+<tr>
+<td>Propietario y responsables del entorno</td>
+<td>Autorizar acciones sensibles, restauraciones, ensayos y el eventual corte a producción.</td>
+</tr>
+</tbody>
+</table>
 <div class="draft-notice" role="note">
-<p><strong>Borrador no verificado.</strong> Se describe una propuesta de trabajo, no una migración exitosa
-ni una receta de ejecución probada. Los datos y evidencias del proyecto se mantienen
-en un registro privado autorizado; el sitio público permanece anonimizado.</p>
+<p><strong>Borrador no verificado.</strong> Esta explicación formaliza el diseño de trabajo aportado;
+no acredita resultados de Equipavic, Smarttract ni de otra migración. Los inventarios,
+repositorios internos, accesos y evidencias se conservan en registros privados autorizados.</p>
 </div>
 <h2 id="como-usar-esta-guia">Cómo usar esta guía</h2>
 <ol>
-<li>Lea el <a href="procedure/">Procedimiento</a> para entender las etapas, actores y decisiones.</li>
-<li>Complete y entregue las <a href="user-instructions/">Instrucciones del usuario</a> para comenzar.</li>
-<li>Al cerrar cada etapa, revise lo comprobado y autorice solo el siguiente trabajo acotado.</li>
+<li>Use esta Introducción para comprender qué se migra y cómo se relacionan código, datos y aceptación.</li>
+<li>Siga el <a href="procedure/">Procedimiento</a> para entrar al proyecto, aportar los datos y utilizar
+   los mensajes de inicio o autorización en el paso correspondiente.</li>
+<li>Consulte <a href="gentle-shell/">Gentle Shell</a> para preparar el acceso o recuperar una sesión.</li>
 </ol>
-<p><strong>Un módulo que instala no demuestra que sus datos se hayan migrado bien.</strong> La aceptación
-requiere resultados de código, funcionamiento e historia, más una decisión humana.</p>
+<p><strong>Un módulo que instala no demuestra que sus datos se hayan migrado bien.</strong> El cierre
+requiere evidencia de código, funcionamiento e historia, más una decisión humana.</p>
 
 
 

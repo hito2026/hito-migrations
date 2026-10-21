@@ -13,10 +13,8 @@
         <link rel="canonical" href="https://hito2026.github.io/hito-migrations/gentle-shell/">
       
       
-        <link rel="prev" href="../user-instructions/">
+        <link rel="prev" href="../procedure/">
       
-      
-        <link rel="next" href="../architecture/">
       
       
         
@@ -205,6 +203,60 @@
       
   
   
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Migrando
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Migrando
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
   
   
     <li class="md-nav__item">
@@ -227,9 +279,10 @@
     </li>
   
 
-    
-      
-      
+              
+            
+              
+                
   
   
   
@@ -254,36 +307,10 @@
     </li>
   
 
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../user-instructions/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Instrucciones del usuario
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
+              
+            
+              
+                
   
   
     
@@ -736,57 +763,11 @@
     </li>
   
 
-    
+              
+            
+          </ul>
+        </nav>
       
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../architecture/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Arquitectura
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../spiral-strategy/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Plan técnico
-  
-
-    
-  </span>
-  
-  
-
-      </a>
     </li>
   
 
@@ -806,8 +787,8 @@
                 
   <aside class="doc-edition" aria-label="Edición de la documentación">
   <span class="doc-edition__label">Hito · Guías técnicas</span>
-  <span data-doc-version="0.2.11">Versión documental 0.2.11</span>
-  <span>Actualizado <time datetime="2026-10-20">20/10/2026</time></span>
+  <span data-doc-version="0.3.0">Versión documental 0.3.0</span>
+  <span>Actualizado <time datetime="2026-10-21">21/10/2026</time></span>
 </aside>
   
                   
@@ -1105,8 +1086,10 @@ No modifique repositorios ni bases, no haga commits ni push y no opere en produc
 Si falta acceso o una decisión, indique exactamente qué necesito resolver.
 </code></pre>
 <p>Responda las preguntas del agente y revise el plan. Para autorizar la siguiente
-etapa, copie el mensaje correspondiente de <a href="../user-instructions/">Instrucciones del usuario</a>.
-Siga el orden del <a href="../procedure/">Procedimiento</a>; no autorice toda la migración de una vez.</p>
+etapa, copie la <a href="../procedure/#7-seguir-al-agente-y-el-plan-en-espiral">autorización correspondiente del Procedimiento</a>.
+Para las etapas técnicas, siga el <a href="../spiral-strategy/">Plan técnico en espiral</a>;
+no autorice toda la migración de una vez. El <a href="../procedure/">Procedimiento</a> resume el acceso
+y la puesta en marcha del trabajo con el agente.</p>
 <h2 id="7-retomar-el-trabajo">7. Retomar el trabajo</h2>
 <p>Para salir sin cerrar la sesión: <strong>Ctrl+b</strong>, suelte y presione <strong>d</strong>.</p>
 <p>Para volver, <strong>desde su computadora</strong>:</p>
@@ -1434,7 +1417,7 @@ No avance al siguiente paso sin una nueva autorización.
 </details>
 <p>Para continuar después de aprobar la ficha y delimitar las fuentes, use
 <a href="#6-empezar-la-migracion">Empezar la migración</a> y las autorizaciones por etapa de
-<a href="../user-instructions/">Instrucciones del usuario</a>. Para desconectarse o entregar,
+<a href="../procedure/#7-seguir-al-agente-y-el-plan-en-espiral">Procedimiento</a>. Para desconectarse o entregar,
 siga <a href="#7-retomar-el-trabajo">Retomar el trabajo</a> o <a href="#8-entregar-el-caso">Entregar el caso</a>.</p>
 <h2 id="ejemplo-guiado-para-retomar-un-caso">Ejemplo guiado para retomar un caso</h2>
 <p>Este recorrido recupera una instancia de Gentle Shell que <strong>sigue ejecutándose en
@@ -1591,8 +1574,8 @@ No avance al siguiente paso sin una nueva autorización.
 En un caso recién creado, el resumen puede indicar que la ficha sigue sin completar
 y el tablero está vacío. Recuperar la sesión no convierte eso en avance de migración
 ni confirma la versión <code>19.0</code> que viene en la plantilla. Para trabajo nuevo, otorgue
-solo la autorización de la etapa correspondiente de
-<a href="../user-instructions/">Instrucciones del usuario</a>.</p>
+solo la autorización de la etapa correspondiente del
+<a href="../procedure/#7-seguir-al-agente-y-el-plan-en-espiral">Procedimiento</a>.</p>
 <h3 id="si-el-agente-ya-no-esta-abierto">Si el agente ya no está abierto</h3>
 <p><strong>Esta variante no se probó en el recorrido de reconexión anterior.</strong> No confunda
 un proceso que sigue vivo con volver a abrir uno cerrado. Si no existe la sesión o
