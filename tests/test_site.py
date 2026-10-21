@@ -11,7 +11,8 @@ from xml.etree import ElementTree
 SITE = Path(os.environ.get("SITE_DIR", "site")).resolve()
 LEGACY_ROUTES = ("migration-manual", "spiral-strategy", "migration-templates",
                  "versions", "recipes", "validation", "known-errors", "ai-guide", "case-template")
-ROUTES = ("", "procedure", "user-instructions", "gentle-shell", "architecture", *LEGACY_ROUTES)
+ROUTES = ("", "procedure", "user-instructions", "gentle-shell", "architecture",
+          *LEGACY_ROUTES)
 BASE = "https://hito2026.github.io/hito-migrations/"
 
 
@@ -20,6 +21,7 @@ class Page(HTMLParser):
         super().__init__()
         self.tags = []
         self.primary_links = []
+        self.primary_link_levels = []
         self._primary_depth = 0
         self.text = path.read_text(encoding="utf-8")
         self.feed(self.text)
@@ -36,6 +38,7 @@ class Page(HTMLParser):
             href = attrs.get("href", "")
             if href and not href.startswith("#"):
                 self.primary_links.append(href)
+                self.primary_link_levels.append((href, self._primary_depth - 1))
 
     def handle_endtag(self, tag):
         if tag == "nav" and self._primary_depth:
@@ -48,6 +51,13 @@ class Page(HTMLParser):
 class SiteContract(unittest.TestCase):
     def page(self, route=""):
         return Page(SITE / route / "index.html")
+
+    def test_publication_excludes_draft_reports_and_local_notes(self):
+        for path in ("migrando", "technical-plan", ".local-work", "odd"):
+            self.assertFalse((SITE / path).exists(), path)
+        search = (SITE / "search/search_index.json").read_text(encoding="utf-8")
+        self.assertNotIn('"location": "migrando/', search)
+        self.assertNotIn("Calendario planificado", search)
 
     def test_spanish_canonical_and_routes(self):
         for route in ROUTES:
@@ -93,6 +103,63 @@ class SiteContract(unittest.TestCase):
                             'font-size: .65rem;', 'line-height: 1.5;'):
             self.assertIn(declaration, block.group(1))
 
+    def test_migrando_menu_only_lists_the_three_remaining_guides(self):
+        expected = {BASE, BASE + "procedure/", BASE + "gentle-shell/"}
+        for route in ROUTES:
+            with self.subTest(route=route):
+                page = self.page(route)
+                current = BASE + (route + "/" if route else "")
+                self.assertEqual({urljoin(current, link) for link in page.primary_links}, expected)
+                expected_levels = {url: 1 for url in expected}
+                self.assertEqual({urljoin(current, link): level for link, level in page.primary_link_levels},
+                                 expected_levels)
+                nav_levels = [attrs["data-md-level"] for tag, attrs in page.tags
+                              if tag == "nav" and "data-md-level" in attrs]
+                self.assertEqual(nav_levels, ["0", "1"])
+                for label in ("Introducción", "Procedimiento", "Gentle Shell"):
+                    self.assertIn(label, page.text)
+        intro = self.page()
+        for text in ("La idea del proyecto", "Cómo trabajamos", "Borrador no verificado"):
+            self.assertIn(text, intro.text)
+        self.assertTrue(intro.has("a", "href", "procedure/"))
+        self.assertFalse(intro.has("a", "href", "user-instructions/"))
+        self.assertTrue(intro.has("a", "href", "gentle-shell/"))
+        self.assertNotIn("Abrir el manual de Gentle Shell", intro.text)
+
+    def test_introduction_distinguishes_code_database_and_migration_acceptance(self):
+        page = self.page()
+        plain = unescape(re.sub(r"<[^>]+>", "", page.text))
+        for topic in ("17.0", "19.0", "OCA", "ADHOC", "Hito", "custom-cliente",
+                      "Python", "XML", "repositorio principal", "submódulos",
+                      "código", "datos históricos", "Staging", "producción"):
+            self.assertIn(topic, plain)
+        self.assertTrue(page.has("a", "href", "https://upgrade.odoo.com/"))
+        for limitation in ("no adapta automáticamente", "no acredita aceptación",
+                           "autorización específica", "Borrador no verificado"):
+            self.assertIn(limitation, plain)
+
+    def test_introduction_explains_both_repository_strategies_and_replacement_risks(self):
+        page = self.page()
+        plain = unescape(re.sub(r"<[^>]+>", "", page.text))
+        for heading in ("adaptar-el-repositorio-actual", "preparar-el-repositorio-de-destino"):
+            self.assertTrue(page.has("h3", "id", heading))
+        for detail in ("Equipavic", "Smarttract", "localización", "payment_group",
+                       "account-payment-pro", "no demuestra equivalencia", "en paralelo", "espiral"):
+            self.assertIn(detail, plain)
+        # El esquema se explica por función, sin exponer nombres de repositorios internos.
+        self.assertNotIn("hito-devman", plain)
+        self.assertNotIn("account-payment-hito", plain)
+
+    def test_introduction_scopes_agent_support_and_unverified_functional_testing(self):
+        page = self.page()
+        plain = unescape(re.sub(r"<[^>]+>", "", page.text))
+        for detail in ("Qué aporta el agente", "migrados", "pendientes", "reemplazo",
+                       "dependencias", "pruebas técnicas", "pruebas funcionales",
+                       "capacidad no probada", "No sustituye la aceptación humana"):
+            self.assertIn(detail, plain)
+        self.assertTrue(page.has("a", "href", "procedure/"))
+        self.assertTrue(page.has("a", "href", "gentle-shell/"))
+
     def test_technical_plan_is_the_single_spiral_document(self):
         page = self.page("spiral-strategy")
         for phrase in ("Estrategia de migración en espiral", "S1 — Entrada", "S2 — Inventario",
@@ -102,29 +169,12 @@ class SiteContract(unittest.TestCase):
             self.assertIn(phrase, page.text)
         raw = "https://raw.githubusercontent.com/hito2026/hito-migrations/refs/heads/docs/spiral-strategy/docs/spiral-strategy.md"
         self.assertTrue(page.has("a", "href", raw))
-        for route in ROUTES:
-            self.assertIn("Plan técnico", self.page(route).text)
+        self.assertIn("Plan técnico general de migración", page.text)
         self.assertFalse((SITE / "technical-plan").exists())
-        self.assertFalse((SITE / "migrando").exists())
 
-    def test_six_section_navigation_and_introduction(self):
-        expected = {BASE, BASE + "procedure/", BASE + "user-instructions/",
-                    BASE + "gentle-shell/", BASE + "architecture/", BASE + "spiral-strategy/"}
-        for route in ROUTES:
-            with self.subTest(route=route):
-                page = self.page(route)
-                current = BASE + (route + "/" if route else "")
-                self.assertEqual({urljoin(current, link) for link in page.primary_links}, expected)
-                for label in ("Introducción", "Procedimiento", "Instrucciones del usuario",
-                              "Gentle Shell", "Arquitectura", "Plan técnico"):
-                    self.assertIn(label, page.text)
-        intro = self.page()
-        for text in ("La idea del proyecto", "Cómo trabajamos", "Borrador no verificado"):
-            self.assertIn(text, intro.text)
-        self.assertTrue(intro.has("a", "href", "procedure/"))
-        self.assertTrue(intro.has("a", "href", "user-instructions/"))
-        self.assertTrue(intro.has("a", "href", "gentle-shell/"))
-        self.assertNotIn("Abrir el manual de Gentle Shell", intro.text)
+
+
+
 
     def test_diagrams_are_thirty_percent_shorter_at_same_width(self):
         expected_heights = {"migration-process.svg": 1498, "solution-architecture.svg": 1840.3}
@@ -143,31 +193,99 @@ class SiteContract(unittest.TestCase):
         for declaration in ("width: 100%;", "max-width: 100%;", "box-sizing: border-box;", "padding: .25rem;"):
             self.assertIn(declaration, figure)
 
-    def test_procedure_has_accessible_local_actor_diagram(self):
+    def test_procedure_has_seven_copyable_operator_steps(self):
         page = self.page("procedure")
-        self.assertTrue(page.has("img", "src", "../assets/migration-process.svg"))
-        self.assertTrue(page.has("img", "alt", "Proceso de migración por actores, etapas y decisiones"))
+        headings = [unescape(re.sub(r"<[^>]+>", "", heading)).strip()
+                    for heading in re.findall(r"<h2\b[^>]*>(.*?)</h2>", page.text, re.S)]
+        self.assertEqual(headings, ["1. Conectarse al servidor", "2. Entrar al proyecto",
+                                    "3. Abrir Gentle Shell", "4. Iniciar o continuar",
+                                    "5. Si inicia: informar repositorio y accesos",
+                                    "6. En paralelo: solicitar la actualización de la base",
+                                    "7. Seguir al agente y el plan en espiral"])
+        commands = [unescape(command).strip() for command in re.findall(
+            r'<pre><code class="language-sh">(.*?)</code></pre>', page.text, re.S)]
+        self.assertEqual(commands, ["ssh servidor-migraciones",
+                                    'cd "/srv/migraciones/cases/MIG-Nombre del proyecto"',
+                                    "gentle-shell"])
+        prompts = [unescape(prompt) for prompt in re.findall(
+            r'<pre><code class="language-text">(.*?)</code></pre>', page.text, re.S)]
+        self.assertEqual(len(prompts), 7)
+        self.assertIn("Continúe", prompts[0])
+        self.assertIn("Inicie", prompts[1])
+        plain = unescape(re.sub(r"<[^>]+>", "", page.text))
+        for phrase in ("ya creado y asignado", "no abra otro coordinador",
+                       "Nombre del proyecto", "no autoriza operaciones sobre bases ni producción"):
+            self.assertIn(phrase, plain)
+        self.assertTrue(page.has("a", "href", "../spiral-strategy/"))
+        self.assertTrue(page.has("a", "href", "../gentle-shell/#7-retomar-el-trabajo"))
+        self.assertFalse(page.has("img", "src", "../assets/migration-process.svg"))
+
+    def test_procedure_new_case_collects_repository_and_both_ssh_endpoints(self):
+        page = self.page("procedure")
+        plain = unescape(re.sub(r"<[^>]+>", "", page.text))
+        for label in ("Repositorio principal:", "SSH de origen:", "SSH de destino:",
+                      "No pegue contraseñas", "claves privadas", "canal privado del caso"):
+            self.assertIn(label, plain)
+
+    def test_procedure_database_test_upgrade_runs_in_parallel_not_production(self):
+        page = self.page("procedure")
+        plain = unescape(re.sub(r"<[^>]+>", "", page.text))
+        self.assertTrue(page.has("a", "href", "https://upgrade.odoo.com/"))
+        for label in ("En paralelo", "Staging", "UPGRADE", "Test Upgrade", "Testing",
+                      "No seleccione Production", "no acredita aceptación de los datos"):
+            self.assertIn(label, plain)
+
+    def test_procedure_agent_follows_the_named_spiral_specification(self):
+        page = self.page("procedure")
+        plain = unescape(re.sub(r"<[^>]+>", "", page.text))
+        for phrase in ("migration-spiral-strategy-spec.md", "Siga las indicaciones del agente",
+                       "permisos correspondientes"):
+            self.assertIn(phrase, plain)
+
+    def test_technical_process_diagram_remains_available_as_a_reference(self):
         svg = ElementTree.parse(SITE / "assets/migration-process.svg").getroot()
         self.assertEqual(svg.attrib.get("role"), "img")
         text = " ".join(svg.itertext())
         for label in ("Usuario", "Coordinación", "Equipo técnico", "Proveedor",
                       "Entrada", "Plan", "Código", "Historia", "Ensayo", "Corte"):
             self.assertIn(label, text)
-        self.assertIn("no es un modelo ejecutable", page.text)
         self.assertTrue(any(node.attrib.get("class") == "gateway" for node in svg.iter()))
         self.assertTrue(any(node.attrib.get("class") == "event" for node in svg.iter()))
 
-    def test_user_instructions_offer_stage_specific_prompts(self):
+    def test_user_instructions_are_integrated_at_the_corresponding_procedure_steps(self):
+        page = self.page("procedure")
+        sections = dict(re.findall(r'<h2 id="([^"]+)"[^>]*>.*?</h2>(.*?)(?=<h2\b|$)',
+                                   page.text, re.S))
+        start = sections["5-si-inicia-informar-repositorio-y-accesos"]
+        for text in ("Origen y destino:", "Fuentes permitidas:", "Fuera de alcance:",
+                     "Responsables:", "Restricciones:", "No modifique archivos", "No restaure bases"):
+            self.assertIn(text, start)
+        upgrade = sections["6-en-paralelo-solicitar-la-actualizacion-de-la-base"]
+        self.assertIn("Testing", upgrade)
+        self.assertNotIn("El responsable de datos autoriza", upgrade)
+        follow = sections["7-seguir-al-agente-y-el-plan-en-espiral"]
+        for label in ("Para adaptar código", "Para probar el funcionamiento", "Para validar los datos",
+                      "Para ensayar el corte", "Para decidir producción", "Cómo responder una consulta o un bloqueo"):
+            self.assertIn(label, follow)
+        for text in ("No amplíe el alcance", "No use datos productivos", "No modifique el origen",
+                     "No ejecute el corte real", "Si se pospone: no ejecute", "aprobación", "bloqueo"):
+            self.assertIn(text, follow)
+
+    def test_legacy_user_instructions_route_links_to_the_merged_content(self):
         page = self.page("user-instructions")
-        for label in ("Para comenzar", "Para adaptar código", "Para probar el funcionamiento",
-                      "Para validar los datos", "Para ensayar el corte", "Para decidir producción"):
-            self.assertIn(label, page.text)
-        self.assertGreaterEqual(sum(tag == "pre" for tag, _ in page.tags), 6)
-        for text in ("No modifique archivos", "No restaure bases", "aprobación", "bloqueo"):
-            self.assertIn(text, page.text)
+        self.assertEqual(sum(tag == "pre" for tag, _ in page.tags), 0)
+        targets = ("5-si-inicia-informar-repositorio-y-accesos", "para-adaptar-codigo",
+                   "para-probar-el-funcionamiento", "para-validar-los-datos", "para-ensayar-el-corte",
+                   "para-decidir-produccion", "como-responder-una-consulta-o-un-bloqueo")
+        for target in targets:
+            self.assertTrue(page.has("a", "href", "../procedure/#" + target), target)
+        for route in ROUTES:
+            current = BASE + (route + "/" if route else "")
+            self.assertNotIn(BASE + "user-instructions/",
+                             {urljoin(current, link) for link in self.page(route).primary_links})
 
     def test_gentle_shell_manual_is_linked_and_scoped(self):
-        self.assertTrue(self.page("user-instructions").has("a", "href", "../gentle-shell/"))
+        self.assertTrue(self.page("procedure").has("a", "href", "../gentle-shell/"))
         page = self.page("gentle-shell")
         for heading in ("Preparar el acceso", "Entrar al servidor", "Abrir su sesión",
                         "Abrir el caso", "Conectar el modelo", "Empezar la migración",
@@ -181,7 +299,7 @@ class SiteContract(unittest.TestCase):
         self.assertNotIn("Estado de las comprobaciones", plain)
         self.assertNotIn("13 pruebas", plain)
         self.assertIn("No copie claves privadas", plain)
-        self.assertTrue(page.has("a", "href", "../user-instructions/"))
+        self.assertFalse(page.has("a", "href", "../user-instructions/"))
         self.assertTrue(page.has("a", "href", "../procedure/"))
 
     def test_gentle_shell_has_platform_specific_client_steps(self):
@@ -357,11 +475,11 @@ class SiteContract(unittest.TestCase):
         for route, page in pages:
             with self.subTest(route=route):
                 self.assertTrue(page.has("aside", "aria-label", "Edición de la documentación"))
-                self.assertTrue(page.has("span", "data-doc-version", "0.2.11"))
-                self.assertIn("Versión documental 0.2.11", page.text)
-                self.assertTrue(page.has("time", "datetime", "2026-10-20"))
+                self.assertTrue(page.has("span", "data-doc-version", "0.3.0"))
+                self.assertIn("Versión documental 0.3.0", page.text)
+                self.assertTrue(page.has("time", "datetime", "2026-10-21"))
                 self.assertIn("Actualizado", page.text)
-                self.assertIn("20/10/2026", page.text)
+                self.assertIn("21/10/2026", page.text)
 
     def test_local_links_resources_and_no_external_fonts(self):
         for route in ROUTES:

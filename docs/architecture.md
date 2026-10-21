@@ -94,7 +94,7 @@ No se deben iniciar dos coordinadores sobre el mismo caso para «trabajar más r
 | Proveedor de actualización | Entrega la base actualizada según cobertura acordada; portar módulos no migra por sí solo los datos |
 
 Tener acceso a un servicio no autoriza todas sus operaciones. Las decisiones por etapa
-se mantienen en el [procedimiento](procedure.md) y en las [instrucciones del usuario](user-instructions.md).
+se mantienen junto a las instrucciones del [Procedimiento](procedure.md#7-seguir-al-agente-y-el-plan-en-espiral).
 
 ## 5. Credenciales y separación de responsabilidades
 
@@ -123,4 +123,4 @@ La arquitectura distingue lo instalado de lo validado:
   y «Mac de Ale» son los nombres solicitados para explicar los roles de los equipos.
 
 **Para operar:** abra [Gentle Shell](gentle-shell.md). **Para planificar una migración:**
-complete las [Instrucciones del usuario](user-instructions.md).
+complete el [mensaje inicial del Procedimiento](procedure.md#5-si-inicia-informar-repositorio-y-accesos).

@@ -19,8 +19,8 @@ theme:
     - content.code.copy
 extra:
   documentation:
-    version: "0.2.11"
-    updated: "2026-10-20"
+    version: "0.3.0"
+    updated: "2026-10-21"
 extra_css:
   - stylesheets/extra.css
 markdown_extensions:
@@ -38,10 +38,11 @@ not_in_nav: |
   /known-errors.md
   /ai-guide.md
   /case-template.md
+  /user-instructions.md
+  /architecture.md
+  /spiral-strategy.md
 nav:
-  - Introducción: index.md
-  - Procedimiento: procedure.md
-  - Instrucciones del usuario: user-instructions.md
-  - Gentle Shell: gentle-shell.md
-  - Arquitectura: architecture.md
-  - Plan técnico: spiral-strategy.md
+  - Migrando:
+      - Introducción: index.md
+      - Procedimiento: procedure.md
+      - Gentle Shell: gentle-shell.md

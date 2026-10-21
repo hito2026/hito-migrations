@@ -2,10 +2,17 @@
 
 Base documental para migraciones de Odoo, preparada para publicación pública.
 Los esquemas son **borradores no verificados**, no procedimientos probados ni
-pruebas de migraciones exitosas. La guía tiene seis entradas:
-[Introducción](docs/index.md), [Procedimiento](docs/procedure.md),
-[Instrucciones del usuario](docs/user-instructions.md), [Gentle Shell](docs/gentle-shell.md)
-[Arquitectura](docs/architecture.md) y [Plan técnico](docs/spiral-strategy.md).
+pruebas de migraciones exitosas. El menú **Migrando** conserva la documentación general:
+[Introducción](docs/index.md), [Procedimiento](docs/procedure.md)
+y [Gentle Shell](docs/gentle-shell.md).
+
+**Arquitectura y Plan técnico quedan fuera del menú.** Se conservan sus archivos,
+sus URL y sus enlaces de referencia. Las fichas y el calendario de proyectos siguen
+como borradores locales y no se incluyen en esta edición pública.
+
+La referencia [Plan técnico](docs/spiral-strategy.md) conserva un único documento completo:
+el plan general de migración en espiral, con enlace al Markdown para copiarlo a otro arnés.
+La jerarquía del menú no modifica las URL anteriores.
 
 El [manual de uso de Gentle Shell](docs/gentle-shell.md) tiene una sección propia en el menú.
 Incluye preparación y acceso desde Windows (PowerShell), Linux y macOS, con un prompt
@@ -15,15 +22,49 @@ Utiliza ejemplos anónimos. La sección Arquitectura y su diagrama local disting
 administración en la Mac de Ale, acceso de usuarios y ejecución en PC-ALE; no incluyen
 IPs, dominios privados ni credenciales. La edición documental 0.2.3 incorpora esta sección.
 
-**Plan técnico** muestra directamente un único documento: la estrategia de migración
-en espiral, con sus seis ciclos, clasificación de módulos, estados de evidencia y
-coordinación por oleadas. No es un catálogo de archivos. Incluye un enlace al Markdown
-original para copiarlo a otro arnés; la fuente se mantiene en `docs/spiral-strategy.md`.
-No requiere Gentle Shell ni acredita resultados de una migración real.
+Las nueve guías anteriores y Arquitectura conservan sus URL como referencias fuera del menú. `not_in_nav` en `mkdocs.yml` declara esa exclusión;
+no elimina páginas ni sus entradas de búsqueda.
 
-Las guías anteriores conservan sus URL. La estrategia en espiral pasa al menú como
-Plan técnico; las otras ocho siguen como referencias fuera del menú. `not_in_nav` en
-`mkdocs.yml` declara esa exclusión; no elimina páginas ni sus entradas de búsqueda.
+## Introducción al diseño de la migración
+
+La [Introducción](docs/index.md) explica el esquema Odoo 17.0 → 19.0: tratamiento de código
+oficial, OCA, ADHOC, módulos de Hito y personalizaciones; relación entre repositorio
+principal y submódulos; adaptación sobre la estructura existente o preparación de un
+repositorio destino con la arquitectura de localización propuesta para Equipavic y Smarttract.
+Distingue la actualización de base por Odoo del portado de código, la equivalencia de
+reemplazos y la aceptación funcional/histórica. El avance se organiza en espiral.
+Las responsabilidades del agente se describen con sus límites: la ayuda a pruebas
+funcionales se conserva como capacidad no probada, no como una validación disponible.
+No se publican nombres de repositorios internos ni se atribuyen resultados a los proyectos.
+
+## Procedimiento del usuario migrador
+
+El [Procedimiento](docs/procedure.md) se limita a siete pasos: conectarse por SSH,
+entrar al caso asignado, abrir `gentle-shell`, iniciar o continuar, aportar repositorio
+principal y conexiones SSH de origen/destino si inicia, solicitar en paralelo la
+actualización de prueba de la base en [Odoo Upgrade](https://upgrade.odoo.com/), y seguir
+al agente guiado por `migration-spiral-strategy-spec.md` del kit del servidor.
+Las instrucciones del usuario están integradas en esos pasos: datos y diagnóstico en
+el paso 5, solicitud de actualización de base en el 6 y autorizaciones de código,
+funcionamiento, datos históricos, ensayo y producción en el 7. Incluye mensajes
+copiables, sin contraseñas ni claves privadas, y cómo resolver consultas o bloqueos.
+La solicitud de prueba no autoriza producción; el detalle técnico sigue en el plan en espiral.
+
+La antigua URL [Instrucciones del usuario](docs/user-instructions.md) conserva sus
+encabezados y enlaces al contenido integrado, sin duplicar los mensajes. Ya no tiene
+una entrada separada en el menú. La portada, el manual y Arquitectura apuntan al Procedimiento.
+
+## Plan técnico reutilizable
+
+[Plan técnico](docs/spiral-strategy.md) muestra directamente la estrategia en espiral:
+S1 entrada, S2 inventario, S3 código, S4 runtime, S5 aceptación histórica y S6 ensayo de
+corte/recuperación. Incluye clasificación de módulos, estados de evidencia y coordinación
+por oleadas. No es un catálogo de archivos ni duplica la fuente.
+
+El enlace al Markdown permite copiar el documento completo con Ctrl+A/Ctrl+C o ⌘A/⌘C.
+Apunta a la última fuente subida en `docs/spiral-strategy`, no a cambios locales pendientes.
+No requiere Gentle Shell. Copiarlo no autoriza operaciones ni acredita resultados de
+una migración; se conserva la advertencia de propuesta no verificada.
 
 ## Preparación local
 
@@ -49,9 +90,13 @@ SITE_DIR=site python3 -m unittest discover -s tests -v
 
 El directorio generado `site/` está excluido de Git. Para una compilación externa,
 use `--site-dir /ruta/temporal/site` y el mismo valor en `SITE_DIR`.
-Las veintiuna pruebas comprueban las catorce rutas (cinco principales y nueve anteriores),
-el idioma, las URL canónicas, el menú de seis entradas, el documento único del plan en
-espiral y su enlace Markdown, y los diagramas de proceso y arquitectura,
+Las treinta pruebas comprueban las catorce rutas (tres guías del menú,
+Arquitectura, la URL histórica de instrucciones y nueve referencias),
+el idioma, las URL canónicas y la navegación limitada a Introducción, Procedimiento y Gentle Shell,
+la explicación del código y los datos, las dos estrategias de repositorios y los límites del agente,
+el acceso a Plan técnico como único documento en espiral y su enlace Markdown,
+el procedimiento de siete pasos con instrucciones integradas, los enlaces de compatibilidad
+y los diagramas de referencia técnica y arquitectura,
 los ejemplos de instrucciones, los pasos y prompts del manual para Windows/Linux/macOS,
 el ejemplo guiado de inicio de once pasos y el de recuperación de seis pasos,
 con prompts de asistencia y autorización por paso; también la distinción entre
@@ -95,10 +140,10 @@ Actualice ambos valores al preparar una edición; compilar no cambia la fecha po
 Estos datos no acreditan una migración validada. Si cambia la edición, ajuste también
 los valores esperados en `tests/test_site.py`.
 
-El procedimiento usa `docs/assets/migration-process.svg`: un diagrama local tipo BPMN
-simplificado, con actores, tareas, decisiones y retornos. No es un modelo BPMN ejecutable
-ni representa el estado de una migración real. Tiene descripción accesible y equivalente
-en texto; se adapta al ancho del contenido y puede abrirse por separado para ampliarlo.
+`docs/assets/migration-process.svg` se conserva como referencia del recorrido técnico
+anterior; ya no aparece en el Procedimiento operativo de siete pasos. Es un diagrama
+local tipo BPMN simplificado, no ejecutable, que no representa el estado de una
+migración real. Tiene descripción accesible y se conserva sin modificar.
 El contenedor conserva desplazamiento horizontal y acceso por teclado si algún contenido desborda. No requiere plugins, JavaScript ni servicios de diagramación externos.
 
 Tras actualizar dependencias, revise también la página 404 y los textos de búsqueda.
@@ -108,7 +153,7 @@ Tras actualizar dependencias, revise también la página 404 y los textos de bú
 - Lea [AGENTS.md](AGENTS.md) y la [guía de trabajo con IA](docs/ai-guide.md).
 - Registre las versiones exactas de origen y destino y el alcance de código y base de datos.
 - Marque los borradores como no verificados; aporte evidencias sin datos sensibles antes de afirmar su verificación.
-- No incluya datos de clientes, secretos, código propietario ni infraestructura interna.
+- No incluya datos de clientes, secretos, código propietario ni infraestructura interna. La excepción de identificación de esta edición permite mencionar Equipavic y Smarttract al explicar el diseño; no extienda ese permiso a sus datos o evidencias.
 
 ## Publicación y licencia
 

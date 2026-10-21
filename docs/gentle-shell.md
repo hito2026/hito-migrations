@@ -397,8 +397,10 @@ Si falta acceso o una decisión, indique exactamente qué necesito resolver.
 ```
 
 Responda las preguntas del agente y revise el plan. Para autorizar la siguiente
-etapa, copie el mensaje correspondiente de [Instrucciones del usuario](user-instructions.md).
-Siga el orden del [Procedimiento](procedure.md); no autorice toda la migración de una vez.
+etapa, copie la [autorización correspondiente del Procedimiento](procedure.md#7-seguir-al-agente-y-el-plan-en-espiral).
+Para las etapas técnicas, siga el [Plan técnico en espiral](spiral-strategy.md);
+no autorice toda la migración de una vez. El [Procedimiento](procedure.md) resume el acceso
+y la puesta en marcha del trabajo con el agente.
 
 ## 7. Retomar el trabajo
 
@@ -860,7 +862,7 @@ No avance al siguiente paso sin una nueva autorización.
 
 Para continuar después de aprobar la ficha y delimitar las fuentes, use
 [Empezar la migración](#6-empezar-la-migracion) y las autorizaciones por etapa de
-[Instrucciones del usuario](user-instructions.md). Para desconectarse o entregar,
+[Procedimiento](procedure.md#7-seguir-al-agente-y-el-plan-en-espiral). Para desconectarse o entregar,
 siga [Retomar el trabajo](#7-retomar-el-trabajo) o [Entregar el caso](#8-entregar-el-caso).
 
 ## Ejemplo guiado para retomar un caso
@@ -1075,8 +1077,8 @@ No avance al siguiente paso sin una nueva autorización.
 En un caso recién creado, el resumen puede indicar que la ficha sigue sin completar
 y el tablero está vacío. Recuperar la sesión no convierte eso en avance de migración
 ni confirma la versión `19.0` que viene en la plantilla. Para trabajo nuevo, otorgue
-solo la autorización de la etapa correspondiente de
-[Instrucciones del usuario](user-instructions.md).
+solo la autorización de la etapa correspondiente del
+[Procedimiento](procedure.md#7-seguir-al-agente-y-el-plan-en-espiral).
 
 ### Si el agente ya no está abierto
 
