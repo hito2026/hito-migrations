@@ -355,8 +355,8 @@
                 
   <aside class="doc-edition" aria-label="Edición de la documentación">
   <span class="doc-edition__label">Hito · Guías técnicas</span>
-  <span data-doc-version="0.3.0">Versión documental 0.3.0</span>
-  <span>Actualizado <time datetime="2026-10-21">21/10/2026</time></span>
+  <span data-doc-version="0.3.1">Versión documental 0.3.1</span>
+  <span>Actualizado <time datetime="2026-10-25">25/10/2026</time></span>
 </aside>
   
                   
@@ -433,16 +433,19 @@ no verificada, es inspeccionar una fuente prístina en un espacio aislado autori
 contrastar referencias y disponibilidad de objetos. No repare destructivamente el espacio
 original ni atribuya una causa sin evidencia; esta página no aporta comandos de reparación.</p>
 <h3 id="posible-sustitucion-de-modulos-de-pago-adhoc">Posible sustitución de módulos de pago ADHOC</h3>
-<p>La relación <code>account_payment_group</code> → <code>account_payment_pro</code> es <strong>solo una hipótesis</strong>,
-no un reemplazo verificado. Requiere confirmar proveedor, versiones, cobertura funcional,
-historia y conciliación de numeración. La presencia de un addon con nombre parecido
-no demuestra equivalencia. No se proponen transformaciones de datos ni una ruta de migración.</p>
+<p>La relación <code>account_payment_group</code> → <code>account_payment_pro</code> (+ <code>l10n_ar_payment_bundle</code>
+para pagos agrupados) se observó en un caso 17 → 19 de ADHOC: <code>account_payment_pro</code> hace
+que cada pago sea el recibo; el grupo desaparece y sus menús dan 404. <strong>La conversión de
+datos de los grupos no está verificada</strong>: ADHOC no incluye script para ella en 19.0.
+Ver <a href="../upgraded-db-lessons/">lecciones de base migrada</a>. Confirme versiones, cobertura
+funcional, historia y numeración en su contexto.</p>
 <h3 id="reglas-fiscales-y-controles-de-seguridad">Reglas fiscales y controles de seguridad</h3>
 <p>Un fallback fiscal fijo puede ocultar una configuración incompleta; una validación solo
 mediante <code>onchange</code> puede no cubrir otras vías de escritura. Son riesgos genéricos por
 investigar con pruebas autorizadas de comportamiento y controles del servidor, no
 vulnerabilidades confirmadas ni correcciones verificadas. No publique valores reales.</p>
-<p>Registre las decisiones en las <a href="../migration-templates/">tarjetas de módulo</a>.
+<p>Problemas observados sobre una base migrada: <a href="../upgraded-db-lessons/">lecciones de base migrada</a>.
+Registre las decisiones en las <a href="../migration-templates/">tarjetas de módulo</a>.
 Vuelva a las <a href="../recipes/">recetas</a> o a la <a href="../validation/">lista de validación</a>.</p>
 
 

@@ -2,58 +2,62 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://hito2026.github.io/hito-migrations/</loc>
-         <lastmod>2026-10-21</lastmod>
+         <lastmod>2026-10-25</lastmod>
     </url>
     <url>
          <loc>https://hito2026.github.io/hito-migrations/ai-guide/</loc>
-         <lastmod>2026-10-21</lastmod>
+         <lastmod>2026-10-25</lastmod>
     </url>
     <url>
          <loc>https://hito2026.github.io/hito-migrations/architecture/</loc>
-         <lastmod>2026-10-21</lastmod>
+         <lastmod>2026-10-25</lastmod>
     </url>
     <url>
          <loc>https://hito2026.github.io/hito-migrations/case-template/</loc>
-         <lastmod>2026-10-21</lastmod>
+         <lastmod>2026-10-25</lastmod>
     </url>
     <url>
          <loc>https://hito2026.github.io/hito-migrations/gentle-shell/</loc>
-         <lastmod>2026-10-21</lastmod>
+         <lastmod>2026-10-25</lastmod>
     </url>
     <url>
          <loc>https://hito2026.github.io/hito-migrations/known-errors/</loc>
-         <lastmod>2026-10-21</lastmod>
+         <lastmod>2026-10-25</lastmod>
     </url>
     <url>
          <loc>https://hito2026.github.io/hito-migrations/migration-manual/</loc>
-         <lastmod>2026-10-21</lastmod>
+         <lastmod>2026-10-25</lastmod>
     </url>
     <url>
          <loc>https://hito2026.github.io/hito-migrations/migration-templates/</loc>
-         <lastmod>2026-10-21</lastmod>
+         <lastmod>2026-10-25</lastmod>
     </url>
     <url>
          <loc>https://hito2026.github.io/hito-migrations/procedure/</loc>
-         <lastmod>2026-10-21</lastmod>
+         <lastmod>2026-10-25</lastmod>
     </url>
     <url>
          <loc>https://hito2026.github.io/hito-migrations/recipes/</loc>
-         <lastmod>2026-10-21</lastmod>
+         <lastmod>2026-10-25</lastmod>
     </url>
     <url>
          <loc>https://hito2026.github.io/hito-migrations/spiral-strategy/</loc>
-         <lastmod>2026-10-21</lastmod>
+         <lastmod>2026-10-25</lastmod>
+    </url>
+    <url>
+         <loc>https://hito2026.github.io/hito-migrations/upgraded-db-lessons/</loc>
+         <lastmod>2026-10-25</lastmod>
     </url>
     <url>
          <loc>https://hito2026.github.io/hito-migrations/user-instructions/</loc>
-         <lastmod>2026-10-21</lastmod>
+         <lastmod>2026-10-25</lastmod>
     </url>
     <url>
          <loc>https://hito2026.github.io/hito-migrations/validation/</loc>
-         <lastmod>2026-10-21</lastmod>
+         <lastmod>2026-10-25</lastmod>
     </url>
     <url>
          <loc>https://hito2026.github.io/hito-migrations/versions/</loc>
-         <lastmod>2026-10-21</lastmod>
+         <lastmod>2026-10-25</lastmod>
     </url>
 </urlset>
