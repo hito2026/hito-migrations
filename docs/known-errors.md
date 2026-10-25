@@ -48,10 +48,12 @@ original ni atribuya una causa sin evidencia; esta página no aporta comandos de
 
 ### Posible sustitución de módulos de pago ADHOC
 
-La relación `account_payment_group` → `account_payment_pro` es **solo una hipótesis**,
-no un reemplazo verificado. Requiere confirmar proveedor, versiones, cobertura funcional,
-historia y conciliación de numeración. La presencia de un addon con nombre parecido
-no demuestra equivalencia. No se proponen transformaciones de datos ni una ruta de migración.
+La relación `account_payment_group` → `account_payment_pro` (+ `l10n_ar_payment_bundle`
+para pagos agrupados) se observó en un caso 17 → 19 de ADHOC: `account_payment_pro` hace
+que cada pago sea el recibo; el grupo desaparece y sus menús dan 404. **La conversión de
+datos de los grupos no está verificada**: ADHOC no incluye script para ella en 19.0.
+Ver [lecciones de base migrada](upgraded-db-lessons.md). Confirme versiones, cobertura
+funcional, historia y numeración en su contexto.
 
 ### Reglas fiscales y controles de seguridad
 
@@ -60,5 +62,6 @@ mediante `onchange` puede no cubrir otras vías de escritura. Son riesgos genér
 investigar con pruebas autorizadas de comportamiento y controles del servidor, no
 vulnerabilidades confirmadas ni correcciones verificadas. No publique valores reales.
 
+Problemas observados sobre una base migrada: [lecciones de base migrada](upgraded-db-lessons.md).
 Registre las decisiones en las [tarjetas de módulo](migration-templates.md).
 Vuelva a las [recetas](recipes.md) o a la [lista de validación](validation.md).

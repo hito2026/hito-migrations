@@ -10,7 +10,8 @@ from xml.etree import ElementTree
 
 SITE = Path(os.environ.get("SITE_DIR", "site")).resolve()
 LEGACY_ROUTES = ("migration-manual", "spiral-strategy", "migration-templates",
-                 "versions", "recipes", "validation", "known-errors", "ai-guide", "case-template")
+                 "versions", "recipes", "validation", "known-errors", "upgraded-db-lessons",
+                 "ai-guide", "case-template")
 ROUTES = ("", "procedure", "user-instructions", "gentle-shell", "architecture",
           *LEGACY_ROUTES)
 BASE = "https://hito2026.github.io/hito-migrations/"
@@ -475,11 +476,11 @@ class SiteContract(unittest.TestCase):
         for route, page in pages:
             with self.subTest(route=route):
                 self.assertTrue(page.has("aside", "aria-label", "Edición de la documentación"))
-                self.assertTrue(page.has("span", "data-doc-version", "0.3.0"))
-                self.assertIn("Versión documental 0.3.0", page.text)
-                self.assertTrue(page.has("time", "datetime", "2026-10-21"))
+                self.assertTrue(page.has("span", "data-doc-version", "0.3.1"))
+                self.assertIn("Versión documental 0.3.1", page.text)
+                self.assertTrue(page.has("time", "datetime", "2026-10-25"))
                 self.assertIn("Actualizado", page.text)
-                self.assertIn("21/10/2026", page.text)
+                self.assertIn("25/10/2026", page.text)
 
     def test_local_links_resources_and_no_external_fonts(self):
         for route in ROUTES:

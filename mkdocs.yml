@@ -19,8 +19,8 @@ theme:
     - content.code.copy
 extra:
   documentation:
-    version: "0.3.0"
-    updated: "2026-10-21"
+    version: "0.3.1"
+    updated: "2026-10-25"
 extra_css:
   - stylesheets/extra.css
 markdown_extensions:
@@ -36,6 +36,7 @@ not_in_nav: |
   /recipes.md
   /validation.md
   /known-errors.md
+  /upgraded-db-lessons.md
   /ai-guide.md
   /case-template.md
   /user-instructions.md
